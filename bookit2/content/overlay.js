@@ -41,8 +41,48 @@ var bookit2 = {
     this.strings = document.getElementById("bookit2-strings");
     document.getElementById("contentAreaContextMenu")
             .addEventListener("popupshowing", function(e) { this.showContextMenu(e); }, false);
+			
+	if (!this.oBookit2Pref && !this.bBookit2Initializing)
+	{
+		this.bBookit2Initializing = true;
+		setTimeout('bookit2.Init();', 500);
+	}
+			
   },
 
+  Init: function() {
+  
+	if (!this.Bookit2IsInitialized)
+	{
+		this.Bookit2SettingsObserver =
+		{
+			observe: function(subject, topic, state)
+			{				
+				if (topic == "bookit2-settings" && state == 'OK' && typeof(bookit2.ApplySettings) == "function") {
+					bookit2.ApplySettings();
+				}
+			}
+		}
+		
+		var oObService = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService)
+		oObService.addObserver(this.Bookit2SettingsObserver, "bookit2-settings", false); 
+		
+		this.oBookit2Pref = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).getBranch("extensions.bookit2.");
+		if (!this.oBookit2Pref.prefHasUserValue('hide_statusbar')) SetBookitPrefBool("hide_statusbar", false);
+	
+		bookit2.ApplySettings();
+		
+		this.Bookit2IsInitialized = true;
+    }
+  },
+  
+  onUnload: function() {
+  
+	var oObService = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService)
+	oObService.removeObserver(this.Bookit2SettingsObserver, "bookit2-settings"); 
+  
+  },
+  
   showContextMenu: function(event) {
     // show or hide the menuitem based on what the context menu is on
     // see http://kb.mozillazine.org/Adding_items_to_menus
@@ -57,7 +97,51 @@ var bookit2 = {
   onToolbarButtonCommand: function(e) {
     // just reuse the function above.  you can change this, obviously!
     bookit2.onMenuItemCommand(e);
-  }
+  },
 
+   ApplySettings: function() {
+	
+		var oSItem = document.getElementById("statusbar-bookit");
+		if (GetBookitPrefBool("hide_statusbar") && oSItem)  {
+			oSItem.setAttribute("hidden", true);
+		}
+		else if (oSItem) {
+			oSItem.setAttribute("hidden", false);
+		}
+	}   
 };
+
+
+
+function GetBookitPref(sName)
+{
+	try {return bookit2.oBookit2Pref.getComplexValue(sName, Components.interfaces.nsIPrefLocalizedString).data;}
+	catch (e) {}
+	return bookit2.oBookit2Pref.getCharPref(sName);
+}
+
+function SetBookitPref(sName, sData)
+{
+	var oPLS = Components.classes["@mozilla.org/pref-localizedstring;1"].createInstance(Components.interfaces.nsIPrefLocalizedString);
+	oPLS.data = sData;
+	bookit2.oBookit2Pref.setComplexValue(sName, Components.interfaces.nsIPrefLocalizedString, oPLS);
+}
+
+function GetBookitPrefBool(sName)
+{
+	return bookit2.oBookit2Pref.getBoolPref(sName);
+}
+
+function SetBookitPrefBool(sName, bData)
+{
+	bookit2.oBookit2Pref.setBoolPref(sName, bData);
+}
+
+function LOG(msg) {
+  var consoleService = Components.classes["@mozilla.org/consoleservice;1"]
+                                 .getService(Components.interfaces.nsIConsoleService);
+  consoleService.logStringMessage(msg);
+}
+
 window.addEventListener("load", function(e) { bookit2.onLoad(e); }, false);
+addEventListener("unload", function(e) { bookit2.onUnload(e); } ,false);

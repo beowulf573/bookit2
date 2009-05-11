@@ -37,15 +37,22 @@
 
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 <!DOCTYPE prefwindow SYSTEM "chrome://bookit2/locale/prefwindow.dtd">
-<prefwindow id="bookit2Preferences" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" title="&prefwindow.title;">
+<prefwindow id="bookit2Preferences" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" 
+
+		ondialogaccept="return SaveSettings();"
+		onload="LoadWindow();"
+		buttons="accept,cancel"
+		persist="width height screenX screenY"
+		title="&prefwindow.title;">
   <prefpane id="pane1" label="&pane1.title;">
-    <preferences>
-      <preference id="boolpref1" name="extensions.bookit2.boolpref" type="bool"/>
-      <preference id="intpref1" name="extensions.bookit2.intpref" type="int"/>
-      <preference id="stringpref1" name="extensions.bookit2.stringpref" type="string"/> <!-- note that this is only an ASCII string - use unichar for unicode strings -->
-    </preferences>
-    <checkbox id="checkboolpref" preference="boolpref1" label="&checkboolpref.label;" accesskey="&checkboolpref.accesskey;"/>
-    <label accesskey="&intpref.accesskey;" control="textintpref">&intpref.label;</label><textbox id="textintpref" preference="intpref1"/>
-    <label accesskey="&stringpref.accesskey;" control="textstringpref">&stringpref.label;</label><textbox id="textstringpref" preference="stringpref1"/>
+
+	<groupbox>
+		<caption label="&bookit.settings.display;"/>
+		<checkbox id="hide_statusbar" label="&bookit.settings.display.hide_statusbar;" />
+	</groupbox>
+
   </prefpane>
-</prefwindow>
+
+  <script type="application/x-javascript" src="chrome://bookit2/content/bookit-settings.js"/>
+
+ </prefwindow>

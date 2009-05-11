@@ -1,0 +1,22 @@
+
+use observers for settings
+
+start off with settings for test
+
+status bar, menu, toolbar
+
+check object code
+
+come up with set of settings on a per page bases, global vs individual
+
+global
+
+output dir
+common util paths
+global author name
+add to calibre
+enable tool menu
+enable context menu
+enable status bar
+
+tab per output method

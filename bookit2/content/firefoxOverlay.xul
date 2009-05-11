@@ -61,4 +61,10 @@
     oncommand="bookit2.onToolbarButtonCommand()"
     class="toolbarbutton-1 chromeclass-toolbar-additional"/>
   </toolbarpalette>
+<statusbar id="status-bar">
+<prefpane id="test_noprefwindow" hidden="true"/>
+	<statusbarpanel id="statusbar-bookit" mode="full" class="statusbarpanel-menu-iconic" ccode="" hidden="false" persist="hidden ccode mode">
+		<label id="statusbar-boookit-text" class="statusbarpanel-text" value="" persist="value"/>
+	</statusbarpanel>
+</statusbar>
 </overlay>

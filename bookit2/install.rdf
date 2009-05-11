@@ -8,14 +8,14 @@
     <em:creator>Eddie McCreary</em:creator>
     <em:description>A Firefox extension to create eBooks from webpages.</em:description>
     <em:homepageURL>http://www.heorot.org/wordpress/index.php/software/bookit/</em:homepageURL>
-    <em:updateURL>http://www.heorot.org/wordpress/wp-content/bookit/bookit2_update.rdf</em:updateURL>
+    <em:updateURL>https://www.heorot.org/wordpress/wp-content/bookit/bookit2_update.rdf</em:updateURL>
     <em:aboutURL>chrome://bookit2/content/about.xul</em:aboutURL>
     <em:optionsURL>chrome://bookit2/content/options.xul</em:optionsURL>
     <em:targetApplication>
       <Description>
         <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id> <!-- firefox -->
-        <em:minVersion>3.0.*</em:minVersion>
-        <em:maxVersion>3.1.*</em:maxVersion>
+        <em:minVersion>3.0.0</em:minVersion>
+        <em:maxVersion>3.*</em:maxVersion>
       </Description>
     </em:targetApplication>
   </Description>

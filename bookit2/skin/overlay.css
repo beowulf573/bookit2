@@ -20,3 +20,8 @@
 {
   -moz-image-region: rect(24px 40px 40px 24px);
 }
+
+#statusbar-bookit[mode="text"] .statusbarpanel-icon {display: none;}
+#statusbar-bookit[mode="icon"] .statusbarpanel-text {display: none;}
+
+#statusbar-bookit {list-style-image: url("chrome://bookit2/skin/reader16.png");}
