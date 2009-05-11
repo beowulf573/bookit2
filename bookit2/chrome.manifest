@@ -1,0 +1,5 @@
+content	bookit2	content/
+locale	bookit2	en-US	locale/en-US/
+skin	bookit2	classic/1.0	skin/
+overlay	chrome://browser/content/browser.xul	chrome://bookit2/content/firefoxOverlay.xul
+style	chrome://global/content/customizeToolbar.xul	chrome://bookit2/skin/overlay.css

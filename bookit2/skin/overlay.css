@@ -1,0 +1,22 @@
+/* This is just an example.  You shouldn't do this. */
+#bookit2-hello
+{
+  color: red ! important;
+}
+#bookit2-toolbar-button
+{
+  list-style-image: url("chrome://bookit2/skin/toolbar-button.png");
+  -moz-image-region: rect(0px 24px 24px 0px);
+}
+#bookit2-toolbar-button:hover
+{
+  -moz-image-region: rect(24px 24px 48px  0px);
+}
+[iconsize="small"] #bookit2-toolbar-button
+{
+  -moz-image-region: rect( 0px 40px 16px 24px);
+}
+[iconsize="small"] #bookit2-toolbar-button:hover
+{
+  -moz-image-region: rect(24px 40px 40px 24px);
+}

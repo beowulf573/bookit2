@@ -1,0 +1,5 @@
+<!ENTITY bookit2.label "Your localized menuitem">
+<!ENTITY bookit2Context.label "Your Menuitem">
+<!ENTITY bookit2Context.accesskey "Y">
+<!ENTITY bookit2Toolbar.label "Your Toolbar Button">
+<!ENTITY bookit2Toolbar.tooltip "This is your toolbar button!">
