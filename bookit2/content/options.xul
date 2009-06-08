@@ -48,6 +48,8 @@
 
 	<groupbox>
 		<caption label="&bookit.settings.display;"/>
+		<checkbox id="hide_toolsmenu" label="&bookit.settings.display.hide_toolsmenu;" />
+		<checkbox id="hide_contextmenu" label="&bookit.settings.display.hide_contextmenu;" />
 		<checkbox id="hide_statusbar" label="&bookit.settings.display.hide_statusbar;" />
 	</groupbox>
 

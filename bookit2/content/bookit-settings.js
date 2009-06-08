@@ -6,12 +6,20 @@ function LoadWindow() {
 
 	this.oHideStatusbar = document.getElementById('hide_statusbar');
 	this.oHideStatusbar.checked = GetPrefBool("hide_statusbar");
+
+   	this.oHideToolsMenu = document.getElementById('hide_toolsmenu');
+	this.oHideToolsMenu.checked = GetPrefBool("hide_toolsmenu");
+
+	this.oHideContextMenu = document.getElementById('hide_contextmenu');
+	this.oHideContextMenu.checked = GetPrefBool("hide_contextmenu");
 }
 
 
 function SaveSettings() {
 
 	SetPrefBool("hide_statusbar", this.oHideStatusbar.checked);
+    SetPrefBool("hide_toolsmenu", this.oHideToolsMenu.checked);
+    SetPrefBool("hide_contextmenu", this.oHideContextMenu.checked);
 
 	var oObService = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
 	oObService.notifyObservers(opener, "bookit2-settings", "OK");

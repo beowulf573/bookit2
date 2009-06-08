@@ -45,7 +45,7 @@
   </stringbundleset>
 
   <menupopup id="menu_ToolsPopup">
-    <menuitem id="bookit2-hello" label="&bookit2.label;" 
+    <menuitem id="toolsmenu-bookit2" label="&bookit2.label;" 
               oncommand="bookit2.onMenuItemCommand(event);"/>
   </menupopup>
   <popup id="contentAreaContextMenu">

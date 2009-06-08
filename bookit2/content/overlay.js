@@ -32,16 +32,20 @@
  * the provisions above, a recipient may use your version of this file under
  * the terms of any one of the MPL, the GPL or the LGPL.
  * 
- * ***** END LICENSE BLOCK ***** */
+ ****** END LICENSE BLOCK ******/
+
 
 var bookit2 = {
   onLoad: function() {
     // initialization code
     this.initialized = true;
     this.strings = document.getElementById("bookit2-strings");
+    
     document.getElementById("contentAreaContextMenu")
-            .addEventListener("popupshowing", function(e) { this.showContextMenu(e); }, false);
-			
+            .addEventListener("popupshowing", function(e) {  bookit2.onContextPopupShowing(e); }, false);
+    document.getElementById("menu_ToolsPopup")
+            .addEventListener("popupshowing", function(e) {  bookit2.onToolsPopupShowing(e); }, false);
+	
 	if (!this.oBookit2Pref && !this.bBookit2Initializing)
 	{
 		this.bBookit2Initializing = true;
@@ -69,6 +73,8 @@ var bookit2 = {
 		
 		this.oBookit2Pref = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).getBranch("extensions.bookit2.");
 		if (!this.oBookit2Pref.prefHasUserValue('hide_statusbar')) SetBookitPrefBool("hide_statusbar", false);
+        if (!this.oBookit2Pref.prefHasUserValue('hide_toolsmenu')) SetBookitPrefBool("hide_toolsmenu", false);
+        if (!this.oBookit2Pref.prefHasUserValue('hide_contextmenu')) SetBookitPrefBool("hide_contextmenu", false);
 	
 		bookit2.ApplySettings();
 		
@@ -83,10 +89,16 @@ var bookit2 = {
   
   },
   
-  showContextMenu: function(event) {
+  onToolsPopupShowing: function(event) {
     // show or hide the menuitem based on what the context menu is on
     // see http://kb.mozillazine.org/Adding_items_to_menus
-    document.getElementById("context-bookit2").hidden = gContextMenu.onImage;
+    document.getElementById("toolsmenu-bookit2").hidden = GetBookitPrefBool("hide_toolsmenu");
+  },
+  
+  onContextPopupShowing: function(event) {
+    // show or hide the menuitem based on what the context menu is on
+    // see http://kb.mozillazine.org/Adding_items_to_menus
+    document.getElementById("context-bookit2").hidden = GetBookitPrefBool("hide_contextmenu");
   },
   onMenuItemCommand: function(e) {
     var promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]

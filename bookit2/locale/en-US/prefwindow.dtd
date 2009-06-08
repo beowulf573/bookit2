@@ -7,4 +7,6 @@
 <!ENTITY stringpref.label "A String Preference">
 <!ENTITY stringpref.accesskey "S">
 <!ENTITY bookit.settings.display.hide_statusbar "Hide Statusbar">
+<!ENTITY bookit.settings.display.hide_toolsmenu "Hide Tools Menu">
+<!ENTITY bookit.settings.display.hide_contextmenu "Hide Context Menu">
 <!ENTITY bookit.settings.display "Display">
