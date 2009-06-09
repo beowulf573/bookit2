@@ -60,23 +60,32 @@ var bookit2 = {
 	{
 		this.Bookit2SettingsObserver =
 		{
-			observe: function(subject, topic, state)
+			observe: function(subject, topic, data)
 			{				
-				if (topic == "bookit2-settings" && state == 'OK' && typeof(bookit2.ApplySettings) == "function") {
-					bookit2.ApplySettings();
-				}
+                if(topic != "nsPref:changed") {
+                    return;
+                }
+                
+                switch(data)
+                {
+                    case "hide_statusbar":
+                    bookit2.updateStatusBar();
+                    break;
+                }
 			}
 		}
 		
-		var oObService = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService)
-		oObService.addObserver(this.Bookit2SettingsObserver, "bookit2-settings", false); 
 		
 		this.oBookit2Pref = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).getBranch("extensions.bookit2.");
+
+        this.oBookit2Pref.QueryInterface(Components.interfaces.nsIPrefBranch2);
+        this.oBookit2Pref.addObserver("", this.Bookit2SettingsObserver, false);
+        
 		if (!this.oBookit2Pref.prefHasUserValue('hide_statusbar')) SetBookitPrefBool("hide_statusbar", false);
         if (!this.oBookit2Pref.prefHasUserValue('hide_toolsmenu')) SetBookitPrefBool("hide_toolsmenu", false);
         if (!this.oBookit2Pref.prefHasUserValue('hide_contextmenu')) SetBookitPrefBool("hide_contextmenu", false);
 	
-		bookit2.ApplySettings();
+		bookit2.updateStatusBar();
 		
 		this.Bookit2IsInitialized = true;
     }
@@ -84,8 +93,7 @@ var bookit2 = {
   
   onUnload: function() {
   
-	var oObService = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService)
-	oObService.removeObserver(this.Bookit2SettingsObserver, "bookit2-settings"); 
+	this.oBookit2Pref.removeObserver("", this.Bookit2SettingsObserver);
   
   },
   
@@ -111,7 +119,7 @@ var bookit2 = {
     bookit2.onMenuItemCommand(e);
   },
 
-   ApplySettings: function() {
+   updateStatusBar: function() {
 	
 		var oSItem = document.getElementById("statusbar-bookit");
 		if (GetBookitPrefBool("hide_statusbar") && oSItem)  {

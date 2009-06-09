@@ -39,18 +39,20 @@
 <!DOCTYPE prefwindow SYSTEM "chrome://bookit2/locale/prefwindow.dtd">
 <prefwindow id="bookit2Preferences" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" 
 
-		ondialogaccept="return SaveSettings();"
-		onload="LoadWindow();"
-		buttons="accept,cancel"
 		persist="width height screenX screenY"
 		title="&prefwindow.title;">
   <prefpane id="pane1" label="&pane1.title;">
-
+    <preferences>
+        <preference id="pref_toolsmenu" name="extensions.bookit2.hide_toolsmenu" type="bool" />
+        <preference id="pref_statusbar" name="extensions.bookit2.hide_statusbar" type="bool" />
+        <preference id="pref_contextmenu" name="extensions.bookit2.hide_contextmenu" type="bool" />
+    </preferences>
+    
 	<groupbox>
 		<caption label="&bookit.settings.display;"/>
-		<checkbox id="hide_toolsmenu" label="&bookit.settings.display.hide_toolsmenu;" />
-		<checkbox id="hide_contextmenu" label="&bookit.settings.display.hide_contextmenu;" />
-		<checkbox id="hide_statusbar" label="&bookit.settings.display.hide_statusbar;" />
+		<checkbox id="hide_toolsmenu" preference="pref_toolsmenu" label="&bookit.settings.display.hide_toolsmenu;" />
+		<checkbox id="hide_contextmenu" preference="pref_contextmenu" label="&bookit.settings.display.hide_contextmenu;" />
+		<checkbox id="hide_statusbar" preference="pref_statusbar" label="&bookit.settings.display.hide_statusbar;" />
 	</groupbox>
 
   </prefpane>
