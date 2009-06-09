@@ -116,16 +116,16 @@ var bookit2 = {
     bookit2.onMenuItemCommand(e);
   },
 
-   updateStatusBar: function() {
+  updateStatusBar: function() {
 	
-		var oSItem = document.getElementById("statusbar-bookit");
-		if (GetBookitPrefBool("hide_statusbar") && oSItem)  {
-			oSItem.setAttribute("hidden", true);
-		}
-		else if (oSItem) {
-			oSItem.setAttribute("hidden", false);
-		}
-	}   
+	var oSItem = document.getElementById("statusbar-bookit");
+	if (GetBookitPrefBool("hide_statusbar") && oSItem)  {
+		oSItem.setAttribute("hidden", true);
+	}
+	else if (oSItem) {
+		oSItem.setAttribute("hidden", false);
+	}
+  }   
 };
 
 

@@ -10,3 +10,8 @@
 <!ENTITY bookit.settings.display.hide_toolsmenu "Hide Tools Menu">
 <!ENTITY bookit.settings.display.hide_contextmenu "Hide Context Menu">
 <!ENTITY bookit.settings.display "Display">
+<!ENTITY bookit.settings.author "Default Author:">
+<!ENTITY bookit.settings.output_directory "Output Directory:">
+<!ENTITY bookit.settings.calibre "Calibre">
+<!ENTITY bookit.settings.add_calibre "Add to Calibre">
+<!ENTITY bookit.settings.launch_calibre "Launch Calibre">

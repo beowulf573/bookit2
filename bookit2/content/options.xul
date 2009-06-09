@@ -46,8 +46,24 @@
         <preference id="pref_toolsmenu" name="extensions.bookit2.hide_toolsmenu" type="bool" />
         <preference id="pref_statusbar" name="extensions.bookit2.hide_statusbar" type="bool" />
         <preference id="pref_contextmenu" name="extensions.bookit2.hide_contextmenu" type="bool" />
+        <preference id="pref_default_author" name="extensions.bookit2.default_author" type="string" />
+        <preference id="pref_output_directory" name="extensions.bookit2.output_directory" type="string" />
+        <preference id="pref_add_calibre" name="extensions.bookit2.add_calibre" type="bool" />
+        <preference id="pref_launch_calibre" name="extensions.bookit2.launch_calibre" type="bool" />
     </preferences>
     
+    <label control="author" value="&bookit.settings.author;"/>
+    <textbox preference="pref_default_author" id="author" />
+
+    <label control="output_directory" value="&bookit.settings.output_directory;"/>
+    <textbox preference="pref_output_directory" id="output_directory" />
+
+   	<groupbox>
+		<caption label="&bookit.settings.calibre;"/>
+		<checkbox id="hide_add_calibre" preference="pref_add_calibre" label="&bookit.settings.add_calibre;" />
+		<checkbox id="hide_launch_calibre" preference="pref_launch_calibre" label="&bookit.settings.launch_calibre;" />
+	</groupbox>
+
 	<groupbox>
 		<caption label="&bookit.settings.display;"/>
 		<checkbox id="hide_toolsmenu" preference="pref_toolsmenu" label="&bookit.settings.display.hide_toolsmenu;" />
