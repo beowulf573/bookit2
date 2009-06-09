@@ -1,22 +1,80 @@
+list of all settings:
+
+options dialog
+==============
+author 
+title 
+output dir
+add to calibre
+launch calibre
+
+global settings
+===============
+default author
+show options dialog
+output dir
+add to calibre
+launch calibre
+
+Paths
+=====
+path to calibre
+path to calibredb
+web2disk
+html2epub
+html2lrf
+any2mobi
+
+Saving
+======
+max recursions 1 default
+max files 0 for default (not used)
+delay 0 defult
+
+layout
+======
+left margin
+right margin
+top margin
+bottom margin
+
+base font size (12.0 default)
+
+LRF
+===
+bool ignore tables
+bool header 
+string headerformat=
+
+
+ePub
+====
+
+
+Mobi
+====
+bool ignore tables
+
+popup for output type, filename, author, title
+
+common menu
+===========
+selection to ebook (if selected)
+selection to editor (if selected)
+create ebook
+show editor
+options
+
+string format code
+js log code
+
+
 
 use observers for settings
 
 start off with settings for test
 
-status bar, menu, toolbar
-
-check object code
-
-come up with set of settings on a per page bases, global vs individual
 
 global
-
-output dir
-common util paths
-global author name
-add to calibre
-enable tool menu
-enable context menu
-enable status bar
 
 tab per output method

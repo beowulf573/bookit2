@@ -55,6 +55,9 @@
 
   </prefpane>
 
+  <prefpane id="pane2" label="second">
+  </prefpane>  
+  
   <script type="application/x-javascript" src="chrome://bookit2/content/bookit-settings.js"/>
 
  </prefwindow>
