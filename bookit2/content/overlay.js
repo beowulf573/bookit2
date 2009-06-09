@@ -76,15 +76,12 @@ var bookit2 = {
 		}
 		
 		
+        // setup observer for pref changes
 		this.oBookit2Pref = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).getBranch("extensions.bookit2.");
 
         this.oBookit2Pref.QueryInterface(Components.interfaces.nsIPrefBranch2);
         this.oBookit2Pref.addObserver("", this.Bookit2SettingsObserver, false);
-        
-		if (!this.oBookit2Pref.prefHasUserValue('hide_statusbar')) SetBookitPrefBool("hide_statusbar", false);
-        if (!this.oBookit2Pref.prefHasUserValue('hide_toolsmenu')) SetBookitPrefBool("hide_toolsmenu", false);
-        if (!this.oBookit2Pref.prefHasUserValue('hide_contextmenu')) SetBookitPrefBool("hide_contextmenu", false);
-	
+        	
 		bookit2.updateStatusBar();
 		
 		this.Bookit2IsInitialized = true;
