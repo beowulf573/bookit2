@@ -41,7 +41,7 @@
 
 		persist="width height screenX screenY"
 		title="&prefwindow.title;">
-  <prefpane id="pane1" label="&pane1.title;">
+  <prefpane id="preferences_global" label="&preferences_global.title;">
     <preferences>
         <preference id="pref_toolsmenu" name="extensions.bookit2.hide_toolsmenu" type="bool" />
         <preference id="pref_statusbar" name="extensions.bookit2.hide_statusbar" type="bool" />
