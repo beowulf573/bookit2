@@ -73,8 +73,35 @@
 
   </prefpane>
 
-  <prefpane id="pane2" label="second">
-  </prefpane>  
+  <prefpane id="pane_paths" label="&bookit.settings.paths.title;">
+    <preferences>
+        <preference id="pref_paths_calibre" name="extensions.bookit2.paths.calibre" type="string" />
+        <preference id="pref_paths_calibredb" name="extensions.bookit2.paths.calibredb" type="string" />
+        <preference id="pref_paths_web2disk" name="extensions.bookit2.paths.web2disk" type="string" />
+        <preference id="pref_paths_html2epub" name="extensions.bookit2.paths.html2epub" type="string" />
+        <preference id="pref_paths_html2lrf" name="extensions.bookit2.paths.html2lrf" type="string" />
+        <preference id="pref_paths_any2mobi" name="extensions.bookit2.paths.any2mobi" type="string" />
+    </preferences>
+    
+    <label control="paths_calibre" value="&bookit.settings.paths.calibre;"/>
+    <textbox preference="pref_paths_calibre" id="paths_calibre" />
+
+    <label control="paths_calibredb" value="&bookit.settings.paths.calibredb;"/>
+    <textbox preference="pref_paths_calibredb" id="paths_calibredb" />
+
+    <label control="paths_web2disk" value="&bookit.settings.paths.web2disk;"/>
+    <textbox preference="pref_paths_web2disk" id="paths_web2disk" />
+
+    <label control="paths_html2epub" value="&bookit.settings.paths.html2epub;"/>
+    <textbox preference="pref_paths_html2epub" id="paths_html2epub" />
+
+    <label control="paths_html2lrf" value="&bookit.settings.paths.html2lrf;"/>
+    <textbox preference="pref_paths_html2lrf" id="paths_html2lrf" />
+
+    <label control="paths_any2mobi" value="&bookit.settings.paths.any2mobi;"/>
+    <textbox preference="pref_paths_any2mobi" id="paths_any2mobi" />
+    
+   </prefpane>  
   
   <script type="application/x-javascript" src="chrome://bookit2/content/bookit-settings.js"/>
 
