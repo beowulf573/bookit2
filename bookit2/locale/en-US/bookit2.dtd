@@ -5,3 +5,10 @@
 <!ENTITY bookit2Toolbar.tooltip "This is your toolbar button!">
 
 <!ENTITY bookit2.menu.bookit "Bookit">
+
+<!ENTITY bookit2.toolsmenu.selection_ebook "Selection to eBook">
+<!ENTITY bookit2.toolsmenu.selection_editor "Selection to Editor">
+<!ENTITY bookit2.toolsmenu.create "Create eBook">
+<!ENTITY bookit2.toolsmenu.editor "Editor">
+<!ENTITY bookit2.toolsmenu.log "Show Log">
+<!ENTITY bookit2.toolsmenu.prefs "Preferences">

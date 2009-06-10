@@ -62,7 +62,8 @@ common menu
 selection to ebook (if selected)
 selection to editor (if selected)
 create ebook
-show editor
+Editor
+Log
 options
 
 string format code

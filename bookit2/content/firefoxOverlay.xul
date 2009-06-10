@@ -46,9 +46,21 @@
 
   <menupopup id="menu_ToolsPopup">
     <menu id="mpBookitTools" label="&bookit2.menu.bookit;" class="menu-iconic" insertbefore="prefSep">
-        <menupopup id="menu_bookit_popup">
-            <menuitem id="toolsmenu-bookit2" label="Test" 
+        <menupopup id="menu_toolsmenu_bookit_popup">
+            <menuitem id="menu_toolsmenu_bookit_selection_ebook" label="&bookit2.toolsmenu.selection_ebook;" 
                 oncommand="bookit2.onMenuItemCommand(event);"/>
+            <menuitem id="menu_toolsmenu_bookit_selection_editor" label="&bookit2.toolsmenu.selection_editor;" 
+                oncommand="bookit2.onMenuItemCommand(event);"/>
+            <menuitem id="menu_toolsmenu_bookit_create" label="&bookit2.toolsmenu.create;" 
+                oncommand="bookit2.onMenuItemCommand(event);"/>
+            <menuitem id="menu_toolsmenu_bookit_editor" label="&bookit2.toolsmenu.editor;" 
+                oncommand="bookit2.onMenuItemCommand(event);"/>
+            <menuitem id="menu_toolsmenu_bookit_log" label="&bookit2.toolsmenu.log;" 
+                oncommand="bookit2.onMenuItemCommand(event);"/>
+            <menuitem id="menu_toolsmenu_bookit_prefs" label="&bookit2.toolsmenu.prefs;" 
+                oncommand="bookit2.onMenuItemCommand(event);"/>
+                
+                
         </menupopup>    
     </menu> 
   </menupopup>
