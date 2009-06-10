@@ -28,7 +28,7 @@ import log contents, outputfile into db keyed by guid
 each step use wrapper to create batch/shell script, run blocking, delete batch/script
 view for jobs
 callback via observer from thread to jobs to update status
-
+look at redirecting to log file when launching batch/script
 
 
 
