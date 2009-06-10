@@ -157,7 +157,7 @@
     </preferences>
     
 		<checkbox id="lrf_ignore_tables" preference="pref_lrf_ignore_tables" label="&bookit.settings.lrf.ignore_tables;" />
-		<checkbox id="lrf_header" preference="pref_lrf_header" label="&bookit.settings.lrf.header;"
+		<checkbox id="lrf_header" preference="pref_lrf_header" label="&bookit.settings.lrf.header;" />
         
     <label control="lrf_header_format" value="&bookit.settings.lrf.header_format;"/>
     <textbox preference="pref_lrf_header_format" id="lrf_header_format" />
