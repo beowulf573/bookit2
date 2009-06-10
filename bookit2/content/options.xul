@@ -123,6 +123,33 @@
     <textbox preference="pref_spidering_delay" id="spidering_delay" />
     
    </prefpane>  
-  <script type="application/x-javascript" src="chrome://bookit2/content/bookit-settings.js"/>
+
+  <prefpane id="pane_layout" label="&bookit.settings.layout.title;">
+    <preferences>
+        <preference id="pref_layout_left_margin" name="extensions.bookit2.layout.left_margin" type="int" />
+        <preference id="pref_layout_right_margin" name="extensions.bookit2.layout.right_margin" type="int" />
+        <preference id="pref_layout_top_margin" name="extensions.bookit2.layout.top_margin" type="int" />
+        <preference id="pref_layout_bottom_margin" name="extensions.bookit2.layout.bottom_margin" type="int" />
+        <preference id="pref_layout_base_font_size" name="extensions.bookit2.layout.base_font_size" type="int" />
+    </preferences>
+    
+    <label control="layout_left_margin" value="&bookit.settings.layout.left_margin;"/>
+    <textbox preference="pref_layout_left_margin" id="layout_left_margin" />
+
+    <label control="layout_right_margin" value="&bookit.settings.layout.right_margin;"/>
+    <textbox preference="pref_layout_right_margin" id="layout_right_margin" />
+
+    <label control="layout_top_margin" value="&bookit.settings.layout.top_margin;"/>
+    <textbox preference="pref_layout_top_margin" id="layout_top_margin" />
+    
+    <label control="layout_bottom_margin" value="&bookit.settings.layout.bottom_margin;"/>
+    <textbox preference="pref_layout_bottom_margin" id="layout_bottom_margin" />
+
+    <label control="layout_base_font_size" value="&bookit.settings.layout.base_font_size;"/>
+    <textbox preference="pref_layout_base_font_size" id="layout_base_font_size" />
+    </prefpane>  
+
+
+   <script type="application/x-javascript" src="chrome://bookit2/content/bookit-settings.js"/>
 
  </prefwindow>

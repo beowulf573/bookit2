@@ -23,3 +23,10 @@
 <!ENTITY bookit.settings.spidering.max_recursions "Max Recursions:">
 <!ENTITY bookit.settings.spidering.max_files "Max Files:">
 <!ENTITY bookit.settings.spidering.delay "Delay:">
+
+<!ENTITY bookit.settings.layout.title "Layout">
+<!ENTITY bookit.settings.layout.left_margin "Left Margin:">
+<!ENTITY bookit.settings.layout.right_margin "Right Margin:">
+<!ENTITY bookit.settings.layout.top_margin "Top Margin:">
+<!ENTITY bookit.settings.layout.bottom_margin "Bottom Margin:">
+<!ENTITY bookit.settings.layout.base_font_size "Base Font Size:">
