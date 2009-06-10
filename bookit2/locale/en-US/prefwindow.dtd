@@ -9,6 +9,7 @@
 <!ENTITY bookit.settings.calibre "Calibre">
 <!ENTITY bookit.settings.add_calibre "Add to Calibre">
 <!ENTITY bookit.settings.launch_calibre "Launch Calibre">
+<!ENTITY bookit.settings.show_options_dlg "Show Options Dialog on Create">
 
 <!ENTITY bookit.settings.paths.title "Paths">
 <!ENTITY bookit.settings.paths.calibre "calibre:">
@@ -17,3 +18,8 @@
 <!ENTITY bookit.settings.paths.html2epub "html2epub:">
 <!ENTITY bookit.settings.paths.html2lrf "html2lrf:">
 <!ENTITY bookit.settings.paths.any2mobi "any2mobi:">
+
+<!ENTITY bookit.settings.spidering.title "Spidering:">
+<!ENTITY bookit.settings.spidering.max_recursions "Max Recursions:">
+<!ENTITY bookit.settings.spidering.max_files "Max Files:">
+<!ENTITY bookit.settings.spidering.delay "Delay:">

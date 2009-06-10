@@ -50,6 +50,7 @@
         <preference id="pref_output_directory" name="extensions.bookit2.output_directory" type="string" />
         <preference id="pref_add_calibre" name="extensions.bookit2.add_calibre" type="bool" />
         <preference id="pref_launch_calibre" name="extensions.bookit2.launch_calibre" type="bool" />
+        <preference id="pref_show_options_dlg" name="extensions.bookit2.show_options_dlg" type="bool" />
     </preferences>
     
     <label control="author" value="&bookit.settings.author;"/>
@@ -57,7 +58,9 @@
 
     <label control="output_directory" value="&bookit.settings.output_directory;"/>
     <textbox preference="pref_output_directory" id="output_directory" />
-
+		
+	<checkbox id="show_options_dlg" preference="pref_show_options_dlg" label="&bookit.settings.show_options_dlg;" />
+		
    	<groupbox>
 		<caption label="&bookit.settings.calibre;"/>
 		<checkbox id="hide_add_calibre" preference="pref_add_calibre" label="&bookit.settings.add_calibre;" />
@@ -103,6 +106,23 @@
     
    </prefpane>  
   
+  <prefpane id="pane_spidering" label="&bookit.settings.spidering.title;">
+    <preferences>
+        <preference id="pref_spidering_max_recursions" name="extensions.bookit2.spidering.max_recursions" type="int" />
+        <preference id="pref_spidering_max_files" name="extensions.bookit2.spidering.max_files" type="int" />
+        <preference id="pref_spidering_delay" name="extensions.bookit2.spidering.delay" type="int" />
+    </preferences>
+    
+    <label control="spidering_max_recursions" value="&bookit.settings.spidering.max_recursions;"/>
+    <textbox preference="pref_spidering_max_recursions" id="spidering_max_recursions" />
+
+    <label control="spidering_max_files" value="&bookit.settings.spidering.max_files;"/>
+    <textbox preference="pref_spidering_max_files" id="spidering_max_files" />
+
+    <label control="spidering_delay" value="&bookit.settings.spidering.delay;"/>
+    <textbox preference="pref_spidering_delay" id="spidering_delay" />
+    
+   </prefpane>  
   <script type="application/x-javascript" src="chrome://bookit2/content/bookit-settings.js"/>
 
  </prefwindow>
