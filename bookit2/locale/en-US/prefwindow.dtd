@@ -30,3 +30,8 @@
 <!ENTITY bookit.settings.layout.top_margin "Top Margin:">
 <!ENTITY bookit.settings.layout.bottom_margin "Bottom Margin:">
 <!ENTITY bookit.settings.layout.base_font_size "Base Font Size:">
+
+<!ENTITY bookit.settings.lrf.title "LRF">
+<!ENTITY bookit.settings.lrf.ignore_tables "Ignore Tables:">
+<!ENTITY bookit.settings.lrf.header "Use Header:">
+<!ENTITY bookit.settings.lrf.header_format "Header Format:">

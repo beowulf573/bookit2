@@ -149,6 +149,19 @@
     <textbox preference="pref_layout_base_font_size" id="layout_base_font_size" />
     </prefpane>  
 
+  <prefpane id="pane_lrf" label="&bookit.settings.lrf.title;">
+    <preferences>
+        <preference id="pref_lrf_ignore_tables" name="extensions.bookit2.lrf.ignore_tables" type="bool" />
+        <preference id="pref_lrf_header" name="extensions.bookit2.lrf.header" type="bool" />
+        <preference id="pref_lrf_header_format" name="extensions.bookit2.lrf.header_format" type="string" />
+    </preferences>
+    
+		<checkbox id="lrf_ignore_tables" preference="pref_lrf_ignore_tables" label="&bookit.settings.lrf.ignore_tables;" />
+		<checkbox id="lrf_header" preference="pref_lrf_header" label="&bookit.settings.lrf.header;"
+        
+    <label control="lrf_header_format" value="&bookit.settings.lrf.header_format;"/>
+    <textbox preference="pref_lrf_header_format" id="lrf_header_format" />
+  </prefpane>  
 
    <script type="application/x-javascript" src="chrome://bookit2/content/bookit-settings.js"/>
 
