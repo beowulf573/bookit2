@@ -1,3 +1,13 @@
+create thread
+
+create batch
+execute
+delete batch
+
+next step
+
+
+
 list of all settings:
 
 options dialog
