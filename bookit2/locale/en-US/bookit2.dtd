@@ -3,3 +3,5 @@
 <!ENTITY bookit2Context.accesskey "B">
 <!ENTITY bookit2Toolbar.label "Your Toolbar Button">
 <!ENTITY bookit2Toolbar.tooltip "This is your toolbar button!">
+
+<!ENTITY bookit2.menu.bookit "Bookit">
