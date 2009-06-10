@@ -32,6 +32,12 @@
 <!ENTITY bookit.settings.layout.base_font_size "Base Font Size:">
 
 <!ENTITY bookit.settings.lrf.title "LRF">
-<!ENTITY bookit.settings.lrf.ignore_tables "Ignore Tables:">
-<!ENTITY bookit.settings.lrf.header "Use Header:">
+<!ENTITY bookit.settings.lrf.ignore_tables "Ignore Tables">
+<!ENTITY bookit.settings.lrf.header "Use Header">
 <!ENTITY bookit.settings.lrf.header_format "Header Format:">
+
+<!ENTITY bookit.settings.epub.title "ePub">
+
+
+<!ENTITY bookit.settings.mobi.title "Mobi">
+<!ENTITY bookit.settings.mobi.ignore_tables "Ignore Tables">

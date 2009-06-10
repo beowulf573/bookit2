@@ -162,7 +162,18 @@
     <label control="lrf_header_format" value="&bookit.settings.lrf.header_format;"/>
     <textbox preference="pref_lrf_header_format" id="lrf_header_format" />
   </prefpane>  
-
+<!--
+  <prefpane id="pane_epub" label="&bookit.settings.epub.title;">
+    <preferences>
+    </preferences>
+  </prefpane>  
+  -->
+  <prefpane id="pane_mobi" label="&bookit.settings.mobi.title;">
+    <preferences>
+        <preference id="pref_mobi_ignore_tables" name="extensions.bookit2.mobi.ignore_tables" type="bool" />
+    </preferences>
+		<checkbox id="mobi_ignore_tables" preference="pref_mobi_ignore_tables" label="&bookit.settings.mobi.ignore_tables;" />
+  </prefpane>  
    <script type="application/x-javascript" src="chrome://bookit2/content/bookit-settings.js"/>
 
  </prefwindow>
