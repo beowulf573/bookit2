@@ -107,17 +107,30 @@ var bookit2 = {
   },
   onMenuItemCommand: function(e) {
   
-	var retVals = { 
-	    result: false, 
-	    outputFile: "",
-	};
+    var params = {
+        inn: {
+            title: "title",
+            author: "author",
+            format: "lrf",
+            filename: "filename"
+        },
+        out: {
+            title: null,
+            author: null,
+            format: null,
+            filename: null,
+            result: false
+        }
+    };
   
 	openDialog(
 		   "chrome://bookit2/content/precreate.xul",
 		   "",
 		   "centerscreen,dialog=no,chrome,dependent,modal",
-		   retVals
+		   params
 		   );
+           
+    alert(params.out.format);
   },
   onToolbarButtonCommand: function(e) {
     // just reuse the function above.  you can change this, obviously!

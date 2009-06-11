@@ -65,7 +65,7 @@
         <menupopup>
             <menuitem label="LRF" value="lrf"/>
             <menuitem label="ePub" value="epub"/>
-            <menuitem label="mobi" value="mobi"/>
+            <menuitem label="Mobi" value="mobi"/>
         </menupopup>
     </menulist>
         
