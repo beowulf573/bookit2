@@ -32,5 +32,23 @@
 
   <script type="application/x-javascript" src="chrome://bookit2/content/precreate.js" />
   
+    <label control="opt_dialog_title" value="&bookit.precreate.title;"/>
+    <textbox id="opt_dialog_title" />
 
+    <label control="opt_dialog_author" value="&bookit.precreate.author;"/>
+    <textbox id="opt_dialog_author" />
+
+    <label control="opt_dialog_output_format" value="&bookit.precreate.output_format;"/>
+    <menulist id="opt_dialog_output_format" >
+        <menupopup>
+            <menuitem label="LRF" value="lrf"/>
+            <menuitem label="ePub" value="epub"/>
+            <menuitem label="mobi" value="mobi"/>
+        </menupopup>
+    </menulist>
+    
+    <label control="opt_dialog_filename" value="&bookit.precreate.filename;"/>
+    <textbox  id="opt_dialog_filename" />
+
+    <checkbox id="opt_dialog_show" label="&bookit.precreate.show;" />
 </dialog> 

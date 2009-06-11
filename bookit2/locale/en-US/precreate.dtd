@@ -1,1 +1,7 @@
 <!ENTITY bookit.precreate.title "Options">
+
+<!ENTITY bookit.precreate.title "Title:">
+<!ENTITY bookit.precreate.author "Author:">
+<!ENTITY bookit.precreate.output_format "Output Format:">
+<!ENTITY bookit.precreate.filename "Filename:">
+<!ENTITY bookit.precreate.show "Show This Dialog:">
