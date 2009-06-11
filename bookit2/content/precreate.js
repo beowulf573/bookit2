@@ -1,3 +1,6 @@
+// TODO: on format change update filename
+// TODO: disable ok if fields not filled in
+
 var PreCreate = {
   onLoad: function() {
   // variables, set controls
