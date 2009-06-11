@@ -50,7 +50,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 		return 0;
 	}
 
-	if(_wfopen_s(&fl_log, lpLogFile, L"w,ccs=UTF-8") != 0) {
+	if(_wfopen_s(&fl_log, lpLogFile, L"a,ccs=UTF-8") != 0) {
 		return 0;
 	}		 
 
