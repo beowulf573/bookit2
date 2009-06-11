@@ -1,3 +1,14 @@
+pref for default format
+
+dialog
+
+title
+author
+filename
+outputformat
+
+show dialog
+
 create thread
 =============
 

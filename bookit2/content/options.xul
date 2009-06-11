@@ -51,6 +51,7 @@
         <preference id="pref_add_calibre" name="extensions.bookit2.add_calibre" type="bool" />
         <preference id="pref_launch_calibre" name="extensions.bookit2.launch_calibre" type="bool" />
         <preference id="pref_show_options_dlg" name="extensions.bookit2.show_options_dlg" type="bool" />
+        <preference id="pref_output_format" name="extensions.bookit2.output_format" type="string" />
     </preferences>
     
     <label control="author" value="&bookit.settings.author;"/>
@@ -59,6 +60,15 @@
     <label control="output_directory" value="&bookit.settings.output_directory;"/>
     <textbox preference="pref_output_directory" id="output_directory" />
 		
+    <label control="output_format" value="&bookit.settings.output_format;"/>
+    <menulist id="output_format" preference="pref_output_format">
+        <menupopup>
+            <menuitem label="LRF" value="lrf"/>
+            <menuitem label="ePub" value="epub"/>
+            <menuitem label="mobi" value="mobi"/>
+        </menupopup>
+    </menulist>
+        
 	<checkbox id="show_options_dlg" preference="pref_show_options_dlg" label="&bookit.settings.show_options_dlg;" />
 		
    	<groupbox>

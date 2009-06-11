@@ -4,6 +4,8 @@ pref("extensions.bookit2.hide_contextmenu", false);
 pref("extensions.bookit2.author", "Bookit");
 pref("extensions.bookit2.output_directory", "");
 
+pref("extensions.bookit2.output_format", "lrf");
+
 pref("extensions.bookit2.add_calibre", true);
 pref("extensions.bookit2.launch_calibre", true);
 	

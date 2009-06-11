@@ -19,7 +19,7 @@
 <!ENTITY bookit.settings.paths.html2lrf "html2lrf:">
 <!ENTITY bookit.settings.paths.any2mobi "any2mobi:">
 
-<!ENTITY bookit.settings.spidering.title "Spidering:">
+<!ENTITY bookit.settings.spidering.title "Spidering">
 <!ENTITY bookit.settings.spidering.max_recursions "Max Recursions:">
 <!ENTITY bookit.settings.spidering.max_files "Max Files:">
 <!ENTITY bookit.settings.spidering.delay "Delay:">
@@ -41,3 +41,5 @@
 
 <!ENTITY bookit.settings.mobi.title "Mobi">
 <!ENTITY bookit.settings.mobi.ignore_tables "Ignore Tables">
+
+<!ENTITY bookit.settings.output_format "Output Format:">
