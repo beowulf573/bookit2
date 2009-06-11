@@ -30,7 +30,7 @@ view for jobs
 callback via observer from thread to jobs to update status
 look at redirecting to log file when launching batch/script
 
-
+look at proxies for use in notifcation from thread to thread
 
 list of all settings:
 
