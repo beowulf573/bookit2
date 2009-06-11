@@ -45,7 +45,7 @@
   </stringbundleset>
 
   <menupopup id="menu_ToolsPopup">
-    <menu id="mpBookitTools" label="&bookit2.menu.bookit;" class="menu-iconic" insertbefore="prefSep">
+    <menu id="tools-bookit2" label="&bookit2.menu.bookit;" class="menu-iconic" insertbefore="prefSep">
         <menupopup id="menu_toolsmenu_bookit_popup">
             <menuitem id="menu_toolsmenu_bookit_selection_ebook" label="&bookit2.toolsmenu.selection_ebook;" 
                 oncommand="bookit2.onMenuItemCommand(event);"/>

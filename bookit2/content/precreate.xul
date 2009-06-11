@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+
+<!-- ***** BEGIN LICENSE BLOCK *****
+    This file is part of Bookit.
+
+    Bookit is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Bookit is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Bookit.  If not, see <http://www.gnu.org/licenses/>.
+   -->
+
+<?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
+<!DOCTYPE prefwindow SYSTEM "chrome://bookit2/locale/precreate.dtd">
+
+<dialog id="bookitPreCreate"
+        title="&bookit.precreate.title;"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      	orient="vertical"
+      	flex="0"
+	buttons="accept,cancel"
+	onload="PreCreate.onLoad();"
+	ondialogaccept="PreCreate.onOK();"
+	>
+
+  <script type="application/x-javascript" src="chrome://bookit2/content/precreate.js" />
+  
+
+</dialog> 

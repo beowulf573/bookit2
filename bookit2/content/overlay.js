@@ -97,7 +97,7 @@ var bookit2 = {
   onToolsPopupShowing: function(event) {
     // show or hide the menuitem based on what the context menu is on
     // see http://kb.mozillazine.org/Adding_items_to_menus
-    document.getElementById("toolsmenu-bookit2").hidden = GetBookitPrefBool("hide_toolsmenu");
+    document.getElementById("tools-bookit2").hidden = GetBookitPrefBool("hide_toolsmenu");
   },
   
   onContextPopupShowing: function(event) {
@@ -106,10 +106,18 @@ var bookit2 = {
     document.getElementById("context-bookit2").hidden = GetBookitPrefBool("hide_contextmenu");
   },
   onMenuItemCommand: function(e) {
-    var promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
-                                  .getService(Components.interfaces.nsIPromptService);
-    promptService.alert(window, this.strings.getString("helloMessageTitle"),
-                                this.strings.getString("helloMessage"));
+  
+	var retVals = { 
+	    result: false, 
+	    outputFile: "",
+	};
+  
+	openDialog(
+		   "chrome://bookit2/content/precreate.xul",
+		   "",
+		   "centerscreen,dialog=no,chrome,dependent,modal",
+		   retVals
+		   );
   },
   onToolbarButtonCommand: function(e) {
     // just reuse the function above.  you can change this, obviously!
