@@ -165,3 +165,6 @@ The callee:
       arr.push(aStrArray.getStringAtIndex(i));
     // ...
   }
+  
+  nsIOfflineCacheSession 
+  setOwnedKeys
