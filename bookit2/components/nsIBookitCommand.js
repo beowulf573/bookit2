@@ -17,17 +17,126 @@ function MyCommand() {
 
 MyCommand.prototype = {
 		
-     executeCommand: function(commands, logfile ) {
+     executeCommand: function(logfile, commands) {
+        
+        // create temp file
+        var basename = this.getBaseFilename();
+        var file = Components.classes["@mozilla.org/file/directory_service;1"]
+            .getService(Components.interfaces.nsIProperties)
+            .get("TmpD", Components.interfaces.nsIFile);
+        file.append(basename);
+        file.createUnique(Components.interfaces.nsIFile.NORMAL_FILE_TYPE, 0666);
      
-     // create temp file
-     
-     // open and write commands
-     
-     // execute command (blocking) redirecting to log file
-     
-     // delete temp file
-     
-     },     
+        // open and write commands
+	    // file is nsIFile, data is a string
+        var fos = Components.classes["@mozilla.org/network/file-output-stream;1"]
+					.createInstance(Components.interfaces.nsIFileOutputStream);
+
+		// use 0x02 | 0x10 to open file for appending.
+		fos.init(file, 0x02 | 0x08 | 0x20, 0666, 0); 
+	 
+		var charset = "UTF-8"; // Can be any character encoding name that Mozilla supports
+
+		var os = Components.classes["@mozilla.org/intl/converter-output-stream;1"]
+					.createInstance(Components.interfaces.nsIConverterOutputStream);
+
+		// This assumes that fos is the nsIOutputStream you want to write to
+		os.init(fos, charset, 0, 0x0000);
+
+        var i = 0;
+        while(i < commands.length) {
+        
+            //var line = enumerator.getNext().QueryInterface(Ci.nsIString);
+            var line = commands[i++];
+            LOG("line: " + line);
+            // TODO: do we need \r\n for windows?
+            os.writeString(line + "\n");
+        }
+        
+	    os.close();
+	    fos.close();
+        
+        // execute command (blocking) redirecting to log file
+        this.executeFile(file, logfile);
+        
+        // delete temp file
+        file.remove(false);
+     },   
+
+    executeFile: function( scriptFile, logfile ) {
+    
+        var osString = Components.classes["@mozilla.org/xre/app-info;1"]
+                          .getService(Components.interfaces.nsIXULRuntime).OS;
+
+        if(osString == "WINNT") {
+            this.executeWindowsCmd(scriptFile, logfile);
+        }
+        else
+        if(osString == "Linux") {
+            this.executeUnixScript(scriptFile, logfile);
+	    }
+	    else
+		if(osString == "Darwin") {
+		    this.executeUnixScript(scriptFile, logfile);
+		}
+    },
+    executeUnixScript: function( scriptFile, logfile ) {
+        // use /bin/sh for exe,  file as parameter, redirect to logfile
+        
+        // TODO:
+    
+    },
+    executeWindowsCmd: function( scriptFile, logfile ) {
+        // use runhidden.exe for exe, file and logfile as parameters
+        var ext_id = "bookit2@heorot.org";
+        var em = Components.classes["@mozilla.org/extensions/manager;1"].
+        getService(Components.interfaces.nsIExtensionManager);
+        // the path may use forward slash ("/") as the delimiter
+       
+        var installL = em.getInstallLocation(ext_id);
+
+        var runhidden = installL.getItemFile(ext_id, "platform/WINNT/runhidden.exe");
+    
+		var parameters = [ "\"" + scriptFile.path + "\"", "\"" + logfile + "\""];
+		
+	    // create an nsILocalFile for the executable
+	    var file = Components.classes["@mozilla.org/file/local;1"]
+		.createInstance(Components.interfaces.nsILocalFile);
+	      
+        LOG(runhidden.path);
+	    file.initWithPath(runhidden.path);
+		
+	    // create an nsIProcess
+	    var process = Components.classes["@mozilla.org/process/util;1"]
+						.createInstance(Components.interfaces.nsIProcess);
+       
+	    process.init(file);
+ 	
+	    // Run the process.
+	    // If first param is true, calling thread will be blocked until
+	    // called process terminates.
+	    // Second and third params are used to pass command-line arguments
+	    // to the process.
+       	    
+	    process.run(true, parameters, parameters.length);       
+    },
+    getBaseFilename: function()  {
+
+        var osString = Components.classes["@mozilla.org/xre/app-info;1"]
+                          .getService(Components.interfaces.nsIXULRuntime).OS;
+
+        if(osString == "WINNT") {
+            return "bookit.cmd";
+        }
+        else
+        if(osString == "Linux") {
+            return "bookit.sh";
+	    }
+	    else
+		if(osString == "Darwin") {
+		    return "bookit.sh";
+		}
+    },
 		
     QueryInterface: function(aIID) {
         if(!aIID.equals(INTERFACE) &&
@@ -82,3 +191,9 @@ var Module = {
 
 function NSGetModule(aCompMgr, aFileSpec) { return Module; }
 
+function LOG(msg) {
+
+  var consoleService = Components.classes["@mozilla.org/consoleservice;1"]
+                                 .getService(Components.interfaces.nsIConsoleService);
+  consoleService.logStringMessage(msg);
+}

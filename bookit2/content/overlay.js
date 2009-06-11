@@ -106,7 +106,7 @@ var bookit2 = {
     document.getElementById("context-bookit2").hidden = GetBookitPrefBool("hide_contextmenu");
   },
   onMenuItemCommand: function(e) {
-  
+  /*
     var params = {
         inn: {
             title: "title",
@@ -131,6 +131,15 @@ var bookit2 = {
 		   );
            
     alert(params.out.format);
+    */
+    var logfile = "C:\\temp\\bookit.log";
+    
+    var lines = [ "@echo on", "echo \"hello world\"" ];    
+    
+    var cmd = Components.classes["@heorot.org/bookit-command;1"]
+		.createInstance(Components.interfaces.nsIBookitCommand);
+
+    cmd.executeCommand(logfile, lines);
   },
   onToolbarButtonCommand: function(e) {
     // just reuse the function above.  you can change this, obviously!
