@@ -1,0 +1,9 @@
+#include "nsISupports.idl"
+#include "nsIArray.idl"
+
+[scriptable, uuid(6aefbf9b-a562-4b09-b8f6-622aa9e8ca1b)]
+
+interface nsIBookitCommand : nsISupports
+{
+	void executeCommand(in nsIArray commands, in string logfile );
+};

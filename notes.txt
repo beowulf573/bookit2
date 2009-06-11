@@ -144,12 +144,24 @@ string format code
 js log code
 
 
+With this, I can simplify the searchDirectory definition:
 
-use observers for settings
+  nsISimpleEnumerator searchDirectory(in nsIDOMStringArray filePaths,
+                                      in boolean recursive);
 
-start off with settings for test
+The caller would look like this:
 
+var strArray = Components.classes["@mozilla.org/dom-string-array;1"]
+                         .createInstance(Components.interfaces.nsIWritableDOMStringArray);
+for (var i = 0; i < arr.length; i++)
+  strArray.appendString(arr[i]);
+engine.searchDirectory(strArray, true);
 
-global
+The callee:
 
-tab per output method
+  searchDirectory: function(aStrArray, aRecursive) {
+    var arr = [], count = aStrArray.length;
+    for (var i = 0; i < count; i++)
+      arr.push(aStrArray.getStringAtIndex(i));
+    // ...
+  }
