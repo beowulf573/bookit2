@@ -6,6 +6,5 @@
 interface nsIBookitCommand : nsISupports
 {
 	void executeCommand(in string logfile,
-                        in unsigned long count,
-                        [array, size_is (count)] in string commands );
+                        in nsIArray commands );
 };

@@ -133,13 +133,22 @@ var bookit2 = {
     alert(params.out.format);
     */
     var logfile = "C:\\temp\\bookit.log";
-    
+    var marr = Components.classes['@mozilla.org/array;1'].createInstance(Components.interfaces.nsIMutableArray);
+	var ivar = Components.classes['@mozilla.org/variant;1'].createInstance(Components.interfaces.nsIWritableVariant);
+	
+	ivar.setAsAString('@echo on');
+	marr.appendElement(ivar, false); 
+	ivar = Components.classes['@mozilla.org/variant;1'].createInstance(Components.interfaces.nsIWritableVariant);
+	
+	ivar.setAsAString('echo \"hello world\"');
+	marr.appendElement(ivar, false); 
+	
     var lines = [ "@echo on", "echo \"hello world\"" ];    
     
     var cmd = Components.classes["@heorot.org/bookit-command;1"]
 		.createInstance(Components.interfaces.nsIBookitCommand);
 
-    cmd.executeCommand(logfile, lines);
+    cmd.executeCommand(logfile, marr);
   },
   onToolbarButtonCommand: function(e) {
     // just reuse the function above.  you can change this, obviously!

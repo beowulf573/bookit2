@@ -43,12 +43,12 @@ MyCommand.prototype = {
 		// This assumes that fos is the nsIOutputStream you want to write to
 		os.init(fos, charset, 0, 0x0000);
 
-        var i = 0;
-        while(i < commands.length) {
+		var enumerator = commands.enumerate();
+        while(enumerator.hasMoreElements()) {
         
-            //var line = enumerator.getNext().QueryInterface(Ci.nsIString);
-            var line = commands[i++];
-            LOG("line: " + line);
+            var line = enumerator.getNext().QueryInterface(Ci.nsIVariant);
+            //var line = enumerator.getNext().toString();
+            // LOG("line: " + line);
             // TODO: do we need \r\n for windows?
             os.writeString(line + "\n");
         }
@@ -60,7 +60,8 @@ MyCommand.prototype = {
         this.executeFile(file, logfile);
         
         // delete temp file
-        file.remove(false);
+		LOG(file.path);
+        //file.remove(false);
      },   
 
     executeFile: function( scriptFile, logfile ) {
