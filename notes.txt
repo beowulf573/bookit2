@@ -22,6 +22,21 @@ add to calibre
 
 launch calibre
 
+function GetMetaValue(meta_name) {
+
+    var my_arr=document.getElementsByTagName("META");
+    for (var counter=0; counter<my_arr.length; counter++) {
+        if (my_arr[counter].name.toLowerCase() == meta_name.toLowerCase()) {
+           return my_arr[counter].content;
+           }
+    }
+    return "";
+
+}
+
+document.write ("META Author is: "+GetMetaValue('author'));
+document.write ("<br />META Description is: "+GetMetaValue('description'));
+document.write ("<br />META invalid name is: "+GetMetaValue('foobar'));
 import log contents, outputfile into db keyed by guid
 =============
 
