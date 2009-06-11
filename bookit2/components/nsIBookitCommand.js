@@ -60,8 +60,8 @@ MyCommand.prototype = {
         this.executeFile(file, logfile);
         
         // delete temp file
-		LOG(file.path);
-        //file.remove(false);
+		//LOG(file.path);
+        file.remove(false);
      },   
 
     executeFile: function( scriptFile, logfile ) {
@@ -91,27 +91,20 @@ MyCommand.prototype = {
         // use runhidden.exe for exe, file and logfile as parameters
         var ext_id = "bookit2@heorot.org";
         var em = Components.classes["@mozilla.org/extensions/manager;1"].
-        getService(Components.interfaces.nsIExtensionManager);
+								getService(Components.interfaces.nsIExtensionManager);
         // the path may use forward slash ("/") as the delimiter
        
         var installL = em.getInstallLocation(ext_id);
 
         var runhidden = installL.getItemFile(ext_id, "platform/WINNT/runhidden.exe");
     
-		var parameters = [ "\"" + scriptFile.path + "\"", "\"" + logfile + "\""];
-		
-	    // create an nsILocalFile for the executable
-	    var file = Components.classes["@mozilla.org/file/local;1"]
-		.createInstance(Components.interfaces.nsILocalFile);
-	      
-        LOG(runhidden.path);
-	    file.initWithPath(runhidden.path);
+		var parameters = [ scriptFile.path , logfile ];
 		
 	    // create an nsIProcess
 	    var process = Components.classes["@mozilla.org/process/util;1"]
 						.createInstance(Components.interfaces.nsIProcess);
        
-	    process.init(file);
+	    process.init(runhidden);
  	
 	    // Run the process.
 	    // If first param is true, calling thread will be blocked until
@@ -119,7 +112,7 @@ MyCommand.prototype = {
 	    // Second and third params are used to pass command-line arguments
 	    // to the process.
        	    
-	    process.run(true, parameters, parameters.length);       
+	    process.run(true, parameters, parameters.length); 
     },
     getBaseFilename: function()  {
 

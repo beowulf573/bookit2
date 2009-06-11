@@ -132,7 +132,7 @@ var bookit2 = {
            
     alert(params.out.format);
     */
-    var logfile = "C:\\temp\\bookit.log";
+    var logfile = "C:\\temp\\bookit space.log";
     var marr = Components.classes['@mozilla.org/array;1'].createInstance(Components.interfaces.nsIMutableArray);
 	var ivar = Components.classes['@mozilla.org/variant;1'].createInstance(Components.interfaces.nsIWritableVariant);
 	
