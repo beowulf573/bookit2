@@ -55,6 +55,8 @@ var bookit2 = {
             .addEventListener("popupshowing", function(e) {  bookit2.onContextPopupShowing(e); }, false);
     document.getElementById("menu_ToolsPopup")
             .addEventListener("popupshowing", function(e) {  bookit2.onToolsPopupShowing(e); }, false);
+    document.getElementById("menu_statusmenu_bookit_popup")
+            .addEventListener("popupshowing", function(e) {  bookit2.onStatusPopupShowing(e); }, false);
 	
 	if (!this.oBookit2Pref && !this.bBookit2Initializing)
 	{
@@ -108,12 +110,39 @@ var bookit2 = {
     // show or hide the menuitem based on what the context menu is on
     // see http://kb.mozillazine.org/Adding_items_to_menus
     document.getElementById("tools-bookit2").hidden = GetBookitPrefBool("hide_toolsmenu");
+	var selection = document.commandDispatcher.focusedWindow.getSelection();
+	      
+	var hideSelection = false;
+	if(selection == null || selection.toString().length == 0) {         
+	    hideSelection = true;                 
+	}      
+	document.getElementById("menu_toolsmenu_bookit_selection_ebook").hidden = hideSelection;        
+	document.getElementById("menu_toolsmenu_bookit_selection_editor").hidden = hideSelection;        
   },
   
   onContextPopupShowing: function(event) {
     // show or hide the menuitem based on what the context menu is on
     // see http://kb.mozillazine.org/Adding_items_to_menus
     document.getElementById("context-bookit2").hidden = GetBookitPrefBool("hide_contextmenu");
+	var selection = document.commandDispatcher.focusedWindow.getSelection();
+	      
+	var hideSelection = false;
+	if(selection == null || selection.toString().length == 0) {         
+	    hideSelection = true;                 
+	}      
+	document.getElementById("menu_contextmenu_bookit_selection_ebook").hidden = hideSelection;        
+	document.getElementById("menu_contextmenu_bookit_selection_editor").hidden = hideSelection;        
+  },
+  onStatusPopupShowing: function(event) {
+  
+	var selection = document.commandDispatcher.focusedWindow.getSelection();
+	      
+	var hideSelection = false;
+	if(selection == null || selection.toString().length == 0) {         
+	    hideSelection = true;                 
+	}      
+	document.getElementById("menu_statusmenu_bookit_selection_ebook").hidden = hideSelection;        
+	document.getElementById("menu_statusmenu_bookit_selection_editor").hidden = hideSelection;        
   },
   onMenuItemCommand: function(e) {
 
