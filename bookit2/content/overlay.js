@@ -165,7 +165,7 @@ var bookit2 = {
     
     var b = new BookitConversion();
     
-    b.performConversion("", "", "", "", "", "");
+    b.performConversion("http://localhost", true, "My Author", "My Title", "output", "lrf");
   },
 
   updateStatusBar: function() {

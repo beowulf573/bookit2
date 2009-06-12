@@ -1,5 +1,7 @@
 var EXPORTED_SYMBOLS = ["BookitConversion"]
 
+Components.utils.import("resource://bookit2/BookitCommand.js");
+
 const Cc = Components.classes;
 const Ci = Components.interfaces;
 const Cr = Components.results;
@@ -56,11 +58,11 @@ BookitConversion.prototype = {
             LOG(workingDir.path);
         
             var workingFile;
-            if(_isURL) {
-                workingFile = this.web2Disk(_data);
+            if(this._isURL) {
+                workingFile = this.web2Disk(workingDir, this._data, logfile);
             }
             else {
-                workingFile = this.saveData(_data);
+                workingFile = this.saveData(workingDir, this._data, logfile);
             }
             
             /*
@@ -75,34 +77,96 @@ BookitConversion.prototype = {
             launch calibre
             */
             
-            workingDir.remove(true);            
+            // TODO: keep for debuging for now
+            // workingDir.remove(true);            
      
         } catch(err) {
             Components.utils.reportError(err);
         }
     },
-    saveData: function(data) {
+    saveData: function(workingDir, data, logfile) {
     
+        var file = workingDir.clone();
+        file.append("index.html");
+        file.createUnique(Components.interfaces.nsIFile.NORMAL_FILE_TYPE, 0666);
+        
+        // open and write commands
+	    // file is nsIFile, data is a string
+        var fos = Components.classes["@mozilla.org/network/file-output-stream;1"]
+					.createInstance(Components.interfaces.nsIFileOutputStream);
+
+		// use 0x02 | 0x10 to open file for appending.
+		fos.init(file, 0x02 | 0x08 | 0x20, 0666, 0); 
+	 
+		var charset = "UTF-8"; // Can be any character encoding name that Mozilla supports
+
+		var os = Components.classes["@mozilla.org/intl/converter-output-stream;1"]
+					.createInstance(Components.interfaces.nsIConverterOutputStream);
+
+		// This assumes that fos is the nsIOutputStream you want to write to
+		os.init(fos, charset, 0, 0x0000);
+
+        os.writeString(data);
+        os.writeString("\n");
+        
+	    os.close();
+	    fos.close();
+        
         // return nsIFile
+        return file;
     },
-    web2Disk: function(url) {
+    web2Disk: function(workingDir, url, logfile) {
+        
+        var maxRecursions = this.GetBookitPrefInt("spidering.max_recursions");
+        var maxFile = this.GetBookitPrefInt("spidering.max_files");
+        var delay = this.GetBookitPrefInt("spidering.delay");
+        var exePath = this.GetBookitPref("paths.web2disk");
+        
+        var command = "\"" + exePath + "\" -r " + maxRecursions + " --delay=" + delay + " -d \"" + workingDir.path + "\" ";
+        
+        if(maxFile != 0) {
+        
+            command = command + " -n " + maxFile + " ";
+        }
+        
+        command = command + "\"" + url + "\"";
+        
+        var lines = [ command ];            
     
-        // return nsIFile to primary file
+        var cmd = new BookitCommand();
+    
+        cmd.executeCommand(logfile, lines);
+         
+        return this.findFirstFile(workingDir);        
     },
-    convertLRF: function(source, outputFile) {
+    findFirstFile: function(workingDir) {
+    
+        // find first file in working dir
+        // and return nsIFile
+    
+    },
+    convertLRF: function(source, outputFile, logfile) {
         // both are nsIFile
     },
-    convertEPub: function(source, outputFile) {
+    convertEPub: function(source, outputFile, logfile) {
         // both are nsIFile
     },
-    convertMobi: function(source, outputFile) {
+    convertMobi: function(source, outputFile, logfile) {
         // both are nsIFile
     },
-    addToCalibre: function(outputFile) {
+    addToCalibre: function(outputFile, logfile) {
         // nsIFile
     },
-    launchCalibre: function() {
+    launchCalibre: function(logfile) {
         
+    },
+    getOutputFile: function() {
+    
+        // get output directory
+        // if not get temp directory
+        // append file name
+        // if extension require append extension
+        // return nsIFile object
     },
     getLogFile: function() {
     
@@ -111,14 +175,16 @@ BookitConversion.prototype = {
                         .get("TmpD", Components.interfaces.nsIFile);
         logfile.append("bookit.log");
         logfile.createUnique(Components.interfaces.nsIFile.NORMAL_FILE_TYPE, 0666);
+        return logfile;
     },
     getWorkingDir: function() {
     
-        var logfile = Components.classes["@mozilla.org/file/directory_service;1"]
+        var workingDir = Components.classes["@mozilla.org/file/directory_service;1"]
                         .getService(Components.interfaces.nsIProperties)
                         .get("TmpD", Components.interfaces.nsIFile);
-        logfile.append("bookit-work");
-        logfile.createUnique(Components.interfaces.nsIFile.DIRECTORY_TYPE, 0666);
+        workingDir.append("bookit-work");
+        workingDir.createUnique(Components.interfaces.nsIFile.DIRECTORY_TYPE, 0666);
+        return workingDir;
     },
     GetBookitPref: function(sName)
     {
@@ -126,7 +192,10 @@ BookitConversion.prototype = {
         catch (e) {}
         return this.oBookit2Pref.getCharPref(sName);
     },
-
+    GetBookitPrefInt: function(sName)
+    {
+        return this.oBookit2Pref.getIntPref(sName);
+    },
     GetBookitPrefBool: function(sName)
     {
         return this.oBookit2Pref.getBoolPref(sName);
