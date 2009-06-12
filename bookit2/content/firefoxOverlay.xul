@@ -48,7 +48,7 @@
     <menu id="tools-bookit2" label="&bookit2.menu.bookit;" class="menu-iconic" insertbefore="prefSep">
         <menupopup id="menu_toolsmenu_bookit_popup">
             <menuitem id="menu_toolsmenu_bookit_selection_ebook" label="&bookit2.toolsmenu.selection_ebook;" 
-                oncommand="bookit2.onMenuItemCommand(event);"/>
+                oncommand="bookit2.onToolsSelectionCreate(event);"/>
             <menuitem id="menu_toolsmenu_bookit_selection_editor" label="&bookit2.toolsmenu.selection_editor;" 
                 oncommand="bookit2.onMenuItemCommand(event);"/>
             <menuitem id="menu_toolsmenu_bookit_create" label="&bookit2.toolsmenu.create;" 
@@ -66,7 +66,7 @@
     <menu id="context-bookit2" label="&bookit2.menu.bookit;" class="menu-iconic" insertafter="context-stop">
         <menupopup id="menu_contextmenu_bookit_popup">
             <menuitem id="menu_contextmenu_bookit_selection_ebook" label="&bookit2.toolsmenu.selection_ebook;" 
-                oncommand="bookit2.onMenuItemCommand(event);"/>
+                oncommand="bookit2.onContextSelectionCreate(event);"/>
             <menuitem id="menu_contextmenu_bookit_selection_editor" label="&bookit2.toolsmenu.selection_editor;" 
                 oncommand="bookit2.onMenuItemCommand(event);"/>
             <menuitem id="menu_contextmenu_bookit_create" label="&bookit2.toolsmenu.create;" 
@@ -93,7 +93,7 @@
 		<label id="statusbar-boookit-text" class="statusbarpanel-text" value="" persist="value"/>
 		<menupopup id="menu_statusmenu_bookit_popup">
 			<menuitem id="menu_statusmenu_bookit_selection_ebook" label="&bookit2.toolsmenu.selection_ebook;" 
-				oncommand="bookit2.onMenuItemCommand(event);"/>
+				oncommand="bookit2.onStatusSelectionCreate(event);"/>
 			<menuitem id="menu_statusmenu_bookit_selection_editor" label="&bookit2.toolsmenu.selection_editor;" 
 				oncommand="bookit2.onMenuItemCommand(event);"/>
 			<menuitem id="menu_statusmenu_bookit_create" label="&bookit2.toolsmenu.create;" 

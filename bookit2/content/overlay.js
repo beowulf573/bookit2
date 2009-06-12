@@ -150,7 +150,59 @@ var bookit2 = {
   onToolbarButtonCommand: function(e) {
     this.convertCurrentDocument();
   },
+  onToolsCreate: function(e) {
+    this.convertCurrentDocument();
+  },
+  onContextCreate: function(e) {
+    this.convertCurrentDocument();
+  },
+  onStatusCreate: function(e) {
+    this.convertCurrentDocument();
+  },
+  onToolsSelectionCreate: function(e) {
+    this.convertCurrentSelection();
+  },
+  onContextSelectionCreate: function(e) {
+    this.convertCurrentSelection();
+  },
+  onStatusSelectionCreate: function(e) {
+    this.convertCurrentSelection();
+  },
 
+  convertCurrentSelection: function() {
+  
+	var selection = this.getCurrentSelection();
+	// alert(selection);
+	
+	var title = content.document.title;
+    var author = this.getMetaValue("AUTHOR");
+    
+    author = (author == "" ? "Bookit" : author);
+    
+    this.doConversion(selection, false, author, title);
+  },
+  
+  getCurrentSelection:function() {
+  	var selection = document.commandDispatcher.focusedWindow.getSelection();
+	
+	if(selection != null && selection.rangeCount > 0) {
+	
+	    var range = selection.getRangeAt(0);
+	
+	    var selRich = range.cloneContents(); 	
+	
+	    var xmlDocument = document.implementation.createDocument('', 'p', null);
+	    xmlDocument.documentElement.appendChild(selRich);
+
+	    // create serializer object
+	    var xmlSerializer = new XMLSerializer();
+	    // serialize
+	    var content = xmlSerializer.serializeToString(xmlDocument);
+		
+		return content;
+	}
+	return "";
+  },
   convertCurrentDocument:function() {
   
     var url = content.document.location;

@@ -123,8 +123,10 @@ BookitConversion.prototype = {
 		// This assumes that fos is the nsIOutputStream you want to write to
 		os.init(fos, charset, 0, 0x0000);
 
+		os.writeString("<html><body>\n");
         os.writeString(data);
         os.writeString("\n");
+		os.writeString("</body></html>\n");
         
 	    os.close();
 	    fos.close();
