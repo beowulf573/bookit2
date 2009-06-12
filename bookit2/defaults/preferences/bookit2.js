@@ -24,7 +24,7 @@ pref("extensions.bookit2.lrf.header", false);
 pref("extensions.bookit2.lrf.header_format", "");
 pref("extensions.bookit2.mobi.ignore_tables", false);
 
-pref("extensions.bookit2.enable_threading", false);
+pref("extensions.bookit2.enable_threading", true);
 
 
 // See http://kb.mozillazine.org/Localize_extension_descriptions
