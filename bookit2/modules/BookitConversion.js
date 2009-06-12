@@ -6,6 +6,13 @@ const Cc = Components.classes;
 const Ci = Components.interfaces;
 const Cr = Components.results;
 
+String.prototype.format = function()
+{
+var pattern = /\{\d+\}/g;
+var args = arguments;
+return this.replace(pattern, function(capture){ return args[capture.match(/\d+/)]; });
+}
+
 function BookitConversion() {
 
 		this.oBookit2Pref = Components.classes["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefService).getBranch("extensions.bookit2.");
@@ -62,7 +69,6 @@ BookitConversion.prototype = {
             else {
                 workingFile = this.saveData(workingDir, this._data, logfile);
             }
-            LOG(workingFile.path);
             
             var outputFile = this.getOutputFile();
             
@@ -77,12 +83,17 @@ BookitConversion.prototype = {
             if(outputFile.path.match(/\.mobi$/i)) {
                 this.convertMobi(workingFile, outputFile, logfile);                
             }
-            /*
-
-            add to calibre
-
-            launch calibre
-            */
+            
+            var doAddCalibre = this.GetBookitPrefBool("add_calibre");
+            var doLaunchCalibre = this.GetBookitPrefBool("launch_calibre");
+            
+            if(doAddCalibre) {
+                this.addToCalibre(outputFile, logfile);
+            }
+            
+            if(doLaunchCalibre) {
+                this.launchCalibre();
+            }
             
             workingDir.remove(true);
      
@@ -256,7 +267,31 @@ BookitConversion.prototype = {
     
         cmd.executeCommand(logfile, lines);        
     },
-    launchCalibre: function(logfile) {
+    launchCalibre: function() {
+        
+        // launch and forget
+        var calibre = this.GetBookitPref("paths.calibre");
+
+        var file = Components.classes["@mozilla.org/file/local;1"]
+                .createInstance(Components.interfaces.nsILocalFile);
+
+        file.initWithPath(calibre);
+
+        var parameters = [  ];
+	    
+        // create an nsIProcess
+	    var process = Components.classes["@mozilla.org/process/util;1"]
+						.createInstance(Components.interfaces.nsIProcess);
+       
+	    process.init(file);
+ 	
+	    // Run the process.
+	    // If first param is true, calling thread will be blocked until
+	    // called process terminates.
+	    // Second and third params are used to pass command-line arguments
+	    // to the process.
+       	    
+	    process.run(false, parameters, parameters.length);     
         
     },
     getOutputFile: function() {

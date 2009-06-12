@@ -101,7 +101,7 @@ BookitCommand.prototype = {
 	    var process = Components.classes["@mozilla.org/process/util;1"]
 						.createInstance(Components.interfaces.nsIProcess);
        
-	    process.init(        file);
+	    process.init(file);
  	
 	    // Run the process.
 	    // If first param is true, calling thread will be blocked until
