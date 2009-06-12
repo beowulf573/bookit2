@@ -246,6 +246,15 @@ BookitConversion.prototype = {
     },
     addToCalibre: function(outputFile, logfile) {
         // nsIFile
+        var calibredb = this.GetBookitPref("paths.calibredb");
+        
+        var command = "\"{0}\" add \"{1}\"".format(calibredb, outputFile.path);
+        
+        var lines = [ command ];            
+    
+        var cmd = new BookitCommand();
+    
+        cmd.executeCommand(logfile, lines);        
     },
     launchCalibre: function(logfile) {
         
