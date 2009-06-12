@@ -91,6 +91,20 @@
 <prefpane id="test_noprefwindow" hidden="true"/>
 	<statusbarpanel id="statusbar-bookit" mode="full" class="statusbarpanel-menu-iconic" ccode="" hidden="false" persist="hidden ccode mode">
 		<label id="statusbar-boookit-text" class="statusbarpanel-text" value="" persist="value"/>
+		<popup id="contentAreaContextMenu">
+			<menuitem id="menu_statusmenu_bookit_selection_ebook" label="&bookit2.toolsmenu.selection_ebook;" 
+				oncommand="bookit2.onMenuItemCommand(event);"/>
+			<menuitem id="menu_statusmenu_bookit_selection_editor" label="&bookit2.toolsmenu.selection_editor;" 
+				oncommand="bookit2.onMenuItemCommand(event);"/>
+			<menuitem id="menu_statusmenu_bookit_create" label="&bookit2.toolsmenu.create;" 
+				oncommand="bookit2.onMenuItemCommand(event);"/>
+			<menuitem id="menu_statusmenu_bookit_editor" label="&bookit2.toolsmenu.editor;" 
+				oncommand="bookit2.onMenuItemCommand(event);"/>
+			<menuitem id="menu_statusmenu_bookit_log" label="&bookit2.toolsmenu.log;" 
+				oncommand="bookit2.onMenuItemCommand(event);"/>
+			<menuitem id="menu_statusmenu_bookit_prefs" label="&bookit2.toolsmenu.prefs;" 
+				oncommand="bookit2.onMenuItemCommand(event);"/>                
+		</popup>
 	</statusbarpanel>
 </statusbar>
 </overlay>
