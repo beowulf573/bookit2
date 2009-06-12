@@ -172,7 +172,7 @@ BookitConversion.prototype = {
         var html2lrf = this.GetBookitPref("paths.html2lrf");
         
         // both are nsIFile
-        var command = "\"{0}\" -o \"{1}\" {2} -t \"{3}\" -a \"{4}\" --base-font-size {5} {6} {7} --left-margin {8} --right-margin {9} --top-margin {10} --bottom-margin {11} \"{12}\"".format(html2lrf,
+        var command = "\"{0}\" -o \"{1}\" {2} -t \"{3}\" -a \"{4}\" --base-font-size={5} {6} {7} --left-margin {8} --right-margin {9} --top-margin {10} --bottom-margin {11} \"{12}\"".format(html2lrf,
                                         outputFile.path,
                                         ignore_tables ? "--ignore-tables" : "",
                                         this._title,
@@ -200,7 +200,7 @@ BookitConversion.prototype = {
         var html2epub = this.GetBookitPref("paths.html2epub");
         
         // both are nsIFile
-        var command = "\"{0}\" -o \"{1}\" -t \"{2}\" -a \"{3}\" --base-font-size {4} --margin-left {5} --margin-right {6} --margin-top {7} --margin-bottom {8} \"{9}\"".format(html2epub,
+        var command = "\"{0}\" -o \"{1}\" -t \"{2}\" -a \"{3}\" --base-font-size={4} --margin-left {5} --margin-right {6} --margin-top {7} --margin-bottom {8} \"{9}\"".format(html2epub,
                                         outputFile.path,
                                         this._title,
                                         this._author,
@@ -217,7 +217,32 @@ BookitConversion.prototype = {
         cmd.executeCommand(logfile, lines);        
     },
     convertMobi: function(source, outputFile, logfile) {
+        var left_margin = this.GetBookitPrefInt("layout.left_margin");
+        var right_margin = this.GetBookitPrefInt("layout.right_margin");
+        var top_margin = this.GetBookitPrefInt("layout.top_margin");
+        var bottom_margin = this.GetBookitPrefInt("layout.bottom_margin");
+        var base_font_size = this.GetBookitPrefInt("layout.base_font_size");
+        var ignore_tables = this.GetBookitPrefBool("mobi.ignore_tables");
+
+        var any2mobi = this.GetBookitPref("paths.any2mobi");
+        
         // both are nsIFile
+        var command = "\"{0}\" -o \"{1}\" -t \"{2}\" -a \"{3}\" --base-font-size={4} --margin-left {5} --margin-right {6} --margin-top {7} --margin-bottom {8} {9} \"{10}\"".format(any2mobi,
+                                        outputFile.path,
+                                        this._title,
+                                        this._author,
+                                        base_font_size,
+                                        left_margin, right_margin, top_margin, bottom_margin,
+                                        ignore_tables ? "--ignore-tables" : "",
+                                        source.path);
+                                        
+        LOG("cmd: " + command);
+        
+        var lines = [ command ];            
+    
+        var cmd = new BookitCommand();
+    
+        cmd.executeCommand(logfile, lines);        
     },
     addToCalibre: function(outputFile, logfile) {
         // nsIFile
