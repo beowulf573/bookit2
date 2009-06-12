@@ -34,6 +34,13 @@
  * 
  ****** END LICENSE BLOCK ******/
 
+String.prototype.format = function()
+{
+var pattern = /\{\d+\}/g;
+var args = arguments;
+return this.replace(pattern, function(capture){ return args[capture.match(/\d+/)]; });
+}
+
 Components.utils.import("resource://bookit2/BookitCommand.js");
 Components.utils.import("resource://bookit2/BookitConversion.js");
 
@@ -165,7 +172,7 @@ var bookit2 = {
     
     var b = new BookitConversion();
     
-    b.performConversion("http://localhost", true, "My Author", "My Title", "output.lrf", "lrf");
+    b.performConversion("http://localhost", true, "My Author", "My Title", "output.lrf");
   },
 
   updateStatusBar: function() {

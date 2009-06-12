@@ -160,7 +160,36 @@ BookitConversion.prototype = {
         return null;
     },
     convertLRF: function(source, outputFile, logfile) {
+        
+        var left_margin = this.GetBookitPrefInt("layout.left_margin");
+        var right_margin = this.GetBookitPrefInt("layout.right_margin");
+        var top_margin = this.GetBookitPrefInt("layout.top_margin");
+        var bottom_margin = this.GetBookitPrefInt("layout.bottom_margin");
+        var base_font_size = this.GetBookitPrefInt("layout.base_font_size");
+        var ignore_tables = this.GetBookitPrefBool("lrf.ignore_tables");
+        var useHeader = this.GetBookitPrefBool("lrf.header");
+        var headerFormat = this.GetBookitPref("lrf.header_format");
+        var html2lrf = this.GetBookitPref("paths.html2lrf");
+        
         // both are nsIFile
+        var command = "\"{0}\" -o \"{1}\" {2} -t \"{3}\" -a \"{4}\" --base-font-size {5} {6} {7} --left-margin {8} --right-margin {9} --top-margin {10} --bottom-margin {11} \"{12}\"".format(html2lrf,
+                                        outputFile.path,
+                                        ignore_tables ? "--ignore-tables" : "",
+                                        this._title,
+                                        this._author,
+                                        base_font_size,
+                                        useHeader ? "--header" : "",
+                                        useHeader && headerFormat && headerFormat.length != 0 ? "--headerformat " + headerFormat : "",
+                                        left_margin, right_margin, top_margin, bottom_margin,                                        
+                                        source.path);
+                                        
+        LOG("cmd: " + command);
+        
+        var lines = [ command ];            
+    
+        var cmd = new BookitCommand();
+    
+        cmd.executeCommand(logfile, lines);        
     },
     convertEPub: function(source, outputFile, logfile) {
         // both are nsIFile
