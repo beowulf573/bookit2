@@ -183,6 +183,9 @@ var bookit2 = {
             // TODO: check for extension
             filename = filename + "." + params.out.format;
         }
+        else {
+            return;
+        }
     } 
     else {
         // attach default extension to filename
