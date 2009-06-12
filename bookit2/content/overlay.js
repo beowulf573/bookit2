@@ -116,65 +116,93 @@ var bookit2 = {
     document.getElementById("context-bookit2").hidden = GetBookitPrefBool("hide_contextmenu");
   },
   onMenuItemCommand: function(e) {
-  /*
-    var params = {
-        inn: {
-            title: "title",
-            author: "author",
-            format: "lrf",
-            filename: "filename"
-        },
-        out: {
-            title: null,
-            author: null,
-            format: null,
-            filename: null,
-            result: false
-        }
-    };
-  
-	openDialog(
-		   "chrome://bookit2/content/precreate.xul",
-		   "",
-		   "centerscreen,dialog=no,chrome,dependent,modal",
-		   params
-		   );
-           
-    alert(params.out.format);
-    */
-    var logfile = "C:\\temp\\bookit space.log";
-    var marr = Components.classes['@mozilla.org/array;1'].createInstance(Components.interfaces.nsIMutableArray);
-	var ivar = Components.classes['@mozilla.org/variant;1'].createInstance(Components.interfaces.nsIWritableVariant);
-	
-	ivar.setAsAString('@echo on');
-	marr.appendElement(ivar, false); 
-	ivar = Components.classes['@mozilla.org/variant;1'].createInstance(Components.interfaces.nsIWritableVariant);
-	
-	ivar.setAsAString('echo \"hello world\"');
-	marr.appendElement(ivar, false); 
-	
-    var lines = [ "@echo on", "echo \"hello world\"" ];    
-    
-    var cmd = Components.classes["@heorot.org/bookit-command;1"]
-		.createInstance(Components.interfaces.nsIBookitCommand);
 
-    cmd.executeCommand(logfile, marr);
   },
   onToolbarButtonCommand: function(e) {
-    /*
-    var lines = [ "@echo on", "echo \"hello world\"" ];    
-    var logfile = "C:\\temp\\bookit space.log";
-    
-    var cmd = new BookitCommand();
-    
-    cmd.executeCommand(logfile, lines);
-    */
-    
-    var b = new BookitConversion();
-    
-    b.performConversion("http://localhost", true, "My Author", "My Title", "output.lrf");
+    this.convertCurrentDocument();
   },
 
+  convertCurrentDocument:function() {
+  
+    var url = content.document.location;
+    var title = content.document.title;
+    var author = this.getMetaValue("AUTHOR");
+    
+    author = (author == "" ? "Bookit" : author);
+    
+    this.doConversion(url, true, author, title);
+    
+  },
+  doConversion: function(data, isURL, author, title) {
+    
+	// some characters screwup the meta data
+	// replace all quote variants with single quote
+    var re = /[\u0022\u0027\u0060\u00B4\u2018\u2019\u201C\u201D]/gi;
+    
+	title = title.replace(re, "'");    
+
+    re = /[\~\':|\\\?\*<\">\+\[\]/]/g;            
+    
+    var filename = title.replace(re, "_");
+    
+    if(filename.length > 63) {
+        filename = filename.substr(0,63);	
+    }
+    
+    var format = GetBookitPref("output_format");
+    if(GetBookitPrefBool("show_options_dlg")) {
+    
+        var params = {
+            inn: {
+                title: title,
+                author: author,
+                format: format,
+                filename: filename
+            },
+            out: {
+                title: null,
+                author: null,
+                format: null,
+                filename: null,
+                result: false
+            }
+        };
+      
+        openDialog(
+               "chrome://bookit2/content/precreate.xul",
+               "",
+               "centerscreen,dialog=no,chrome,dependent,modal",
+               params
+               );
+        if(params.out.result) {
+        
+            title = params.out.title;
+            author = params.out.author;
+            filename = params.out.filename;
+            
+            // TODO: check for extension
+            filename = filename + "." + params.out.format;
+        }
+    } 
+    else {
+        // attach default extension to filename
+        filename = filename + "." + format;
+    }
+
+    var b = new BookitConversion();
+    
+    b.performConversion(data, isURL, author, title, filename);        
+  },
+  getMetaValue: function( meta_name) {
+
+    var my_arr=document.getElementsByTagName("META");
+    for (var counter=0; counter<my_arr.length; counter++) {
+        if (my_arr[counter].name.toLowerCase() == meta_name.toLowerCase()) {
+           return my_arr[counter].content;
+           }
+    }
+    return "";
+  },
   updateStatusBar: function() {
 	
 	var oSItem = document.getElementById("statusbar-bookit");
