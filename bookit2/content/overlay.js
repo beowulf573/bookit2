@@ -243,7 +243,7 @@ var bookit2 = {
 	var title = content.document.title;
     var author = this.getMetaValue("AUTHOR");
     
-    author = (author == "" ? "Bookit" : author);
+    author = (author == "" ? GetBookitPref("default_author") : author);
     
     this.doConversion(selection, false, author, title);
   },
@@ -275,7 +275,7 @@ var bookit2 = {
     var title = content.document.title;
     var author = this.getMetaValue("AUTHOR");
     
-    author = (author == "" ? "Bookit" : author);
+    author = (author == "" ? GetBookitPref("default_author") : author);
     
     this.doConversion(url, true, author, title);
     

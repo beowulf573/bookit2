@@ -1,7 +1,7 @@
 pref("extensions.bookit2.hide_statusbar", false);
 pref("extensions.bookit2.hide_toolsmenu", false);
 pref("extensions.bookit2.hide_contextmenu", false);
-pref("extensions.bookit2.author", "Bookit");
+pref("extensions.bookit2.default_author", "Bookit");
 pref("extensions.bookit2.output_directory", "");
 
 pref("extensions.bookit2.output_format", "lrf");
