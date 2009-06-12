@@ -102,9 +102,28 @@ MyCommand.prototype = {
     },
     executeUnixScript: function( scriptFile, logfile ) {
         // use /bin/sh for exe,  file as parameter, redirect to logfile
-        
-        // TODO:
-    
+
+        // create an nsILocalFile for the executable
+        var file = Components.classes["@mozilla.org/file/local;1"]
+                .createInstance(Components.interfaces.nsILocalFile);
+
+        file.initWithPath("/bin/sh");
+
+        var parameters = [ scriptFile.path , ">" + logfile ];
+	    
+        // create an nsIProcess
+	    var process = Components.classes["@mozilla.org/process/util;1"]
+						.createInstance(Components.interfaces.nsIProcess);
+       
+	    process.init(        file);
+ 	
+	    // Run the process.
+	    // If first param is true, calling thread will be blocked until
+	    // called process terminates.
+	    // Second and third params are used to pass command-line arguments
+	    // to the process.
+       	    
+	    process.run(true, parameters, parameters.length);     
     },
     executeWindowsCmd: function( scriptFile, logfile ) {
         // use runhidden.exe for exe, file and logfile as parameters
