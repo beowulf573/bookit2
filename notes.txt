@@ -143,28 +143,3 @@ options
 string format code
 js log code
 
-
-With this, I can simplify the searchDirectory definition:
-
-  nsISimpleEnumerator searchDirectory(in nsIDOMStringArray filePaths,
-                                      in boolean recursive);
-
-The caller would look like this:
-
-var strArray = Components.classes["@mozilla.org/dom-string-array;1"]
-                         .createInstance(Components.interfaces.nsIWritableDOMStringArray);
-for (var i = 0; i < arr.length; i++)
-  strArray.appendString(arr[i]);
-engine.searchDirectory(strArray, true);
-
-The callee:
-
-  searchDirectory: function(aStrArray, aRecursive) {
-    var arr = [], count = aStrArray.length;
-    for (var i = 0; i < count; i++)
-      arr.push(aStrArray.getStringAtIndex(i));
-    // ...
-  }
-  
-  nsIOfflineCacheSession 
-  setOwnedKeys

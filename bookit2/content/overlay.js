@@ -34,7 +34,8 @@
  * 
  ****** END LICENSE BLOCK ******/
 
- Components.utils.import("resource://bookit2/BookitCommand.js");
+Components.utils.import("resource://bookit2/BookitCommand.js");
+Components.utils.import("resource://bookit2/BookitConversion.js");
 
 
 var bookit2 = {
@@ -153,14 +154,18 @@ var bookit2 = {
     cmd.executeCommand(logfile, marr);
   },
   onToolbarButtonCommand: function(e) {
-    
+    /*
     var lines = [ "@echo on", "echo \"hello world\"" ];    
     var logfile = "C:\\temp\\bookit space.log";
     
     var cmd = new BookitCommand();
     
     cmd.executeCommand(logfile, lines);
+    */
     
+    var b = new BookitConversion();
+    
+    b.performConversion("", "", "", "", "", "");
   },
 
   updateStatusBar: function() {
