@@ -37,8 +37,7 @@ BookitCommand.prototype = {
 
         this.printPreScript(os);
         		
-        for(key in commands) {
-            LOG(commands[key]);
+        for(key in commands) {            
             os.writeString(commands[key] + "\n");
         }
         
