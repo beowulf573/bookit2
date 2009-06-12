@@ -50,12 +50,75 @@ BookitConversion.prototype = {
     run: function() {
         try {
         
-      
+            var logfile = this.getLogFile();
+            LOG(logfile.path);
+            var workingDir = this.getWorkingDir();
+            LOG(workingDir.path);
         
+            var workingFile;
+            if(_isURL) {
+                workingFile = this.web2Disk(_data);
+            }
+            else {
+                workingFile = this.saveData(_data);
+            }
+            
+            /*
+
+            get output filetype and extension
+            create output filename
+
+            convert file
+
+            add to calibre
+
+            launch calibre
+            */
+            
+            workingDir.remove(true);            
      
         } catch(err) {
             Components.utils.reportError(err);
         }
+    },
+    saveData: function(data) {
+    
+        // return nsIFile
+    },
+    web2Disk: function(url) {
+    
+        // return nsIFile to primary file
+    },
+    convertLRF: function(source, outputFile) {
+        // both are nsIFile
+    },
+    convertEPub: function(source, outputFile) {
+        // both are nsIFile
+    },
+    convertMobi: function(source, outputFile) {
+        // both are nsIFile
+    },
+    addToCalibre: function(outputFile) {
+        // nsIFile
+    },
+    launchCalibre: function() {
+        
+    },
+    getLogFile: function() {
+    
+        var logfile = Components.classes["@mozilla.org/file/directory_service;1"]
+                        .getService(Components.interfaces.nsIProperties)
+                        .get("TmpD", Components.interfaces.nsIFile);
+        logfile.append("bookit.log");
+        logfile.createUnique(Components.interfaces.nsIFile.NORMAL_FILE_TYPE, 0666);
+    },
+    getWorkingDir: function() {
+    
+        var logfile = Components.classes["@mozilla.org/file/directory_service;1"]
+                        .getService(Components.interfaces.nsIProperties)
+                        .get("TmpD", Components.interfaces.nsIFile);
+        logfile.append("bookit-work");
+        logfile.createUnique(Components.interfaces.nsIFile.DIRECTORY_TYPE, 0666);
     },
     GetBookitPref: function(sName)
     {
