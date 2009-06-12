@@ -64,7 +64,7 @@ BookitConversion.prototype = {
             else {
                 workingFile = this.saveData(workingDir, this._data, logfile);
             }
-            
+            LOG(workingFile.path);
             /*
 
             get output filetype and extension
@@ -141,9 +141,17 @@ BookitConversion.prototype = {
     },
     findFirstFile: function(workingDir) {
     
-        // find first file in working dir
-        // and return nsIFile
-    
+        var entries = workingDir.directoryEntries;
+        while(entries.hasMoreElements()) {
+
+            var subFile = entries.getNext(); 
+            subFile.QueryInterface(Ci.nsIFile);
+
+            if(subFile.isFile()) {
+                return subFile;
+            }            
+        }         
+        return null;
     },
     convertLRF: function(source, outputFile, logfile) {
         // both are nsIFile
