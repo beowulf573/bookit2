@@ -1,3 +1,9 @@
+dialog
+menus
+logging?
+editor
+
+
 pref for default format
 
 dialog

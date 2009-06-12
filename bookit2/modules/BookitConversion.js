@@ -152,7 +152,7 @@ BookitConversion.prototype = {
     
         var cmd = new BookitCommand();
     
-        cmd.executeCommand(logfile, lines);
+        cmd.executeCommand(logfile.path, lines);
          
         return this.findFirstFile(workingDir);        
     },
@@ -200,7 +200,7 @@ BookitConversion.prototype = {
     
         var cmd = new BookitCommand();
     
-        cmd.executeCommand(logfile, lines);        
+        cmd.executeCommand(logfile.path, lines);        
     },
     convertEPub: function(source, outputFile, logfile) {
         var left_margin = this.GetBookitPrefInt("layout.left_margin");
@@ -225,7 +225,7 @@ BookitConversion.prototype = {
     
         var cmd = new BookitCommand();
     
-        cmd.executeCommand(logfile, lines);        
+        cmd.executeCommand(logfile.path, lines);        
     },
     convertMobi: function(source, outputFile, logfile) {
         var left_margin = this.GetBookitPrefInt("layout.left_margin");
@@ -253,7 +253,7 @@ BookitConversion.prototype = {
     
         var cmd = new BookitCommand();
     
-        cmd.executeCommand(logfile, lines);        
+        cmd.executeCommand(logfile.path, lines);        
     },
     addToCalibre: function(outputFile, logfile) {
         // nsIFile
@@ -265,7 +265,7 @@ BookitConversion.prototype = {
     
         var cmd = new BookitCommand();
     
-        cmd.executeCommand(logfile, lines);        
+        cmd.executeCommand(logfile.path, lines);        
     },
     launchCalibre: function() {
         

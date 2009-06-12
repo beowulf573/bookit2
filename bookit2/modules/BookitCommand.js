@@ -58,7 +58,7 @@ BookitCommand.prototype = {
                           .getService(Components.interfaces.nsIXULRuntime).OS;
 
         if(osString == "WINNT") {
-            os.writeString("@echo off\n");
+            os.writeString("@echo on\n");
         }
         else
         if(osString == "Linux") {
