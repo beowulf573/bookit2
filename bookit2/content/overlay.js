@@ -34,6 +34,8 @@
  * 
  ****** END LICENSE BLOCK ******/
 
+ Components.utils.import("resource://bookit2/BookitCommand.js");
+
 
 var bookit2 = {
   onLoad: function() {
@@ -152,7 +154,12 @@ var bookit2 = {
   },
   onToolbarButtonCommand: function(e) {
     
+    var lines = [ "@echo on", "echo \"hello world\"" ];    
+    var logfile = "C:\\temp\\bookit space.log";
     
+    var cmd = new BookitCommand();
+    
+    cmd.executeCommand(logfile, lines);
     
   },
 
