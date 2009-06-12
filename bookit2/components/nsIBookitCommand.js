@@ -43,6 +43,8 @@ MyCommand.prototype = {
 		// This assumes that fos is the nsIOutputStream you want to write to
 		os.init(fos, charset, 0, 0x0000);
 
+        this.printPreScript(os);
+        
 		var enumerator = commands.enumerate();
         while(enumerator.hasMoreElements()) {
         
@@ -64,6 +66,23 @@ MyCommand.prototype = {
         file.remove(false);
      },   
 
+    printPreScript: function(os) {
+    
+        var osString = Components.classes["@mozilla.org/xre/app-info;1"]
+                          .getService(Components.interfaces.nsIXULRuntime).OS;
+
+        if(osString == "WINNT") {
+            os.writeString("@echo off\n");
+        }
+        else
+        if(osString == "Linux") {
+            os.writeString("#!/bin/sh\n");
+	    }
+	    else
+		if(osString == "Darwin") {
+		    os.writeString("#!/bin/sh\n");
+		}
+    },
     executeFile: function( scriptFile, logfile ) {
     
         var osString = Components.classes["@mozilla.org/xre/app-info;1"]
