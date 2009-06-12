@@ -192,7 +192,29 @@ BookitConversion.prototype = {
         cmd.executeCommand(logfile, lines);        
     },
     convertEPub: function(source, outputFile, logfile) {
+        var left_margin = this.GetBookitPrefInt("layout.left_margin");
+        var right_margin = this.GetBookitPrefInt("layout.right_margin");
+        var top_margin = this.GetBookitPrefInt("layout.top_margin");
+        var bottom_margin = this.GetBookitPrefInt("layout.bottom_margin");
+        var base_font_size = this.GetBookitPrefInt("layout.base_font_size");
+        var html2epub = this.GetBookitPref("paths.html2epub");
+        
         // both are nsIFile
+        var command = "\"{0}\" -o \"{1}\" -t \"{2}\" -a \"{3}\" --base-font-size {4} --margin-left {5} --margin-right {6} --margin-top {7} --margin-bottom {8} \"{9}\"".format(html2epub,
+                                        outputFile.path,
+                                        this._title,
+                                        this._author,
+                                        base_font_size,
+                                        left_margin, right_margin, top_margin, bottom_margin,
+                                        source.path);
+                                        
+        LOG("cmd: " + command);
+        
+        var lines = [ command ];            
+    
+        var cmd = new BookitCommand();
+    
+        cmd.executeCommand(logfile, lines);        
     },
     convertMobi: function(source, outputFile, logfile) {
         // both are nsIFile
