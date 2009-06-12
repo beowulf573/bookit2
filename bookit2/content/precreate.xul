@@ -21,7 +21,7 @@
 <!DOCTYPE prefwindow SYSTEM "chrome://bookit2/locale/precreate.dtd">
 
 <dialog id="bookitPreCreate"
-        title="&bookit.precreate.title;"
+        title="&bookit.precreate.dialog.title;"
         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
       	orient="vertical"
       	flex="0"
