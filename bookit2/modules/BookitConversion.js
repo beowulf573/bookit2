@@ -20,7 +20,6 @@ BookitConversion.prototype = {
     _author: "Bookit",
     _title: "",
     _filename: "",
-    _format: "lrf",
     
     //
     // data: either url or html data
@@ -29,14 +28,13 @@ BookitConversion.prototype = {
     // title:
     // filename: filename not including path but including extension
     // format: lrf, epub, mobi    
-    performConversion: function(data, isURL, author, title, filename, format) {
+    performConversion: function(data, isURL, author, title, filename) {
          
         this._data = data;
         this._isURL = isURL;
         this._author = author;
         this._title = title;
         this._filename = filename;
-        this._format = format;
          
         var doBackground = this.GetBookitPrefBool("enable_threading");
         
@@ -65,20 +63,28 @@ BookitConversion.prototype = {
                 workingFile = this.saveData(workingDir, this._data, logfile);
             }
             LOG(workingFile.path);
+            
+            var outputFile = this.getOutputFile();
+            
+            if(outputFile.path.match(/\.lrf$/i)) {
+                this.convertLRF(workingFile, outputFile, logfile);
+            }
+            else
+            if(outputFile.path.match(/\.epub$/i)) {
+                this.convertEPub(workingFile, outputFile, logfile);                
+            }
+            else
+            if(outputFile.path.match(/\.mobi$/i)) {
+                this.convertMobi(workingFile, outputFile, logfile);                
+            }
             /*
-
-            get output filetype and extension
-            create output filename
-
-            convert file
 
             add to calibre
 
             launch calibre
             */
             
-            // TODO: keep for debuging for now
-            // workingDir.remove(true);            
+            workingDir.remove(true);
      
         } catch(err) {
             Components.utils.reportError(err);
@@ -169,12 +175,28 @@ BookitConversion.prototype = {
         
     },
     getOutputFile: function() {
-    
-        // get output directory
-        // if not get temp directory
-        // append file name
-        // if extension require append extension
-        // return nsIFile object
+
+        var outputFile;
+        var outputPath = this.GetBookitPref("output_directory");
+        if(outputPath == null || outputPath.length == 0) {
+        
+            outputFile = Components.classes["@mozilla.org/file/directory_service;1"]
+                            .getService(Components.interfaces.nsIProperties)
+                            .get("TmpD", Components.interfaces.nsIFile);
+                        
+        }
+        else {
+        
+            outputFile = Components.classes["@mozilla.org/file/local;1"]
+                        .createInstance(Components.interfaces.nsILocalFile);
+
+            outputFile.initWithPath(outputPath);
+        }
+        
+        outputFile.append(this._filename);        
+        outputFile.createUnique(Ci.nsIFile.NORMAL_FILE_TYPE, 0666);
+        
+        return outputFile;
     },
     getLogFile: function() {
     
