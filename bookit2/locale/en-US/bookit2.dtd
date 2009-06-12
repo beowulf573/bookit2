@@ -1,8 +1,8 @@
 <!ENTITY bookit2.label "Bookit">
 <!ENTITY bookit2Context.label "Bookit">
 <!ENTITY bookit2Context.accesskey "B">
-<!ENTITY bookit2Toolbar.label "Your Toolbar Button">
-<!ENTITY bookit2Toolbar.tooltip "This is your toolbar button!">
+<!ENTITY bookit2Toolbar.label "Bookit">
+<!ENTITY bookit2Toolbar.tooltip "Create eBook from current page.">
 
 <!ENTITY bookit2.menu.bookit "Bookit">
 

@@ -151,8 +151,9 @@ var bookit2 = {
     cmd.executeCommand(logfile, marr);
   },
   onToolbarButtonCommand: function(e) {
-    // just reuse the function above.  you can change this, obviously!
-    bookit2.onMenuItemCommand(e);
+    
+    
+    
   },
 
   updateStatusBar: function() {
