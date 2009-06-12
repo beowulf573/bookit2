@@ -177,6 +177,19 @@ var bookit2 = {
   onStatusSelectionShowLog: function(e) {
     this.showLastLog();
   },
+  onToolsShowPreferences: function(e) {
+    this.showPreferences();
+  },
+  onContextShowPreferences: function(e) {
+    this.showPreferences();
+  },
+  onStatusShowPreferences: function(e) {
+    this.showPreferences();
+  },
+  showPreferences: function() {
+		window.openDialog('chrome://bookit2/content/options.xul', 'PrefWindow', 'chrome,titlebar,toolbar,centerscreen,dialog=no'); 
+  
+  },
   showLastLog: function() {
   
 	var logFile = this.getLastLogFile();
