@@ -56,7 +56,7 @@
             <menuitem id="menu_toolsmenu_bookit_editor" label="&bookit2.toolsmenu.editor;" 
                 oncommand="bookit2.onMenuItemCommand(event);"/>
             <menuitem id="menu_toolsmenu_bookit_log" label="&bookit2.toolsmenu.log;" 
-                oncommand="bookit2.onMenuItemCommand(event);"/>
+                oncommand="bookit2.onToolsSelectionShowLog(event);"/>
             <menuitem id="menu_toolsmenu_bookit_prefs" label="&bookit2.toolsmenu.prefs;" 
                 oncommand="bookit2.onMenuItemCommand(event);"/>                
         </menupopup>    
@@ -74,7 +74,7 @@
             <menuitem id="menu_contextmenu_bookit_editor" label="&bookit2.toolsmenu.editor;" 
                 oncommand="bookit2.onMenuItemCommand(event);"/>
             <menuitem id="menu_contextmenu_bookit_log" label="&bookit2.toolsmenu.log;" 
-                oncommand="bookit2.onMenuItemCommand(event);"/>
+                oncommand="bookit2.onContextSelectionShowLog(event);"/>
             <menuitem id="menu_contextmenu_bookit_prefs" label="&bookit2.toolsmenu.prefs;" 
                 oncommand="bookit2.onMenuItemCommand(event);"/>                
         </menupopup>    
@@ -101,7 +101,7 @@
 			<menuitem id="menu_statusmenu_bookit_editor" label="&bookit2.toolsmenu.editor;" 
 				oncommand="bookit2.onMenuItemCommand(event);"/>
 			<menuitem id="menu_statusmenu_bookit_log" label="&bookit2.toolsmenu.log;" 
-				oncommand="bookit2.onMenuItemCommand(event);"/>
+				oncommand="bookit2.onStatusSelectionShowLog(event);"/>
 			<menuitem id="menu_statusmenu_bookit_prefs" label="&bookit2.toolsmenu.prefs;" 
 				oncommand="bookit2.onMenuItemCommand(event);"/>     
 		</menupopup>				

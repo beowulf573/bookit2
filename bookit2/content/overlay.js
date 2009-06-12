@@ -168,7 +168,60 @@ var bookit2 = {
   onStatusSelectionCreate: function(e) {
     this.convertCurrentSelection();
   },
+  onToolsSelectionShowLog: function(e) {
+    this.showLastLog();
+  },
+  onContextSelectionShowLog: function(e) {
+    this.showLastLog();
+  },
+  onStatusSelectionShowLog: function(e) {
+    this.showLastLog();
+  },
+  showLastLog: function() {
+  
+	var logFile = this.getLastLogFile();
+	if(logFile != null) {
+		var ios = Components.classes["@mozilla.org/network/io-service;1"]
+					.getService(Components.interfaces.nsIIOService);
+		var URL = ios.newFileURI(logFile);
+			
+		window.open();
+		var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+					.getService(Components.interfaces.nsIWindowMediator);
+		var newWindow = wm.getMostRecentWindow("navigator:browser");
+		var b = newWindow.getBrowser();
+		
+		newWindow.document.location.href = URL.spec;	
+	}
+  },
+  // return nsIFile
+  getLastLogFile: function() {
+  
+	var logPath = GetBookitPref("last_logfile");
+	if(logPath == null || logPath.length == 0) {
 
+		var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
+						.getService(Components.interfaces.nsIPromptService);
+			
+		prompts.alert(window, this.strings.getString('bookit.title'), this.strings.getString('bookit.log.notset'));
+		return null;
+	}
+	
+	var file = Components.classes["@mozilla.org/file/local;1"]
+							.createInstance(Components.interfaces.nsILocalFile);
+
+	file.initWithPath(logPath);
+	if(!file.exists()) {
+	
+		var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
+						.getService(Components.interfaces.nsIPromptService);
+			
+		prompts.alert(window, this.strings.getString('bookit.title'), this.strings.getString('bookit.log.missing'));
+		return null;
+	}
+	
+	return file;
+  },
   convertCurrentSelection: function() {
   
 	var selection = this.getCurrentSelection();
@@ -262,6 +315,7 @@ var bookit2 = {
             filename = params.out.filename;
             
             // TODO: check for extension
+			filename = (filename == null || filename.length == 0 ? "bookit" : filename);
             filename = filename + "." + params.out.format;
         }
         else {
@@ -270,6 +324,7 @@ var bookit2 = {
     } 
     else {
         // attach default extension to filename
+		filename = (filename == null || filename.length == 0 ? "bookit" : filename);
         filename = filename + "." + format;
     }
 

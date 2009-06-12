@@ -96,6 +96,9 @@ BookitConversion.prototype = {
             }
             
             workingDir.remove(true);
+			
+			// TODO: temp code until job window is done
+			this.SetBookitPref("last_logfile", logfile.path);
      
         } catch(err) {
             Components.utils.reportError(err);
@@ -338,6 +341,12 @@ BookitConversion.prototype = {
         workingDir.createUnique(Components.interfaces.nsIFile.DIRECTORY_TYPE, 0666);
         return workingDir;
     },
+	SetBookitPref: function(sName, sData)
+	{
+		var oPLS = Components.classes["@mozilla.org/pref-localizedstring;1"].createInstance(Components.interfaces.nsIPrefLocalizedString);
+		oPLS.data = sData;
+		this.oBookit2Pref.setComplexValue(sName, Components.interfaces.nsIPrefLocalizedString, oPLS);
+	},
     GetBookitPref: function(sName)
     {
         try {return this.oBookit2Pref.getComplexValue(sName, Components.interfaces.nsIPrefLocalizedString).data;}

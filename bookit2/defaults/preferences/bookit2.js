@@ -26,6 +26,7 @@ pref("extensions.bookit2.mobi.ignore_tables", false);
 
 pref("extensions.bookit2.enable_threading", true);
 
+pref("extensions.bookit2.last_logfile", "");
 
 // See http://kb.mozillazine.org/Localize_extension_descriptions
 pref("extensions.bookit2@heorot.org.description", "chrome://bookit2/locale/bookit2.properties");

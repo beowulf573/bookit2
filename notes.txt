@@ -1,6 +1,10 @@
-dialog
-menus
-logging?
+common pref code
+common string code
+option? in optional dialog
+when empty filename set default
+
+
+
 editor
 
 
