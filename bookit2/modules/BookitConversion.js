@@ -52,6 +52,9 @@ BookitConversion.prototype = {
     if(title == null || title.length == 0) {
     	title = this.GetBookitPref("default_title");
     }
+    if(author == null || author.length == 0) {
+	author = this.GetBookitPref("default_author");
+    }
     if(this.GetBookitPrefBool("show_options_dlg")) {
     
         var params = {
