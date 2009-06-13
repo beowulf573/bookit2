@@ -41,7 +41,6 @@ var args = arguments;
 return this.replace(pattern, function(capture){ return args[capture.match(/\d+/)]; });
 }
 
-Components.utils.import("resource://bookit2/BookitCommand.js");
 Components.utils.import("resource://bookit2/BookitConversion.js");
 
 
