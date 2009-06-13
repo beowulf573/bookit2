@@ -1,22 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
- xmlns:em="http://www.mozilla.org/2004/em-rdf#">
-  <Description about="urn:mozilla:install-manifest">
-    <em:id>{950a782d-e82f-45e2-9da7-44898356813d}</em:id>
-    <em:name>Bookit</em:name>
-    <em:version>0.5.0</em:version>
-    <em:creator>Eddie McCreary</em:creator>
-    <em:description>A Firefox extension to create eBooks from webpages.</em:description>
-    <em:homepageURL>http://www.heorot.org/wordpress/index.php/software/bookit/</em:homepageURL>
-    <em:updateURL>http://www.heorot.org/wordpress/wp-content/bookit/update.rdf</em:updateURL>
-    <em:aboutURL>chrome://bookit2/content/about.xul</em:aboutURL>
-    <em:optionsURL>chrome://bookit2/content/options.xul</em:optionsURL>
-    <em:targetApplication>
-      <Description>
-        <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id> <!-- firefox -->
-        <em:minVersion>3.0.0</em:minVersion>
-        <em:maxVersion>3.*</em:maxVersion>
-      </Description>
-    </em:targetApplication>
-  </Description>
-</RDF>
+<?xml version="1.0"?>
+<RDF:RDF xmlns:em="http://www.mozilla.org/2004/em-rdf#"
+         xmlns:NC="http://home.netscape.com/NC-rdf#"
+         xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <RDF:Description RDF:about="rdf:#$0FZmp"
+                   em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+                   em:minVersion="3.0.0"
+                   em:maxVersion="3.*" />
+  <RDF:Description RDF:about="urn:mozilla:install-manifest"
+                   em:id="{950a782d-e82f-45e2-9da7-44898356813d}"
+                   em:name="Bookit"
+                   em:version="0.5.0"
+                   em:creator="Eddie McCreary"
+                   em:description="A Firefox extension to create eBooks from webpages."
+                   em:homepageURL="http://www.heorot.org/wordpress/index.php/software/bookit/"
+                   em:updateURL="http://www.heorot.org/wordpress/wp-content/bookit/update.rdf"
+                   em:aboutURL="chrome://bookit2/content/about.xul"
+                   em:optionsURL="chrome://bookit2/content/options.xul"
+                   em:updateKey="MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDQHKJbqdqbkvsbOS25/1vPi0dRhTiJRjSMcRhHa6g7csSVfaFi795pewmmOCgKr4g9qqEmW2HffeJEGI3IleipE6kikXTEgYv5ocYGhTULIsJZAYSSlI9107wLXzFVeOTFFEu69s+OjTbo8meKdmtZAKyj+zOnCYjdV3KyxuhWcwIDAQAB">
+    <em:targetApplication RDF:resource="rdf:#$0FZmp"/>
+  </RDF:Description>
+</RDF:RDF>
