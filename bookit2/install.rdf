@@ -2,13 +2,13 @@
 <RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
  xmlns:em="http://www.mozilla.org/2004/em-rdf#">
   <Description about="urn:mozilla:install-manifest">
-    <em:id>bookit2@heorot.org</em:id>
-    <em:name>bookit2</em:name>
-    <em:version>2.0</em:version>
+    <em:id>{950a782d-e82f-45e2-9da7-44898356813d}</em:id>
+    <em:name>Bookit</em:name>
+    <em:version>0.5.0</em:version>
     <em:creator>Eddie McCreary</em:creator>
     <em:description>A Firefox extension to create eBooks from webpages.</em:description>
     <em:homepageURL>http://www.heorot.org/wordpress/index.php/software/bookit/</em:homepageURL>
-    <em:updateURL>https://www.heorot.org/wordpress/wp-content/bookit/bookit2_update.rdf</em:updateURL>
+    <em:updateURL>http://www.heorot.org/wordpress/wp-content/bookit/update.rdf</em:updateURL>
     <em:aboutURL>chrome://bookit2/content/about.xul</em:aboutURL>
     <em:optionsURL>chrome://bookit2/content/options.xul</em:optionsURL>
     <em:targetApplication>
