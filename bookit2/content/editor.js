@@ -255,7 +255,7 @@ var BookitEditor = {
 		var source = editor.getEditor(editor.contentWindow).outputToString("text/html", 2);
 		
 		var b = new BookitConversion();
-        
-		b.doConversion(window, source, false, author, title);
+        	// TODO: get title from source document
+		b.doConversion(window, source, false, "", "");
 	},
 }
