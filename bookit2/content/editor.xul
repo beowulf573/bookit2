@@ -5,7 +5,7 @@
 
 <!DOCTYPE overlay SYSTEM "chrome://bookit2/locale/bookit2-editor.dtd">
 
-<window title="Bookit Editor" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+<window title="&bookit.editor.title;" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 <script type="application/x-javascript" src="chrome://bookit2/content/editor.js" />
 <script type="application/x-javascript">
 <![CDATA[

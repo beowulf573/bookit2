@@ -261,8 +261,10 @@ var bookit2 = {
     var author = this.getMetaValue("AUTHOR");
     
     author = (author == "" ? GetBookitPref("default_author") : author);
-    
-    this.doConversion(selection, false, author, title);
+
+	var b = new BookitConversion();
+        
+    b.doConversion(window, selection, false, author, title);
   },
   
   getCurrentSelection:function() {
@@ -294,73 +296,10 @@ var bookit2 = {
     
     author = (author == "" ? GetBookitPref("default_author") : author);
     
-    this.doConversion(url, true, author, title);
+	var b = new BookitConversion();
     
-  },
-  doConversion: function(data, isURL, author, title) {
+    b.doConversion(window, url, true, author, title);
     
-	// some characters screwup the meta data
-	// replace all quote variants with single quote
-    var re = /[\u0022\u0027\u0060\u00B4\u2018\u2019\u201C\u201D]/gi;
-    
-	title = title.replace(re, "'");    
-
-    re = /[\~\':|\\\?\*<\">\+\[\]/]/g;            
-    
-    var filename = title.replace(re, "_");
-    
-    if(filename.length > 63) {
-        filename = filename.substr(0,63);	
-    }
-    
-    var format = GetBookitPref("output_format");
-    if(GetBookitPrefBool("show_options_dlg")) {
-    
-        var params = {
-            inn: {
-                title: title,
-                author: author,
-                format: format,
-                filename: filename
-            },
-            out: {
-                title: null,
-                author: null,
-                format: null,
-                filename: null,
-                result: false
-            }
-        };
-      
-        openDialog(
-               "chrome://bookit2/content/precreate.xul",
-               "",
-               "centerscreen,dialog=no,chrome,dependent,modal",
-               params
-               );
-        if(params.out.result) {
-        
-            title = params.out.title;
-            author = params.out.author;
-            filename = params.out.filename;
-            
-            // TODO: check for extension
-			filename = (filename == null || filename.length == 0 ? "bookit" : filename);
-            filename = filename + "." + params.out.format;
-        }
-        else {
-            return;
-        }
-    } 
-    else {
-        // attach default extension to filename
-		filename = (filename == null || filename.length == 0 ? "bookit" : filename);
-        filename = filename + "." + format;
-    }
-
-    var b = new BookitConversion();
-    
-    b.performConversion(data, isURL, author, title, filename);        
   },
   getMetaValue: function( meta_name) {
 

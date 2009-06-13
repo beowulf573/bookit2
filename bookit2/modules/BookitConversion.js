@@ -28,6 +28,71 @@ BookitConversion.prototype = {
     _title: "",
     _filename: "",
     
+	// TODO: rename these
+	doConversion: function(window, data, isURL, author, title) {
+    
+	// some characters screwup the meta data
+	// replace all quote variants with single quote
+    var re = /[\u0022\u0027\u0060\u00B4\u2018\u2019\u201C\u201D]/gi;
+    
+	title = title.replace(re, "'");    
+
+    re = /[\~\':|\\\?\*<\">\+\[\]/]/g;            
+    
+    var filename = title.replace(re, "_");
+    
+    if(filename.length > 63) {
+        filename = filename.substr(0,63);	
+    }
+    
+    var format = this.GetBookitPref("output_format");
+    if(this.GetBookitPrefBool("show_options_dlg")) {
+    
+        var params = {
+            inn: {
+                title: title,
+                author: author,
+                format: format,
+                filename: filename
+            },
+            out: {
+                title: null,
+                author: null,
+                format: null,
+                filename: null,
+                result: false
+            }
+        };
+      
+        window.openDialog(
+               "chrome://bookit2/content/precreate.xul",
+               "",
+               "centerscreen,dialog=no,chrome,dependent,modal",
+               params
+               );
+        if(params.out.result) {
+        
+            title = params.out.title;
+            author = params.out.author;
+            filename = params.out.filename;
+            
+            // TODO: check for extension
+			filename = (filename == null || filename.length == 0 ? "bookit" : filename);
+            filename = filename + "." + params.out.format;
+        }
+        else {
+            return;
+        }
+    } 
+    else {
+        // attach default extension to filename
+		filename = (filename == null || filename.length == 0 ? "bookit" : filename);
+        filename = filename + "." + format;
+    }
+
+    this.performConversion(data, isURL, author, title, filename);        
+  },
+
     //
     // data: either url or html data
     // isURL: true if data is url

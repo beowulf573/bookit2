@@ -15,6 +15,8 @@
     along with Bookit.  If not, see <http://www.gnu.org/licenses/>.
  *
  * ***** END LICENSE BLOCK ***** */
+Components.utils.import("resource://bookit2/BookitConversion.js");
+
 var BookitEditor = {
 
     Init: function(editor)  {
@@ -250,7 +252,10 @@ var BookitEditor = {
 
 	onCreateBook: function(editor) {
 	
-	
+		var source = editor.getEditor(editor.contentWindow).outputToString("text/html", 2);
+		
+		var b = new BookitConversion();
+        
+		b.doConversion(window, source, false, author, title);
 	},
-
 }
