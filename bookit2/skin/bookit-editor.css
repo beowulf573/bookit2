@@ -1,0 +1,41 @@
+
+#editor-bold {
+  list-style-image: url("chrome://bookit2/skin/text-bold.png");
+}
+
+#editor-italic {
+  list-style-image: url("chrome://bookit2/skin/text-italic.png");
+}
+#editor-underline {
+  list-style-image: url("chrome://bookit2/skin/text-underlined.png");
+}
+
+#editor-convert {
+  list-style-image: url("chrome://bookit2/skin/prs500.png");
+}
+
+#editor-link {
+  list-style-image: url("chrome://bookit2/skin/world-link.png");
+}
+
+#editor-image {
+  list-style-image: url("chrome://bookit2/skin/picture.png");
+}
+#editor-source {
+	list-style-image: url("chrome://bookit2/skin/tag.png");
+}
+
+#editor-orderedlist {
+	list-style-image: url("chrome://bookit2/skin/text-list-numbers.png");
+}
+
+#editor-unorderedlist {
+	list-style-image: url("chrome://bookit2/skin/text-list-bullets.png");
+}
+#editor-save {
+	list-style-image: url("chrome://bookit2/skin/folder-inport.png");
+}
+#editor-load {
+	list-style-image: url("chrome://bookit2/skin/folder-export.png");
+}
+

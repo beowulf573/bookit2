@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://bookit2/skin/bookit-editor.css" type="text/css"?>
+
+<!DOCTYPE overlay SYSTEM "chrome://bookit2/locale/bookit2-editor.dtd">
+
+<window title="Bookit Editor" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+<script type="application/x-javascript" src="chrome://bookit2/content/editor.js" />
+<script type="application/x-javascript">
+<![CDATA[
+    var editor; /* global var */
+    function onload() {
+   
+        editor = document.getElementById("content-frame");
+   
+        BookitEditor.Init(editor);
+
+		var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+                   .getService(Components.interfaces.nsIWindowMediator);
+		var browserWindow = wm.getMostRecentWindow("navigator:browser");
+		
+		var selection = browserWindow.document.commandDispatcher.focusedWindow.getSelection();
+		
+		if(selection != null && selection.rangeCount > 0) {
+	
+		    var range = selection.getRangeAt(0);
+	
+	    	var selRich = range.cloneContents();
+	    	
+	    	editor.contentWindow.document.body.appendChild(selRich); 
+		}
+    }	
+]]>
+</script>
+
+  <toolbox>
+ 	<stringbundleset >
+      <stringbundle id="localestrings" 
+                    src="chrome://bookit2/locale/bookit2-editor.properties" />
+   	</stringbundleset>
+      <toolbar id="main-toolbar" mode="icons">
+      <toolbarbutton id="editor-bold" tooltipText="&bookit.editor.bold;" oncommand="BookitEditor.onBold(editor);"/>
+      <toolbarbutton id="editor-italic" tooltipText="&bookit.editor.italic;" oncommand="BookitEditor.onItalic(editor);"/>
+      <toolbarbutton id="editor-underline" tooltipText="&bookit.editor.underline;" oncommand="BookitEditor.onUnderlined(editor);"/>
+	  <toolbarbutton id="editor-orderedlist" tooltipText="&bookit.editor.orderedlist;" oncommand="BookitEditor.onOrderedList(editor);"/>
+	  <toolbarbutton id="editor-unorderedlist" tooltipText="&bookit.editor.unorderedlist;" oncommand="BookitEditor.onUnorderedList(editor);"/>
+      <toolbarseparator/>
+      <!--
+      <toolbarbutton id="editor-link" tooltipText="&bookit.editor.link;" oncommand="BookitEditor.onLink(editor);"/>
+	  <toolbarbutton id="editor-image" tooltipText="&bookit.editor.image;" oncommand="BookitEditor.onImage(editor);"/>
+	  <toolbarseparator/>
+	 --> 
+      <toolbarbutton label="&bookit.editor.normal;" type="menu-button" tag="" oncommand="BookitEditor.onHeading(editor, event.target.getAttribute('tag'));">
+	      	<menupopup>			
+				<menuitem label="&bookit.editor.paragraph;" tag="p" />
+	        	<menuitem label="&bookit.editor.heading1;" tag="h1" />
+	        	<menuitem label="&bookit.editor.heading2;" tag="h2" />
+				<menuitem label="&bookit.editor.heading3;" tag="h3" />
+				<menuitem label="&bookit.editor.heading4;" tag="h4" />
+				<menuitem label="&bookit.editor.heading5;" tag="h5" />
+				<menuitem label="&bookit.editor.heading6;" tag="h6" />
+				<menuitem label="&bookit.editor.address;" tag="address" />
+				<menuitem label="&bookit.editor.formatted;" tag="pre" />
+	      	</menupopup>
+		</toolbarbutton>
+      <toolbarbutton label="&bookit.editor.fontface;" type="menu-button" tag="" oncommand="BookitEditor.onFontFace(editor, event.target.getAttribute('tag'));">
+	      	<menupopup>			
+				<menuitem label="&bookit.editor.fontarial;" tag="Arial" />
+	        	<menuitem label="&bookit.editor.fontcourier;" tag="Courier" />
+	        	<menuitem label="&bookit.editor.fonttimes;" tag="Times New Roman" />
+	      	</menupopup>
+		</toolbarbutton>
+      <toolbarbutton label="&bookit.editor.fontsize;" type="menu-button" tag="" oncommand="BookitEditor.onFontSize(editor, event.target.getAttribute('tag'));">
+	      	<menupopup>			
+				<menuitem label="1" tag="1" />
+	        	<menuitem label="2" tag="2" />
+	        	<menuitem label="3" tag="3" />
+				<menuitem label="4" tag="4" />
+				<menuitem label="5" tag="5" />
+				<menuitem label="6" tag="6" />
+				<menuitem label="7" tag="7" />
+	      	</menupopup>
+		</toolbarbutton>
+		<toolbarseparator/>
+		<toolbarbutton id="editor-source" tooltipText="&bookit.editor.viewsource;"  type="checkbox" autoCheck="true" 
+				oncommand="BookitEditor.onShowSource(editor, this.checkState);"/>
+		<toolbarbutton id="editor-convert" tooltipText="&bookit.editor.createebook;" oncommand="BookitEditor.onCreateBook(editor);"/>		
+		<toolbarseparator/>
+		<toolbarbutton id="editor-load" tooltipText="&bookit.editor.load;" oncommand="BookitEditor.doLoadBook(editor);"/>
+		<toolbarbutton id="editor-save" tooltipText="&bookit.editor.save;" oncommand="BookitEditor.doSaveBook(editor);"/>
+		
+    </toolbar>
+  </toolbox>
+  <hbox id="main" flex="1">
+    <editor id="content-frame" type="content-primary" editortype="html" src="about:blank" flex="1"/>
+  </hbox>
+<resizer dir="bottomright"/>
+</window>

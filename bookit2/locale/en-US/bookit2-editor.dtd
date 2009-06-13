@@ -1,0 +1,28 @@
+<!ENTITY bookit.editor.title "Bookit Editor">
+
+<!ENTITY bookit.editor.bold "Bold">
+<!ENTITY bookit.editor.italic "Italic">
+<!ENTITY bookit.editor.underline "Underline">
+<!ENTITY bookit.editor.orderedlist "Ordered List">
+<!ENTITY bookit.editor.unorderedlist "Unordered List">
+<!ENTITY bookit.editor.link "Insert Link">
+<!ENTITY bookit.editor.image "Insert Image">
+<!ENTITY bookit.editor.normal "Normal">
+<!ENTITY bookit.editor.paragraph "Paragraph">
+<!ENTITY bookit.editor.heading1 "Heading 1">
+<!ENTITY bookit.editor.heading2 "Heading 2">
+<!ENTITY bookit.editor.heading3 "Heading 3">
+<!ENTITY bookit.editor.heading4 "Heading 4">
+<!ENTITY bookit.editor.heading5 "Heading 5">
+<!ENTITY bookit.editor.heading6 "Heading 6">
+<!ENTITY bookit.editor.address "Address">
+<!ENTITY bookit.editor.formatted "Formatted">
+<!ENTITY bookit.editor.fontface "Font Face">
+<!ENTITY bookit.editor.fontarial "Arial">
+<!ENTITY bookit.editor.fontcourier "Courier">
+<!ENTITY bookit.editor.fonttimes "Times">
+<!ENTITY bookit.editor.fontsize "Font Size">
+<!ENTITY bookit.editor.viewsource "View Source">
+<!ENTITY bookit.editor.createebook "Create eBook">
+<!ENTITY bookit.editor.load "Load">
+<!ENTITY bookit.editor.save "Save">

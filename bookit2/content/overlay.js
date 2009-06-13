@@ -117,7 +117,6 @@ var bookit2 = {
 	    hideSelection = true;                 
 	}      
 	document.getElementById("menu_toolsmenu_bookit_selection_ebook").hidden = hideSelection;        
-	document.getElementById("menu_toolsmenu_bookit_selection_editor").hidden = hideSelection;        
   },
   
   onContextPopupShowing: function(event) {
@@ -131,7 +130,6 @@ var bookit2 = {
 	    hideSelection = true;                 
 	}      
 	document.getElementById("menu_contextmenu_bookit_selection_ebook").hidden = hideSelection;        
-	document.getElementById("menu_contextmenu_bookit_selection_editor").hidden = hideSelection;        
   },
   onStatusPopupShowing: function(event) {
   
@@ -142,10 +140,6 @@ var bookit2 = {
 	    hideSelection = true;                 
 	}      
 	document.getElementById("menu_statusmenu_bookit_selection_ebook").hidden = hideSelection;        
-	document.getElementById("menu_statusmenu_bookit_selection_editor").hidden = hideSelection;        
-  },
-  onMenuItemCommand: function(e) {
-
   },
   onToolbarButtonCommand: function(e) {
     this.convertCurrentDocument();
@@ -189,6 +183,29 @@ var bookit2 = {
   showPreferences: function() {
 		window.openDialog('chrome://bookit2/content/options.xul', 'PrefWindow', 'chrome,titlebar,toolbar,centerscreen,dialog=no'); 
   
+  },
+  onToolsShowEditor: function(e) {
+    this.showEditor();
+  },
+  onContextShowEditor: function(e) {
+    this.showEditor();
+  },
+  onStatusShowEditor: function(e) {
+    this.showEditor();
+  },
+  showEditor: function() {
+    var winName = "bookit:editor";
+    var windowsMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
+	var win = windowsMediator.getMostRecentWindow(winName);
+	if (win) {
+		
+  		win.focus();
+  	}
+    else {
+    	win = window.open("chrome://bookit2/content/editor.xul", 
+                      winName, "chrome=yes,centerscreen,width=640,height=480,resize=yes,scrollbars=yes"); 
+    	
+    }
   },
   showLastLog: function() {
   
