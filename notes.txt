@@ -1,7 +1,8 @@
+icon in addons page
+better icons for pref page
+downloads liek view
 common pref code
 common string code
-option? in optional dialog
-when empty filename set default
 
 
 
