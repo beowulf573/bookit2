@@ -46,6 +46,12 @@ BookitConversion.prototype = {
     }
     
     var format = this.GetBookitPref("output_format");
+    if(filename == null || filename.length == 0) {
+    	filename = this.GetBookitPref("default_filename");
+    }	
+    if(title == null || title.length == 0) {
+    	title = this.GetBookitPref("default_title");
+    }
     if(this.GetBookitPrefBool("show_options_dlg")) {
     
         var params = {
