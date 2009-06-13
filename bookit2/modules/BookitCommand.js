@@ -35,7 +35,7 @@ BookitCommand.prototype = {
 		// This assumes that fos is the nsIOutputStream you want to write to
 		os.init(fos, charset, 0, 0x0000);
 
-        this.printPreScript(os);
+        this.printPreScript(os, logfile);
         		
         for(key in commands) {            
             os.writeString(commands[key] + "\n");
@@ -48,11 +48,11 @@ BookitCommand.prototype = {
         this.executeFile(file, logfile);
         
         // delete temp file
-		//LOG(file.path);
+	//LOG(file.path);
         file.remove(false);
      },   
 
-    printPreScript: function(os) {
+    printPreScript: function(os, logfile) {
     
         var osString = Components.classes["@mozilla.org/xre/app-info;1"]
                           .getService(Components.interfaces.nsIXULRuntime).OS;
@@ -63,11 +63,13 @@ BookitCommand.prototype = {
         else
         if(osString == "Linux") {
             os.writeString("#!/bin/sh\n");
+            os.writeString("exec >> \"" + logfile + "\" 2>&1\n");
 	    }
 	    else
-		if(osString == "Darwin") {
+            if(osString == "Darwin") {
 		    os.writeString("#!/bin/sh\n");
-		}
+            os.writeString("exec >> \"" + logfile + "\" 2>&1\n");
+            }
     },
     executeFile: function( scriptFile, logfile ) {
     
@@ -95,7 +97,7 @@ BookitCommand.prototype = {
 
         file.initWithPath("/bin/sh");
 
-        var parameters = [ scriptFile.path , ">" + logfile ];
+        var parameters = [ scriptFile.path , logfile ];
 	    
         // create an nsIProcess
 	    var process = Components.classes["@mozilla.org/process/util;1"]
