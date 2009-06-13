@@ -123,9 +123,9 @@ BookitConversion.prototype = {
         try {
         
             var logfile = this.getLogFile();
-            LOG(logfile.path);
+            //LOG(logfile.path);
             var workingDir = this.getWorkingDir();
-            LOG(workingDir.path);
+            //LOG(workingDir.path);
         
             var workingFile;
             if(this._isURL) {
@@ -166,7 +166,8 @@ BookitConversion.prototype = {
 			this.SetBookitPref("last_logfile", logfile.path);
      
         } catch(err) {
-            Components.utils.reportError(err);
+			// TODO:
+			//Components.utils.reportError(err);
         }
     },
     saveData: function(workingDir, data, logfile) {
@@ -264,7 +265,7 @@ BookitConversion.prototype = {
                                         left_margin, right_margin, top_margin, bottom_margin,                                        
                                         source.path);
                                         
-        LOG("cmd: " + command);
+        //LOG("cmd: " + command);
         
         var lines = [ command ];            
     
@@ -289,7 +290,7 @@ BookitConversion.prototype = {
                                         left_margin, right_margin, top_margin, bottom_margin,
                                         source.path);
                                         
-        LOG("cmd: " + command);
+        //LOG("cmd: " + command);
         
         var lines = [ command ];            
     
@@ -317,7 +318,7 @@ BookitConversion.prototype = {
                                         ignore_tables ? "--ignore-tables" : "",
                                         source.path);
                                         
-        LOG("cmd: " + command);
+        //LOG("cmd: " + command);
         
         var lines = [ command ];            
     
