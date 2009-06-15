@@ -1,0 +1,11 @@
+#include "nsISupports.idl"
+
+[scriptable, uuid(07945a59-ea66-466d-946d-13420085d349)]
+
+
+interface nsIBookitLogger : nsISupports
+{
+    void logError( in string msg );
+    void logInfo( in string msg );
+    void logWarn( in string msg );
+};

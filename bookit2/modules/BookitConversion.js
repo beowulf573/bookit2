@@ -18,6 +18,21 @@ function BookitConversion() {
 		this.oBookit2Pref = Components.classes["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefService).getBranch("extensions.bookit2.");
 
         this.oBookit2Pref.QueryInterface(Ci.nsIPrefBranch2);
+        
+        var loggerObj = Cc["@heorot.org/bookit-logger;1"].createInstance(Ci.nsIBookitLogger);
+
+        // create proxy of logger object for use when threading
+        var threadManager = Cc["@mozilla.org/thread-manager;1"].getService(Ci.nsIThreadManager);
+        var thread = threadManager.mainThread;
+  
+        // Creates a proxy for this object that will make calls on the UI event queue.
+        var nsIPOM = Ci.nsIProxyObjectManager;
+        var proxyManager = Cc["@mozilla.org/xpcomproxy;1"].getService(Ci.nsIProxyObjectManager);
+        this._loggerProxy = proxyManager.getProxyForObject(thread, 
+                                             Ci.nsIBookitLogger, 
+                                             loggerObj, 
+                                             Ci.nsIProxyObjectManager.INVOKE_SYNC
+                                              + Ci.nsIProxyObjectManager.FORCE_PROXY_CREATION);
 }
 
 BookitConversion.prototype = {
@@ -130,9 +145,9 @@ BookitConversion.prototype = {
     },
     run: function() {
         try {
-        
+                
             var logfile = this.getLogFile();
-            //LOG(logfile.path);
+            //LOG(logfile.path);            
             var workingDir = this.getWorkingDir();
             //LOG(workingDir.path);
         
