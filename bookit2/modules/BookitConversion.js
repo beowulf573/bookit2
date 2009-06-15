@@ -146,6 +146,11 @@ BookitConversion.prototype = {
             
             var outputFile = this.getOutputFile();
             
+            var useEbookConvert = this.GetBookitPrefBool("use_ebook_convert");
+			if(useEbookConvert) {
+			    this.eBookConvert(workingFile, outputFile, logfile);
+			}
+			else
             if(outputFile.path.match(/\.lrf$/i)) {
                 this.convertLRF(workingFile, outputFile, logfile);
             }
@@ -335,6 +340,35 @@ BookitConversion.prototype = {
     
         cmd.executeCommand(logfile.path, lines);        
     },
+    eBookConvert: function(source, outputFile, logfile) {
+	
+	    var left_margin = this.GetBookitPrefInt("layout.left_margin");
+        var right_margin = this.GetBookitPrefInt("layout.right_margin");
+        var top_margin = this.GetBookitPrefInt("layout.top_margin");
+        var bottom_margin = this.GetBookitPrefInt("layout.bottom_margin");
+        var outputProfile = this.GetBookitPref("ebook_convert.output_profile");
+        var ebook_convert = this.GetBookitPref("paths.ebook_convert");
+        
+        // both are nsIFile
+        var command = "\"{0}\" \"{1}\" \"{2}\" --title=\"{3}\" --authors=\"{4}\" --output-profile={5}".format(
+										ebook_convert,
+										source.path,
+                                        outputFile.path,
+                                        this._title,
+                                        this._author,
+                                        outputProfile
+                                        );
+                                        
+        //LOG("cmd: " + command);
+        
+        var lines = [ command ];            
+    
+        var cmd = new BookitCommand();
+    
+        cmd.executeCommand(logfile.path, lines);        
+
+    },
+	
     addToCalibre: function(outputFile, logfile) {
         // nsIFile
         var calibredb = this.GetBookitPref("paths.calibredb");

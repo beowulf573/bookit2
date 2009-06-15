@@ -52,6 +52,7 @@
         <preference id="pref_launch_calibre" name="extensions.bookit2.launch_calibre" type="bool" />
         <preference id="pref_show_options_dlg" name="extensions.bookit2.show_options_dlg" type="bool" />
         <preference id="pref_output_format" name="extensions.bookit2.output_format" type="string" />
+        <preference id="pref_use_ebook_convert" name="extensions.bookit2.use_ebook_convert" type="bool" />
     </preferences>
     
     <label control="author" value="&bookit.settings.author;"/>
@@ -70,6 +71,7 @@
     </menulist>
         
 	<checkbox id="show_options_dlg" preference="pref_show_options_dlg" label="&bookit.settings.show_options_dlg;" />
+	<checkbox id="use_ebook_convert" preference="pref_use_ebook_convert" label="&bookit.settings.use_ebook_convert;" />
 		
    	<groupbox>
 		<caption label="&bookit.settings.calibre;"/>
@@ -94,6 +96,7 @@
         <preference id="pref_paths_html2epub" name="extensions.bookit2.paths.html2epub" type="string" />
         <preference id="pref_paths_html2lrf" name="extensions.bookit2.paths.html2lrf" type="string" />
         <preference id="pref_paths_any2mobi" name="extensions.bookit2.paths.any2mobi" type="string" />
+        <preference id="pref_paths_ebook_convert" name="extensions.bookit2.paths.ebook_convert" type="string" />
     </preferences>
     
     <label control="paths_calibre" value="&bookit.settings.paths.calibre;"/>
@@ -114,7 +117,10 @@
     <label control="paths_any2mobi" value="&bookit.settings.paths.any2mobi;"/>
     <textbox preference="pref_paths_any2mobi" id="paths_any2mobi" />
     
-   </prefpane>  
+    <label control="paths_ebook_convert" value="&bookit.settings.paths.ebook_convert;"/>
+    <textbox preference="pref_paths_ebook_convert" id="paths_ebook_convert" />
+
+	</prefpane>  
   
   <prefpane id="pane_spidering" label="&bookit.settings.spidering.title;">
     <preferences>
@@ -184,6 +190,28 @@
     </preferences>
 		<checkbox id="mobi_ignore_tables" preference="pref_mobi_ignore_tables" label="&bookit.settings.mobi.ignore_tables;" />
   </prefpane>  
-   <script type="application/x-javascript" src="chrome://bookit2/content/bookit-settings.js"/>
+  
+  <prefpane id="pane_ebook_convert" label="&bookit.settings.ebook_convert.title;">
+    <preferences>
+        <preference id="pref_ebook_convert_output_profile" name="extensions.bookit2.ebook_convert.output_profile" type="string" />
+  </preferences>
+    <label control="ebook_convert_output_profile" value="&bookit.settings.ebook_convert.output_profile;"/>
+    <menulist id="ebook_convert_output_profile" preference="pref_ebook_convert_output_profile">
+        <menupopup>
+			<menuitem label="Default" value="default"/>
+			<menuitem label="Sony" value="sony"/>
+			<menuitem label="MS Reader" value="msreader"/>
+			<menuitem label="Mobipocket" value="mobipocket"/>
+			<menuitem label="Hanlin V3" value="hanlinv3"/>
+			<menuitem label="Cybook g3" value="cybookg3"/>
+			<menuitem label="Kindle" value="kindle"/>
+			<menuitem label="Sony Landscape" value="sony-landscape"/>
+			<menuitem label="Kindle DX" value="kindle_dx"/>
+        </menupopup>
+    </menulist>
+  </prefpane>  
+
+
+  <script type="application/x-javascript" src="chrome://bookit2/content/bookit-settings.js"/>
 
  </prefwindow>

@@ -1,3 +1,43 @@
+ebook-convert.exe input_file output_file [options]
+
+new path for ebook-convert
+checkbox to use ebook-convert
+
+options
+    --base-font-size=BASE_FONT_SIZE
+    --margin-top=MARGIN_TOP
+                        Set the top margin in pts. Default is 5.0. Note: 72
+                        pts equals 1 inch
+
+    --margin-left=MARGIN_LEFT
+                        Set the left margin in pts. Default is 5.0. Note: 72
+                        pts equals 1 inch
+
+    --margin-right=MARGIN_RIGHT
+                        Set the right margin in pts. Default is 5.0. Note: 72
+                        pts equals 1 inch
+
+    --margin-bottom=MARGIN_BOTTOM
+                        Set the bottom margin in pts. Default is 5.0. Note: 72
+                        pts equals 1 inch
+
+--title=TITLE       Set the title.
+
+    --authors=AUTHORS   Set the authors. Multiple authors should be separated
+                        by ampersands.
+
+
+ --output-profile=OUTPUT_PROFILE
+                        Specify the output profile. The output profile tells
+                        the conversion system how to optimize the created
+                        document for the specified device. In some cases, an
+                        output profile is required to produce documents that
+                        will work on a device. For example EPUB on the SONY
+                        reader. Choices are:default, sony, msreader,
+                        mobipocket, hanlinv3, cybookg3, kindle, sony-
+                        landscape, kindle_dx
+
+
 icon in addons page
 better icons for pref page
 downloads liek view

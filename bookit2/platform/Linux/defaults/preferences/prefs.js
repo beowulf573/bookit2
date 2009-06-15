@@ -5,3 +5,4 @@ pref("extensions.bookit2.paths.web2disk", "/usr/bin/web2disk");
 pref("extensions.bookit2.paths.html2epub", "/usr/bin/html2epub");
 pref("extensions.bookit2.paths.html2lrf", "/usr/bin/html2lrf");
 pref("extensions.bookit2.paths.any2mobi", "/usr/bin/any2mobi");
+pref("extensions.bookit2.paths.ebook_convert", "/usr/bin/ebook-convert");

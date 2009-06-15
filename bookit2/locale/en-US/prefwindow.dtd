@@ -10,6 +10,7 @@
 <!ENTITY bookit.settings.add_calibre "Add to Calibre">
 <!ENTITY bookit.settings.launch_calibre "Launch Calibre">
 <!ENTITY bookit.settings.show_options_dlg "Show Options Dialog on Create">
+<!ENTITY bookit.settings.use_ebook_convert "Use ebook-convert (calibre .6 beta only)">
 
 <!ENTITY bookit.settings.paths.title "Paths">
 <!ENTITY bookit.settings.paths.calibre "calibre:">
@@ -18,6 +19,7 @@
 <!ENTITY bookit.settings.paths.html2epub "html2epub:">
 <!ENTITY bookit.settings.paths.html2lrf "html2lrf:">
 <!ENTITY bookit.settings.paths.any2mobi "any2mobi:">
+<!ENTITY bookit.settings.paths.ebook_convert "ebook-convert:">
 
 <!ENTITY bookit.settings.spidering.title "Spidering">
 <!ENTITY bookit.settings.spidering.max_recursions "Max Recursions:">
@@ -42,4 +44,6 @@
 <!ENTITY bookit.settings.mobi.title "Mobi">
 <!ENTITY bookit.settings.mobi.ignore_tables "Ignore Tables">
 
+<!ENTITY bookit.settings.ebook_convert.title "eBook Convert">
+<!ENTITY bookit.settings.ebook_convert.output_profile "Output Profile:">
 <!ENTITY bookit.settings.output_format "Output Format:">

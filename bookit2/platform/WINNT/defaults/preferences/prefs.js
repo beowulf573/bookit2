@@ -5,3 +5,4 @@ pref("extensions.bookit2.paths.web2disk", "C:\\Program Files\\calibre\\web2disk.
 pref("extensions.bookit2.paths.html2epub", "C:\\Program Files\\calibre\\html2epub.exe");
 pref("extensions.bookit2.paths.html2lrf", "C:\\Program Files\\calibre\\html2lrf.exe");
 pref("extensions.bookit2.paths.any2mobi", "C:\\Program Files\\calibre\\any2mobi.exe");
+pref("extensions.bookit2.paths.ebook_convert", "C:\\Program Files\\calibre\\ebook-convert.exe");

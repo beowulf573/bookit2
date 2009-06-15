@@ -100,8 +100,9 @@ var bookit2 = {
   },
   
   onUnload: function() {
-  
-	this.oBookit2Pref.removeObserver("", this.Bookit2SettingsObserver);
+    // TODO: why is this necessary?
+	if(this.oBookit2Pref)
+    	this.oBookit2Pref.removeObserver("", this.Bookit2SettingsObserver);
   
   },
   
