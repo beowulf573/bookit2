@@ -115,7 +115,7 @@ BookitCommand.prototype = {
     },
     executeWindowsCmd: function( scriptFile, logfile ) {
         // use runhidden.exe for exe, file and logfile as parameters
-        var ext_id = "bookit2@heorot.org";
+        var ext_id = "{950a782d-e82f-45e2-9da7-44898356813d}";
         var em = Components.classes["@mozilla.org/extensions/manager;1"].
 								getService(Components.interfaces.nsIExtensionManager);
         // the path may use forward slash ("/") as the delimiter
