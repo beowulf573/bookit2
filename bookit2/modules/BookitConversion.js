@@ -195,8 +195,7 @@ BookitConversion.prototype = {
 			this.SetBookitPref("last_logfile", logfile.path);
      
         } catch(err) {
-			// TODO:
-			//Components.utils.reportError(err);
+            this._loggerProxy.logError(err);			
         }
     },
     saveData: function(workingDir, data, logfile) {
