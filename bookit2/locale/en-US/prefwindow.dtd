@@ -8,6 +8,7 @@
 <!ENTITY bookit.settings.output_directory "Output Directory:">
 <!ENTITY bookit.settings.calibre "Calibre">
 <!ENTITY bookit.settings.add_calibre "Add to Calibre">
+<!ENTITY bookit.settings.delete_after_add "Delete after adding to Calibre">
 <!ENTITY bookit.settings.launch_calibre "Launch Calibre">
 <!ENTITY bookit.settings.show_options_dlg "Show Options Dialog on Create">
 <!ENTITY bookit.settings.use_ebook_convert "Use ebook-convert (calibre .6 beta only)">

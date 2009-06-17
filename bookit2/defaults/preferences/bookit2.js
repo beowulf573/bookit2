@@ -9,6 +9,7 @@ pref("extensions.bookit2.output_directory", "");
 pref("extensions.bookit2.output_format", "lrf");
 
 pref("extensions.bookit2.add_calibre", true);
+pref("extensions.bookit2.delete_after_add", true);
 pref("extensions.bookit2.launch_calibre", true);
 	
 pref("extensions.bookit2.show_options_dlg", true);

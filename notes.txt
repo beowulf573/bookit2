@@ -9,3 +9,5 @@ check out why load/unload is invoked at odd times
 import log into db, delete log
 delete book after adding
 
+validation in perference/options dialog
+enable delete after add only if add is checked

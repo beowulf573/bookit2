@@ -49,6 +49,7 @@
         <preference id="pref_default_author" name="extensions.bookit2.default_author" type="string" />
         <preference id="pref_output_directory" name="extensions.bookit2.output_directory" type="string" />
         <preference id="pref_add_calibre" name="extensions.bookit2.add_calibre" type="bool" />
+        <preference id="pref_delete_after_add" name="extensions.bookit2.delete_after_add" type="bool" />
         <preference id="pref_launch_calibre" name="extensions.bookit2.launch_calibre" type="bool" />
         <preference id="pref_show_options_dlg" name="extensions.bookit2.show_options_dlg" type="bool" />
         <preference id="pref_output_format" name="extensions.bookit2.output_format" type="string" />
@@ -76,6 +77,7 @@
    	<groupbox>
 		<caption label="&bookit.settings.calibre;"/>
 		<checkbox id="hide_add_calibre" preference="pref_add_calibre" label="&bookit.settings.add_calibre;" />
+        <checkbox id="hide_delete_after_add" preference="pref_delete_after_add" label="&bookit.settings.delete_after_add;"  />      
 		<checkbox id="hide_launch_calibre" preference="pref_launch_calibre" label="&bookit.settings.launch_calibre;" />
 	</groupbox>
 

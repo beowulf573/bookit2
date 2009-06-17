@@ -177,10 +177,15 @@ BookitConversion.prototype = {
             
             var doAddCalibre = this.GetBookitPrefBool("add_calibre");
             var doLaunchCalibre = this.GetBookitPrefBool("launch_calibre");
+            var doDeleteAfterAdd = this.GetBookitPrefBool("delete_after_add");
             
             if(doAddCalibre) {
                 this._logger.logInfo("add to calibre");
                 this.addToCalibre(outputFile, logfile);
+                
+                if(doDeleteAfterAdd) {
+                    this.deleteBook(outputFile);
+                }
             }
             
             if(doLaunchCalibre) {
@@ -390,6 +395,15 @@ BookitConversion.prototype = {
         var cmd = new BookitCommand();
     
         cmd.executeCommand(logfile.path, lines);        
+    },
+    deleteBook: function(outputFile) {
+        try
+        {
+            outputFile.remove(false);
+            
+        } catch(err) {
+            this._logger.logError(err);			
+        }
     },
     launchCalibre: function() {
         
