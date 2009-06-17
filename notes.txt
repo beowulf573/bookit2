@@ -9,9 +9,3 @@ check out why load/unload is invoked at odd times
 import log into db, delete log
 delete book after adding
 
-
-string format code
-js log code
-
-
-
