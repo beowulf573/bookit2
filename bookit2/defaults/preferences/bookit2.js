@@ -30,6 +30,8 @@ pref("extensions.bookit2.use_ebook_convert", false);
 
 pref("extensions.bookit2.ebook_convert.output_profile", "default");
 
+pref("extensions.bookit2.logging.level", 0);
+
 
 pref("extensions.bookit2.enable_threading", true);
 

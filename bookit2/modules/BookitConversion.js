@@ -1,6 +1,7 @@
 var EXPORTED_SYMBOLS = ["BookitConversion"]
 
 Components.utils.import("resource://bookit2/BookitCommand.js");
+Components.utils.import("resource://bookit2/Logger.js");
 
 const Cc = Components.classes;
 const Ci = Components.interfaces;
@@ -19,20 +20,7 @@ function BookitConversion() {
 
         this.oBookit2Pref.QueryInterface(Ci.nsIPrefBranch2);
         
-        var loggerObj = Cc["@heorot.org/bookit-logger;1"].createInstance(Ci.nsIBookitLogger);
-
-        // create proxy of logger object for use when threading
-        var threadManager = Cc["@mozilla.org/thread-manager;1"].getService(Ci.nsIThreadManager);
-        var thread = threadManager.mainThread;
-  
-        // Creates a proxy for this object that will make calls on the UI event queue.
-        var nsIPOM = Ci.nsIProxyObjectManager;
-        var proxyManager = Cc["@mozilla.org/xpcomproxy;1"].getService(Ci.nsIProxyObjectManager);
-        this._loggerProxy = proxyManager.getProxyForObject(thread, 
-                                             Ci.nsIBookitLogger, 
-                                             loggerObj, 
-                                             Ci.nsIProxyObjectManager.INVOKE_SYNC
-                                              + Ci.nsIProxyObjectManager.FORCE_PROXY_CREATION);
+        this._logger = new Logger();
 }
 
 BookitConversion.prototype = {
@@ -146,35 +134,44 @@ BookitConversion.prototype = {
     run: function() {
         try {
                 
-            var logfile = this.getLogFile();
-            //LOG(logfile.path);            
+            var logfile = this.getLogFile();            
+			// TODO: temp code until job window is done
+			this.SetBookitPref("last_logfile", logfile.path);
+
+            this._logger.logInfo("log file: " + logfile.path);
+            
             var workingDir = this.getWorkingDir();
-            //LOG(workingDir.path);
         
             var workingFile;
             if(this._isURL) {
                 workingFile = this.web2Disk(workingDir, this._data, logfile);
+                this._logger.logInfo("save url");
             }
             else {
                 workingFile = this.saveData(workingDir, this._data, logfile);
+                this._logger.logInfo("save data");
             }
             
             var outputFile = this.getOutputFile();
             
             var useEbookConvert = this.GetBookitPrefBool("use_ebook_convert");
 			if(useEbookConvert) {
+            this._logger.logInfo("invoke ebook convert");
 			    this.eBookConvert(workingFile, outputFile, logfile);
 			}
 			else
             if(outputFile.path.match(/\.lrf$/i)) {
+                this._logger.logInfo("invoke html2lrf");
                 this.convertLRF(workingFile, outputFile, logfile);
             }
             else
             if(outputFile.path.match(/\.epub$/i)) {
+                this._logger.logInfo("invoke html2epub");
                 this.convertEPub(workingFile, outputFile, logfile);                
             }
             else
             if(outputFile.path.match(/\.mobi$/i)) {
+                this._logger.logInfo("invoke any2mobi");
                 this.convertMobi(workingFile, outputFile, logfile);                
             }
             
@@ -182,20 +179,19 @@ BookitConversion.prototype = {
             var doLaunchCalibre = this.GetBookitPrefBool("launch_calibre");
             
             if(doAddCalibre) {
+                this._logger.logInfo("add to calibre");
                 this.addToCalibre(outputFile, logfile);
             }
             
             if(doLaunchCalibre) {
+                this._logger.logInfo("launch calibre");
                 this.launchCalibre();
             }
             
-            workingDir.remove(true);
-			
-			// TODO: temp code until job window is done
-			this.SetBookitPref("last_logfile", logfile.path);
+            workingDir.remove(true);			
      
         } catch(err) {
-            this._loggerProxy.logError(err);			
+            this._logger.logError(err);			
         }
     },
     saveData: function(workingDir, data, logfile) {
@@ -387,7 +383,7 @@ BookitConversion.prototype = {
         // nsIFile
         var calibredb = this.GetBookitPref("paths.calibredb");
         
-        var command = "\"{0}\" add \"{1}\"".format(calibredb, outputFile.path);
+        var command = "\"{0}\" add --duplicates \"{1}\"".format(calibredb, outputFile.path);
         
         var lines = [ command ];            
     
