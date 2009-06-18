@@ -20,7 +20,7 @@ function BookitConversion() {
 
         this.oBookit2Pref.QueryInterface(Ci.nsIPrefBranch2);
         
-        this._logger = new Logger();
+//        this._logger = new Logger();
 }
 
 BookitConversion.prototype = {
@@ -138,40 +138,40 @@ BookitConversion.prototype = {
 			// TODO: temp code until job window is done
 			this.SetBookitPref("last_logfile", logfile.path);
 
-            this._logger.logInfo("log file: " + logfile.path);
+//            this._logger.logInfo("log file: " + logfile.path);
             
             var workingDir = this.getWorkingDir();
         
             var workingFile;
             if(this._isURL) {
                 workingFile = this.web2Disk(workingDir, this._data, logfile);
-                this._logger.logInfo("save url");
+//                this._logger.logInfo("save url");
             }
             else {
                 workingFile = this.saveData(workingDir, this._data, logfile);
-                this._logger.logInfo("save data");
+//                this._logger.logInfo("save data");
             }
             
             var outputFile = this.getOutputFile();
             
             var useEbookConvert = this.GetBookitPrefBool("use_ebook_convert");
 			if(useEbookConvert) {
-            this._logger.logInfo("invoke ebook convert");
+//            this._logger.logInfo("invoke ebook convert");
 			    this.eBookConvert(workingFile, outputFile, logfile);
 			}
 			else
             if(outputFile.path.match(/\.lrf$/i)) {
-                this._logger.logInfo("invoke html2lrf");
+//                this._logger.logInfo("invoke html2lrf");
                 this.convertLRF(workingFile, outputFile, logfile);
             }
             else
             if(outputFile.path.match(/\.epub$/i)) {
-                this._logger.logInfo("invoke html2epub");
+//                this._logger.logInfo("invoke html2epub");
                 this.convertEPub(workingFile, outputFile, logfile);                
             }
             else
             if(outputFile.path.match(/\.mobi$/i)) {
-                this._logger.logInfo("invoke any2mobi");
+//                this._logger.logInfo("invoke any2mobi");
                 this.convertMobi(workingFile, outputFile, logfile);                
             }
             
@@ -180,7 +180,7 @@ BookitConversion.prototype = {
             var doDeleteAfterAdd = this.GetBookitPrefBool("delete_after_add");
             
             if(doAddCalibre) {
-                this._logger.logInfo("add to calibre");
+//                this._logger.logInfo("add to calibre");
                 this.addToCalibre(outputFile, logfile);
                 
                 if(doDeleteAfterAdd) {
@@ -189,14 +189,14 @@ BookitConversion.prototype = {
             }
             
             if(doLaunchCalibre) {
-                this._logger.logInfo("launch calibre");
+//                this._logger.logInfo("launch calibre");
                 this.launchCalibre();
             }
             
             workingDir.remove(true);			
      
         } catch(err) {
-            this._logger.logError(err);			
+//            this._logger.logError(err);			
         }
     },
     saveData: function(workingDir, data, logfile) {
@@ -402,7 +402,7 @@ BookitConversion.prototype = {
             outputFile.remove(false);
             
         } catch(err) {
-            this._logger.logError(err);			
+//            this._logger.logError(err);			
         }
     },
     launchCalibre: function() {
@@ -413,9 +413,21 @@ BookitConversion.prototype = {
         var file = Components.classes["@mozilla.org/file/local;1"]
                 .createInstance(Components.interfaces.nsILocalFile);
 
-        file.initWithPath(calibre);
+        var osString = Components.classes["@mozilla.org/xre/app-info;1"]
+                          .getService(Components.interfaces.nsIXULRuntime).OS;
 
-        var parameters = [  ];
+	var parameters = null;
+         if(osString == "Darwin") {
+		file.initWithPath("/usr/bin/open");
+		parameters = [ "-a", "calibre" ];
+
+          }
+	  else {
+
+        	file.initWithPath(calibre);
+	        parameters = [  ];
+	  }
+
 	    
         // create an nsIProcess
 	    var process = Components.classes["@mozilla.org/process/util;1"]
