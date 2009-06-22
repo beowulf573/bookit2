@@ -37,19 +37,19 @@ Logger.prototype = {
 		this._level = aValue;
 	},
 	logError: function( msg ) {
-		if(this._level >= 0) {
+		if(this._level >= 1) {
 			this._loggerProxy.logError(msg);
 		}
 	},
     
     logWarn: function( msg ) {
-		if(this._level >= 1) {
+		if(this._level >= 2) {
 			this._loggerProxy.logWarn(msg);
 		}
     },
     
     logInfo: function( msg ) {
-		if(this._level >= 2) {
+		if(this._level >= 3) {
 			this._loggerProxy.logInfo(msg);
 		}        
     },
