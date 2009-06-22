@@ -48,3 +48,11 @@
 <!ENTITY bookit.settings.ebook_convert.title "eBook Convert">
 <!ENTITY bookit.settings.ebook_convert.output_profile "Output Profile:">
 <!ENTITY bookit.settings.output_format "Output Format:">
+
+<!ENTITY bookit.settings.advanced "Advanced">
+<!ENTITY bookit.settings.advanced.enable_threading "Enable Threading">
+<!ENTITY bookit.settings.advanced.log_level "Log Level:">
+<!ENTITY bookit.settings.advanced.log_level.off "Disabled">
+<!ENTITY bookit.settings.advanced.log_level.info "Infomation">
+<!ENTITY bookit.settings.advanced.log_level.warn "Warning">
+<!ENTITY bookit.settings.advanced.log_level.err "Error">

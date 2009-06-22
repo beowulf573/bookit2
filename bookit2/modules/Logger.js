@@ -20,7 +20,7 @@ function Logger() {
         var mainThread = Cc["@mozilla.org/thread-manager;1"].getService().mainThread;
         var proxyMgr = Cc["@mozilla.org/xpcomproxy;1"].getService(Ci.nsIProxyObjectManager);
 
-        this._loggerProxy = proxyMgr.getProxyForObject(thread, 
+        this._loggerProxy = proxyMgr.getProxyForObject(mainThread, 
                                              Ci.nsIBookitLogger, 
                                              loggerObj, 
                                              Ci.nsIProxyObjectManager.INVOKE_SYNC

@@ -213,6 +213,22 @@
     </menulist>
   </prefpane>  
 
+  <prefpane id="pane_advanced" label="&bookit.settings.advanced.enable_threading;">
+    <preferences>
+        <preference id="pref_pane_advanced_log_level" name="extensions.bookit2.logging.level" type="int" />
+        <preference id="pref_pane_advanced_enable_threading" name="extensions.bookit2.enable_threading" type="bool" />
+  </preferences>
+    <label control="pane_advanced_log_level" value="&bookit.settings.advanced.log_level;"/>
+    <menulist id="pane_advanced_log_level" preference="pref_pane_advanced_log_level">
+        <menupopup>
+            <menuitem label="&bookit.settings.advanced.log_level.off;" value="0"/>
+            <menuitem label="&bookit.settings.advanced.log_level.err;" value="1"/>
+            <menuitem label="&bookit.settings.advanced.log_level.warn;" value="2"/>
+            <menuitem label="&bookit.settings.advanced.log_level.info;" value="3"/>
+        </menupopup>
+    </menulist>
+    <checkbox id="pane_advanced_enable_threading" preference="pref_pane_advanced_enable_threading" label="&bookit.settings.advanced.enable_threading;" />
+  </prefpane>  
 
   <script type="application/x-javascript" src="chrome://bookit2/content/bookit-settings.js"/>
 
