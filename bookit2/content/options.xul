@@ -213,7 +213,7 @@
     </menulist>
   </prefpane>  
 
-  <prefpane id="pane_advanced" label="&bookit.settings.advanced.enable_threading;">
+  <prefpane id="pane_advanced" label="&bookit.settings.advanced;">
     <preferences>
         <preference id="pref_pane_advanced_log_level" name="extensions.bookit2.logging.level" type="int" />
         <preference id="pref_pane_advanced_enable_threading" name="extensions.bookit2.enable_threading" type="bool" />
