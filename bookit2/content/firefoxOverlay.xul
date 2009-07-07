@@ -53,8 +53,13 @@
                 oncommand="bookit2.onToolsCreate(event);"/>
             <menuitem id="menu_toolsmenu_bookit_editor" label="&bookit2.toolsmenu.editor;" 
                 oncommand="bookit2.onToolsShowEditor(event);"/>
+                
+            <menuitem id="menu_toolsmenu_bookit_jobs" label="&bookit2.toolsmenu.jobs;" 
+                oncommand="bookit2.onToolsJobs(event);"/>
+
             <menuitem id="menu_toolsmenu_bookit_log" label="&bookit2.toolsmenu.log;" 
                 oncommand="bookit2.onToolsSelectionShowLog(event);"/>
+                
             <menuitem id="menu_toolsmenu_bookit_prefs" label="&bookit2.toolsmenu.prefs;" 
                 oncommand="bookit2.onToolsShowPreferences(event);"/>                
         </menupopup>    
@@ -69,6 +74,10 @@
                 oncommand="bookit2.onContextCreate(event);"/>
             <menuitem id="menu_contextmenu_bookit_editor" label="&bookit2.toolsmenu.editor;" 
                 oncommand="bookit2.onContextShowEditor(event);"/>
+                
+            <menuitem id="menu_contextmenu_bookit_jobs" label="&bookit2.toolsmenu.jobs;" 
+                oncommand="bookit2.onContextJobs(event);"/>
+                
             <menuitem id="menu_contextmenu_bookit_log" label="&bookit2.toolsmenu.log;" 
                 oncommand="bookit2.onContextSelectionShowLog(event);"/>
             <menuitem id="menu_contextmenu_bookit_prefs" label="&bookit2.toolsmenu.prefs;" 
@@ -94,6 +103,9 @@
 				oncommand="bookit2.onStatusCreate(event);"/>
 			<menuitem id="menu_statusmenu_bookit_editor" label="&bookit2.toolsmenu.editor;" 
 				oncommand="bookit2.onStatusShowEditor(event);"/>
+                
+			<menuitem id="menu_statusmenu_bookit_jobs" label="&bookit2.toolsmenu.jobs;" 
+				oncommand="bookit2.onStatusJobs(event);"/>
 			<menuitem id="menu_statusmenu_bookit_log" label="&bookit2.toolsmenu.log;" 
 				oncommand="bookit2.onStatusSelectionShowLog(event);"/>
 			<menuitem id="menu_statusmenu_bookit_prefs" label="&bookit2.toolsmenu.prefs;" 

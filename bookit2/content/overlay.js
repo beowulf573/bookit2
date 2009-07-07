@@ -147,6 +147,16 @@ var bookit2 = {
   onToolsCreate: function(e) {
     this.convertCurrentDocument();
   },
+  onToolsJobs: function(e) {
+    this.showJobs();
+  },
+  onContextJobs: function(e) {
+    this.showJobs();
+  },
+  onStatusJobs: function(e) {
+    this.showJobs();
+  },
+  
   onContextCreate: function(e) {
     this.convertCurrentDocument();
   },
@@ -251,6 +261,27 @@ var bookit2 = {
 	}
 	
 	return file;
+  },
+  showJobs: function() {
+  
+    var wm = Cc["@mozilla.org/appshell/window-mediator;1"].
+             getService(Ci.nsIWindowMediator);
+    var recent =  wm.getMostRecentWindow("BookitJobs:Manager");
+
+    if(recent) {
+        recent.focus();
+    }
+    else {
+
+        var params = Cc["@mozilla.org/array;1"].createInstance(Ci.nsIMutableArray);    
+        var ww = Cc["@mozilla.org/embedcomp/window-watcher;1"].
+                 getService(Ci.nsIWindowWatcher);
+        ww.openWindow(parent,
+                      "chrome://bookit2/content/jobs.xul",
+                      "BookitJobs:Manager",
+                      "chrome,dialog=no,resizable", params);
+    }
+  
   },
   convertCurrentSelection: function() {
   
