@@ -10,7 +10,35 @@ JobListener.prototype = {
   observe: function(aSubject, aTopic, aData) {
 
     // aData - rowID for entry in db
-    LOG("JobListener: " + aData);
+    //LOG("JobListener: " + aData);
+	var job = gDB.getJob(aData);
+	if(job) {
+	
+		var item = null;
+		
+		// find list item for aData,
+		if (gJobsView.hasChildNodes())
+		{
+			var testID = "item_" + aData;
+			var children = gJobsView.childNodes;
+			for(var i = 0; i < children.length; i++) {
+				if(children[i].id == testID) {
+					item = children[i];
+					break;
+				}				
+			}
+		}
+
+		// TODO: how to find child items and update text
+		if(item) {
+			item.firstChild.children[1].value = job.state;
+		}
+		else {
+			item = createItem(aData, job);
+
+			gJobsView.appendChild(item);
+		}
+	}
   }
 
 };

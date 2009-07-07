@@ -68,7 +68,8 @@ DatabaseManager.prototype = {
     
         if(this._mDBConn != null) {
             var statement = this._mDBConn.createStatement("UPDATE jobs SET state=:state, error=:error, percent_done=100,log=:log,path=:path WHERE ROWID=:rowid");
-            statement.params.state = state;
+            
+			statement.params.state = state;
             statement.params.error = error;
             statement.params.log = log;
             statement.params.path = path;
@@ -81,14 +82,68 @@ DatabaseManager.prototype = {
     
     getJob: function(id) {
     
+		var params = {
+			title: "",
+			state: "",
+			error: 0,
+			percent_done: 0,
+			path: "",
+			valid: false
+        };
+        if(this._mDBConn != null) {
+            var statement = this._mDBConn.createStatement("SELECT title,state,error,percent_done,path FROM jobs WHERE ROWID=:rowid");
+            
+	        statement.params.rowid = id;
+        
+            if(statement.executeStep()) {
+			
+				params.title = statement.row.title;
+				params.state = statement.row.state;
+				params.error = statement.row.error;
+				params.percent_done = statement.row.percent_done;
+				params.path = statement.row.path;
+				params.valid = true;
+			}
+            statement.finalize();
+        }
+		
+		return params;
     },
     
     getLogContents: function(id) {
     
+		var results = "";
+        if(this._mDBConn != null) {
+            var statement = this._mDBConn.createStatement("SELECT log FROM jobs WHERE ROWID=:rowid");
+            
+	        statement.params.rowid = id;
+        
+            if(statement.executeStep()) {
+			
+				results = statement.row.log;
+			}
+			statement.finalize();
+        }
+		
+		return results;
     },
     
     getJobs: function() {
     
+		var results = [];
+		
+        if(this._mDBConn != null) {
+            var statement = this._mDBConn.createStatement("SELECT ROWID FROM jobs");
+        
+            while (statement.executeStep()) {  
+				
+				let value = statement.row.rowid; 
+				results.push(value);
+			}  
+            
+			statement.finalize();
+        }
+		return results;
     },
     
    QueryInterface: function(iid) {
