@@ -8,4 +8,5 @@ interface nsIBookitLogger : nsISupports
     void logError( in string msg );
     void logInfo( in string msg );
     void logWarn( in string msg );
+    void notifyObservers( in nsISupports aSubject, in string aTopic, in wstring aData );
 };

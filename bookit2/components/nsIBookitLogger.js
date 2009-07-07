@@ -42,7 +42,12 @@ MyBookitLogger.prototype = {
         this.consoleService.logMessage(errorObject);
       }
     },
+
+    notifyObservers: function(aSubject, aTopic, aData ) {
     
+        var observerService = Cc["@mozilla.org/observer-service;1"].getService(Ci.nsIObserverService);
+        observerService.notifyObservers(aSubject, aTopic, aData);
+    },
 
     QueryInterface: function(aIID) {
         if(!aIID.equals(INTERFACE) &&

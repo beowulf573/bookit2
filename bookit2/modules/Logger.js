@@ -54,6 +54,10 @@ Logger.prototype = {
 		}        
     },
     
+    notifyObservers: function(aSubject, aTopic, aData ) {
+		this._loggerProxy.notifyObservers(aSubject, aTopic, aData );
+		        
+    },
 };
 
 

@@ -7,6 +7,8 @@ Components.utils.import("resource://bookit2/DatabaseManager.js");
 const Cc = Components.classes;
 const Ci = Components.interfaces;
 const Cr = Components.results;
+let Cu = Components.utils;
+Cu.import("resource://gre/modules/XPCOMUtils.jsm");
 
 String.prototype.format = function()
 {
@@ -15,22 +17,26 @@ var args = arguments;
 return this.replace(pattern, function(capture){ return args[capture.match(/\d+/)]; });
 }
 
+
 function BookitConversion() {
 
 		this.oBookit2Pref = Components.classes["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefService).getBranch("extensions.bookit2.");
 
         this.oBookit2Pref.QueryInterface(Ci.nsIPrefBranch2);
         
-        this._logger = new Logger();
+        this._logger = new Logger();        
 }
 
 BookitConversion.prototype = {
 
+    QueryInterface: XPCOMUtils.generateQI([Ci.nsISupports]),
+  
     _data: null,
     _isURL: false,
     _author: "Bookit",
     _title: "",
     _filename: "",
+    
     
 	// TODO: rename these
 	doConversion: function(window, data, isURL, author, title) {
@@ -133,13 +139,16 @@ BookitConversion.prototype = {
         }
     },
     run: function() {
+        
         var jobComplete = false;
+        var id = "";
         try {
                 
             var db = new DatabaseManager();
             db.open();
             
-            var id = db.newJob(this._title);
+            id = db.newJob(this._title);
+            this._logger.notifyObservers(this, "BookitJobs", id.toString());
             
             var logfile = this.getLogFile();
             
@@ -156,6 +165,7 @@ BookitConversion.prototype = {
             var workingFile;
             if(this._isURL) {
                 db.updateJob(id, "Saving web page...", 0, 10);
+                this._logger.notifyObservers(this, "BookitJobs", id.toString());
                 
                 this._logger.logInfo("save url: " + this._data);
                 workingFile = this.web2Disk(workingDir, this._data, logfile);                
@@ -163,12 +173,15 @@ BookitConversion.prototype = {
             else {
                 this._logger.logInfo("save data");
                 db.updateJob(id, "Saving data...", 0, 10);
+                this._logger.notifyObservers(this, "BookitJobs", id.toString());
+                
                 workingFile = this.saveData(workingDir, this._data, logfile);                
             }
             
             var outputFile = this.getOutputFile();
             
             db.updateJob(id, "Converting eBook...", 0, 50);
+            this._logger.notifyObservers(this, "BookitJobs", id.toString());
             
             var useEbookConvert = this.GetBookitPrefBool("use_ebook_convert");
 			if(useEbookConvert) {
@@ -197,11 +210,15 @@ BookitConversion.prototype = {
             
             if(doAddCalibre) {
                 db.updateJob(id, "Adding to Calibre...", 0, 70);
+                this._logger.notifyObservers(this, "BookitJobs", id.toString());
+                
                 this._logger.logInfo("add to calibre");
                 this.addToCalibre(outputFile, logfile);
                 
                 if(doDeleteAfterAdd) {
                     db.updateJob(id, "Deleting original eBook...", 0, 80);
+                    this._logger.notifyObservers(this, "BookitJobs", id.toString());
+                    
                     this._logger.logInfo("delete ebook");
                     this.deleteBook(outputFile);
                 }
@@ -209,6 +226,8 @@ BookitConversion.prototype = {
             
             if(doLaunchCalibre) {
                 db.updateJob(id, "Launching Calibre...", 0, 90);
+                this._logger.notifyObservers(this, "BookitJobs", id.toString());
+                
                 this._logger.logInfo("launch calibre");
                 this.launchCalibre();
             }
@@ -216,6 +235,8 @@ BookitConversion.prototype = {
             // don't bother logging this
             jobComplete = true;
             db.completeJob(id, "Done", 0, this.getLogContents(logfile), outputFile.path);
+            this._logger.notifyObservers(this, "BookitJobs", id.toString());
+            
             db.close();
             this._logger.logInfo("delete working directory");
             
@@ -228,6 +249,8 @@ BookitConversion.prototype = {
             this._logger.logError(err);			
             if(!jobComplete) {
                 db.completeJob(id, "Error", 1, this.getLogContents(logfile), outputFile.path);
+                this._logger.notifyObservers(this, "BookitJobs", id.toString());
+                
                 db.close();
             }            
         }

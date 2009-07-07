@@ -12,6 +12,7 @@
         onclose="return true;">
       
   <script type="application/javascript" src="chrome://bookit2/content/jobs.js"/>
+  <script type="application/javascript" src="chrome://bookit2/content/jobListener.js"/>
   
   <stringbundleset id="jobSet">
     <stringbundle id="jobStrings" src="chrome://bookit2/locale/jobs.properties"/>
