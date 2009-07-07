@@ -2,6 +2,7 @@ var EXPORTED_SYMBOLS = ["BookitConversion"]
 
 Components.utils.import("resource://bookit2/BookitCommand.js");
 Components.utils.import("resource://bookit2/Logger.js");
+Components.utils.import("resource://bookit2/DatabaseManager.js");
 
 const Cc = Components.classes;
 const Ci = Components.interfaces;
@@ -132,9 +133,18 @@ BookitConversion.prototype = {
         }
     },
     run: function() {
+        var jobComplete = false;
         try {
                 
-            var logfile = this.getLogFile();            
+            var db = new DatabaseManager();
+            db.open();
+            
+            var id = db.newJob(this._title);
+            
+            var logfile = this.getLogFile();
+            
+            // TODO: calc percent increments
+            // TODO: check for failure at each step
 			// TODO: temp code until job window is done
 			this.SetBookitPref("last_logfile", logfile.path);
 
@@ -145,15 +155,20 @@ BookitConversion.prototype = {
         
             var workingFile;
             if(this._isURL) {
+                db.updateJob(id, "Saving web page...", 0, 10);
+                
                 this._logger.logInfo("save url: " + this._data);
                 workingFile = this.web2Disk(workingDir, this._data, logfile);                
             }
             else {
                 this._logger.logInfo("save data");
+                db.updateJob(id, "Saving data...", 0, 10);
                 workingFile = this.saveData(workingDir, this._data, logfile);                
             }
             
             var outputFile = this.getOutputFile();
+            
+            db.updateJob(id, "Converting eBook...", 0, 50);
             
             var useEbookConvert = this.GetBookitPrefBool("use_ebook_convert");
 			if(useEbookConvert) {
@@ -181,26 +196,59 @@ BookitConversion.prototype = {
             var doDeleteAfterAdd = this.GetBookitPrefBool("delete_after_add");
             
             if(doAddCalibre) {
+                db.updateJob(id, "Adding to Calibre...", 0, 70);
                 this._logger.logInfo("add to calibre");
                 this.addToCalibre(outputFile, logfile);
                 
                 if(doDeleteAfterAdd) {
+                    db.updateJob(id, "Deleting original eBook...", 0, 80);
                     this._logger.logInfo("delete ebook");
                     this.deleteBook(outputFile);
                 }
             }
             
             if(doLaunchCalibre) {
+                db.updateJob(id, "Launching Calibre...", 0, 90);
                 this._logger.logInfo("launch calibre");
                 this.launchCalibre();
             }
             
+            // don't bother logging this
+            jobComplete = true;
+            db.completeJob(id, "Done", 0, this.getLogContents(logfile), outputFile.path);
+            db.close();
             this._logger.logInfo("delete working directory");
+            
+            // TODO: wrap in own handler
+
             workingDir.remove(true);			
+            
      
         } catch(err) {
             this._logger.logError(err);			
+            if(!jobComplete) {
+                db.completeJob(id, "Error", 1, this.getLogContents(logfile), outputFile.path);
+                db.close();
+            }            
         }
+               
+    },
+    getLogContents: function(file) {
+        var data = '';
+        var fstream = Components.classes['@mozilla.org/network/file-input-stream;1']
+          .createInstance(Components.interfaces.nsIFileInputStream);
+        var sstream = Components.classes['@mozilla.org/scriptableinputstream;1']
+          .createInstance(Components.interfaces.nsIScriptableInputStream);
+        fstream.init(file, -1, 0, 0);
+        sstream.init(fstream);
+        var str = sstream.read(4096);
+        while (str.length > 0) {
+                data += str;
+                str = sstream.read(4096);
+        }
+        sstream.close();
+        fstream.close();
+        return data;
     },
     saveData: function(workingDir, data, logfile) {
     
