@@ -6,9 +6,12 @@ Cu.import("resource://gre/modules/XPCOMUtils.jsm");
 
 let gObserverService = Cc["@mozilla.org/observer-service;1"].getService(Ci.nsIObserverService);
 let gJobListener = null;
+let gJobsView = null;
 
 function Startup()
 {
+    gJobsView = document.getElementById("jobView");
+
     gJobListener = new JobListener();
     gObserverService.addObserver(gJobListener, "BookitJobs", false);
 }
