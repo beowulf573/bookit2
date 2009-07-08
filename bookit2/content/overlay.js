@@ -209,25 +209,11 @@ var bookit2 = {
     }
   },
   showJobs: function() {
-  
-    var wm = Cc["@mozilla.org/appshell/window-mediator;1"].
-             getService(Ci.nsIWindowMediator);
-    var recent =  wm.getMostRecentWindow("BookitJobs:Manager");
 
-    if(recent) {
-        recent.focus();
-    }
-    else {
+    var jobGUI = Components.classes["@heorot.org/bookit-jobgui;1"].createInstance(Components.interfaces.nsIJobGui);
 
-        var params = Cc["@mozilla.org/array;1"].createInstance(Ci.nsIMutableArray);    
-        var ww = Cc["@mozilla.org/embedcomp/window-watcher;1"].
-                 getService(Ci.nsIWindowWatcher);
-        ww.openWindow(parent,
-                      "chrome://bookit2/content/jobs.xul",
-                      "BookitJobs:Manager",
-                      "chrome,dialog=no,resizable", params);
-    }
-  
+    jobGUI.open();
+    
   },
   convertCurrentSelection: function() {
   

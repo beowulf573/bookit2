@@ -126,6 +126,10 @@ BookitConversion.prototype = {
         this._title = title;
         this._filename = filename;
          
+        var jobGUI = Cc["@heorot.org/bookit-jobgui;1"].createInstance(Ci.nsIJobGui);
+
+        jobGUI.open();
+        
         var doBackground = this.GetBookitPrefBool("enable_threading");
         
         if(doBackground) {

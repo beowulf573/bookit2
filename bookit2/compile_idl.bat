@@ -1,3 +1,4 @@
 c:\tools\xulrunner-sdk\bin\xpidl.exe -m typelib -w -v -I c:\tools\xulrunner-sdk\idl -I components -e components\nsIBookitLogger.xpt components\nsIBookitLogger.idl
 c:\tools\xulrunner-sdk\bin\xpidl.exe -m typelib -w -v -I c:\tools\xulrunner-sdk\idl -I components -e components\nsIDatabaseJob.xpt components\nsIDatabaseJob.idl
 c:\tools\xulrunner-sdk\bin\xpidl.exe -m typelib -w -v -I c:\tools\xulrunner-sdk\idl -I components -e components\nsIDatabaseManager.xpt components\nsIDatabaseManager.idl
+c:\tools\xulrunner-sdk\bin\xpidl.exe -m typelib -w -v -I c:\tools\xulrunner-sdk\idl -I components -e components\nsIJobGui.xpt components\nsIJobGui.idl

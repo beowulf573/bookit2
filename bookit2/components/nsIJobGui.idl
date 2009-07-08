@@ -1,0 +1,9 @@
+#include "nsISupports.idl"
+
+[scriptable, uuid(6c497901-d660-403e-868f-887703459f62)]
+
+
+interface nsIJobGui : nsISupports
+{
+	void open();
+};
