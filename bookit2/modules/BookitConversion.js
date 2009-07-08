@@ -248,7 +248,8 @@ BookitConversion.prototype = {
         } catch(err) {
             this._logger.logError(err);			
             if(!jobComplete) {
-                db.completeJob(id, "Error", 1, this.getLogContents(logfile), outputFile.path);
+				var path = (outputFile != null ? outputFile.path : "");
+                db.completeJob(id, "Error", 1, this.getLogContents(logfile), path);
                 this._logger.notifyObservers(this, "BookitJobs", id.toString());
 				logfile.remove(false);
           
@@ -258,21 +259,23 @@ BookitConversion.prototype = {
                
     },
     getLogContents: function(file) {
-        var data = '';
-        var fstream = Components.classes['@mozilla.org/network/file-input-stream;1']
-          .createInstance(Components.interfaces.nsIFileInputStream);
-        var sstream = Components.classes['@mozilla.org/scriptableinputstream;1']
-          .createInstance(Components.interfaces.nsIScriptableInputStream);
-        fstream.init(file, -1, 0, 0);
-        sstream.init(fstream);
-        var str = sstream.read(4096);
-        while (str.length > 0) {
-                data += str;
-                str = sstream.read(4096);
-        }
-        sstream.close();
-        fstream.close();
-        return data;
+		var data = '';
+		if(file) {
+			var fstream = Components.classes['@mozilla.org/network/file-input-stream;1']
+				.createInstance(Components.interfaces.nsIFileInputStream);
+			var sstream = Components.classes['@mozilla.org/scriptableinputstream;1']
+				.createInstance(Components.interfaces.nsIScriptableInputStream);
+			fstream.init(file, -1, 0, 0);
+			sstream.init(fstream);
+			var str = sstream.read(4096);
+			while (str.length > 0) {
+					data += str;
+					str = sstream.read(4096);
+			}
+			sstream.close();
+			fstream.close();
+		}
+		return data;
     },
     saveData: function(workingDir, data, logfile) {
     

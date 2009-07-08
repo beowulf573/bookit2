@@ -1,6 +1,6 @@
 <!ENTITY window.width2                    "485">
 <!ENTITY window.height                    "300"> 
-<!ENTITY bookit2.cmd.clearList.label "Clear">
+<!ENTITY bookit2.cmd.clearList.label "Clear List">
 <!ENTITY bookit2.cmd.clearList.accesskey "C">
 <!ENTITY bookit2.jobs.title "Bookit Jobs">
 
