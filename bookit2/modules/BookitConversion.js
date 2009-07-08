@@ -154,9 +154,6 @@ BookitConversion.prototype = {
             
             // TODO: calc percent increments
             // TODO: check for failure at each step: eg empty output directory, no output file
-			// TODO: temp code until job window is done
-			this.SetBookitPref("last_logfile", logfile.path);
-
             this._logger.logInfo("log file: " + logfile.path);
             
             var workingDir = this.getWorkingDir();
