@@ -1,16 +1,16 @@
+move db to component
+inside db invoke observers
+move job gui to component so as to open anywhere
+
+new tab on load with new features
 disable remove, job when not complete
 rework to pass state
 
 
 icon in addons page
 better icons for pref page
-downloads like view
 common pref code
 common string code
-logging code
 check out why load/unload is invoked at odd times
-import log into db, delete log
-delete book after adding
 
 validation in perference/options dialog
-enable delete after add only if add is checked

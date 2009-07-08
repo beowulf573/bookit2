@@ -8,12 +8,12 @@ interface nsIDatabaseManager : nsISupports
 {
 	void open();
 	void close();
-	void newJob(in string title);
+	string newJob(in string title);
 	void updateJob(in string id, in string state, in long error, in long percent_done);
 	void completeJob(in string id, in string state, in long error, in string log, in string path);
 	void deleteJob(in string id);
 	nsIDatabaseJob getJob(in string id);
 	string getLogContents(in string id);
-	void getJobs(out unsigned long count, [array, size_is(count), retval] out string retv);
+	void getJobs(out unsigned long count, [array, size_is(count), retval] out wstring retv);
 	// var arr = myComponent.getArray({}); 
 };

@@ -4,8 +4,6 @@ const Cr = Components.results;
 let Cu = Components.utils;
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
 
-Components.utils.import("resource://bookit2/DatabaseManager.js");
-
 let gObserverService = Cc["@mozilla.org/observer-service;1"].getService(Ci.nsIObserverService);
 let gJobListener = null;
 let gJobsView = null;
@@ -15,7 +13,8 @@ function Startup()
 {
     gJobsView = document.getElementById("jobView");
 
-	gDB = new DatabaseManager();
+    gDB = Cc["@heorot.org/bookit-dbmanager;1"].createInstance(Ci.nsIDatabaseManager);
+	
 	gDB.open();
 	buildJobList();
 	
@@ -33,7 +32,7 @@ function Shutdown()
 
 function buildJobList()
 {
-	var jobs = gDB.getJobs();
+	var jobs = gDB.getJobs({});
 	var len = jobs.length;
 	for(var i = 0; i < len; i++) {
 	
@@ -96,12 +95,14 @@ function ShowLog(event) {
 		var tabbrowser = mainWindow.getBrowser();
 	
 		var log = gDB.getLogContents(id);
-		log = "<code>" + log.replace(/[\r\n]/gi, "<br />") + "</code>";
-		var newTab = tabbrowser.addTab("data:text/html;charset=utf-8," + log);
+        if(log != null) {
+            log = "<code>" + log.replace(/[\r\n]/gi, "<br />") + "</code>";
+            var newTab = tabbrowser.addTab("data:text/html;charset=utf-8," + log);
     
-		tabbrowser.selectedTab = newTab;
+            tabbrowser.selectedTab = newTab;
     
-		tabbrowser.focus();
+            tabbrowser.focus();
+        }
 	}
 //	var newTabBrowser = tabbrowser.getBrowserForTab(newTab);//
 //	newTabBrowser.contentDocument.textContent = "hello world";

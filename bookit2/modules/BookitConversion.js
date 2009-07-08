@@ -2,7 +2,6 @@ var EXPORTED_SYMBOLS = ["BookitConversion"]
 
 Components.utils.import("resource://bookit2/BookitCommand.js");
 Components.utils.import("resource://bookit2/Logger.js");
-Components.utils.import("resource://bookit2/DatabaseManager.js");
 
 const Cc = Components.classes;
 const Ci = Components.interfaces;
@@ -144,10 +143,23 @@ BookitConversion.prototype = {
         var id = "";
         try {
                 
-            var db = new DatabaseManager();
-            db.open();
+            var dbObj = Cc["@heorot.org/bookit-dbmanager;1"].createInstance(Ci.nsIDatabaseManager);
+
+            // TODO: move to method
+            // create proxy of db object for use when threading
+            var mainThread = Cc["@mozilla.org/thread-manager;1"].getService().mainThread;
+            var proxyMgr = Cc["@mozilla.org/xpcomproxy;1"].getService(Ci.nsIProxyObjectManager);
+
+            dbProxy = proxyMgr.getProxyForObject(mainThread, 
+                                                Ci.nsIDatabaseManager, 
+                                                dbObj, 
+                                                Ci.nsIProxyObjectManager.INVOKE_SYNC
+                                                + Ci.nsIProxyObjectManager.FORCE_PROXY_CREATION);
+                
+                            
+            dbProxy.open();
             
-            id = db.newJob(this._title);
+            id = dbProxy.newJob(this._title);
             this._logger.notifyObservers(this, "BookitJobs", id.toString());
             
             var logfile = this.getLogFile();
@@ -164,7 +176,7 @@ BookitConversion.prototype = {
         
             var workingFile;
             if(this._isURL) {
-                db.updateJob(id, "Saving web page...", 0, 10);
+                dbProxy.updateJob(id, "Saving web page...", 0, 10);
                 this._logger.notifyObservers(this, "BookitJobs", id.toString());
                 
                 this._logger.logInfo("save url: " + this._data);
@@ -172,7 +184,7 @@ BookitConversion.prototype = {
             }
             else {
                 this._logger.logInfo("save data");
-                db.updateJob(id, "Saving data...", 0, 10);
+                dbProxy.updateJob(id, "Saving data...", 0, 10);
                 this._logger.notifyObservers(this, "BookitJobs", id.toString());
                 
                 workingFile = this.saveData(workingDir, this._data, logfile);                
@@ -180,7 +192,7 @@ BookitConversion.prototype = {
             
             var outputFile = this.getOutputFile();
             
-            db.updateJob(id, "Converting eBook...", 0, 50);
+            dbProxy.updateJob(id, "Converting eBook...", 0, 50);
             this._logger.notifyObservers(this, "BookitJobs", id.toString());
             
             var useEbookConvert = this.GetBookitPrefBool("use_ebook_convert");
@@ -209,14 +221,14 @@ BookitConversion.prototype = {
             var doDeleteAfterAdd = this.GetBookitPrefBool("delete_after_add");
             
             if(doAddCalibre) {
-                db.updateJob(id, "Adding to Calibre...", 0, 70);
+                dbProxy.updateJob(id, "Adding to Calibre...", 0, 70);
                 this._logger.notifyObservers(this, "BookitJobs", id.toString());
                 
                 this._logger.logInfo("add to calibre");
                 this.addToCalibre(outputFile, logfile);
                 
                 if(doDeleteAfterAdd) {
-                    db.updateJob(id, "Deleting original eBook...", 0, 80);
+                    dbProxy.updateJob(id, "Deleting original eBook...", 0, 80);
                     this._logger.notifyObservers(this, "BookitJobs", id.toString());
                     
                     this._logger.logInfo("delete ebook");
@@ -225,7 +237,7 @@ BookitConversion.prototype = {
             }
             
             if(doLaunchCalibre) {
-                db.updateJob(id, "Launching Calibre...", 0, 90);
+                dbProxy.updateJob(id, "Launching Calibre...", 0, 90);
                 this._logger.notifyObservers(this, "BookitJobs", id.toString());
                 
                 this._logger.logInfo("launch calibre");
@@ -234,10 +246,10 @@ BookitConversion.prototype = {
             
             // don't bother logging this
             jobComplete = true;
-            db.completeJob(id, "Done", 0, this.getLogContents(logfile), outputFile.path);
+            dbProxy.completeJob(id, "Done", 0, this.getLogContents(logfile), outputFile.path);
             this._logger.notifyObservers(this, "BookitJobs", id.toString());
             logfile.remove(false);
-            db.close();
+            dbProxy.close();
             this._logger.logInfo("delete working directory");
             
             // TODO: wrap in own handler
@@ -248,12 +260,13 @@ BookitConversion.prototype = {
         } catch(err) {
             this._logger.logError(err);			
             if(!jobComplete) {
+                // TODO: this is ugly, clean it up
 				var path = (outputFile != null ? outputFile.path : "");
-                db.completeJob(id, "Error", 1, this.getLogContents(logfile), path);
+                dbProxy.completeJob(id, "Error", 1, this.getLogContents(logfile), path);
                 this._logger.notifyObservers(this, "BookitJobs", id.toString());
 				logfile.remove(false);
           
-                db.close();
+                dbProxy.close();
             }            
         }
                

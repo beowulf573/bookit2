@@ -1,35 +1,34 @@
-var EXPORTED_SYMBOLS = ["DatabaseManager"]
-
-
 const Cc = Components.classes;
 const Ci = Components.interfaces;
 const Cr = Components.results;
 
-function DatabaseManager() {
+Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
 
-}
+function DatabaseManager() { }
 
 DatabaseManager.prototype = {
-
+  classDescription: "Manage our local db",
+  classID:          Components.ID("{f4510d47-f0ff-4c45-b673-266d898d9840}"),
+  contractID:       "@heorot.org/bookit-dbmanager;1",
+  QueryInterface: XPCOMUtils.generateQI([Ci.nsIDatabaseManager]),
     _mDBConn: null,
-
-    open: function() {
-    
+  
+	open: function() {
+        // TODO: move id to common code
         var ext_id = "{950a782d-e82f-45e2-9da7-44898356813d}";
-        var em = Components.classes["@mozilla.org/extensions/manager;1"].
-								getService(Components.interfaces.nsIExtensionManager);
+        var em = Cc["@mozilla.org/extensions/manager;1"].
+								getService(Ci.nsIExtensionManager);
         
         var installL = em.getInstallLocation(ext_id);
 
         var file = installL.getItemFile(ext_id, "bookit2.sqlite");
        
-        var storageService = Components.classes["@mozilla.org/storage/service;1"]  
-                                    .getService(Components.interfaces.mozIStorageService);  
+        var storageService = Cc["@mozilla.org/storage/service;1"]  
+                                    .getService(Ci.mozIStorageService);  
         this._mDBConn = storageService.openDatabase(file); 
     },
     
-    close: function() {
-    
+	close: function() {
         if(this._mDBConn != null) {
         
             this._mDBConn.close();
@@ -37,21 +36,20 @@ DatabaseManager.prototype = {
         }
     },
     
-    newJob: function(title) {
-    
+	newJob: function(title) {
         if(this._mDBConn != null) {
             var statement = this._mDBConn.createStatement("INSERT INTO jobs (title, state, error, percent_done) VALUES (:title, \"initializing\", 0, 0);");
             statement.params.title = title;
     
             statement.executeStep();
             statement.finalize();
-            return this._mDBConn.lastInsertRowID;
+            var id = this._mDBConn.lastInsertRowID.toString();            
+            return id;
         }
-        
         return "";
     },
     
-    updateJob: function(id, state, error, percent_done) {
+	updateJob: function(id, state, error, percent_done) {
         if(this._mDBConn != null) {
             var statement = this._mDBConn.createStatement("UPDATE jobs SET state=:state, error=:error, percent_done=:percent_done WHERE ROWID=:rowid");
             statement.params.state = state;
@@ -60,12 +58,11 @@ DatabaseManager.prototype = {
             statement.params.rowid = id;
         
             statement.executeStep();
-            statement.finalize();
+            statement.finalize();            
         }
     },
     
-    completeJob: function(id, state, error, log, path) {
-    
+	completeJob: function(id, state, error, log, path) {
         if(this._mDBConn != null) {
             var statement = this._mDBConn.createStatement("UPDATE jobs SET state=:state, error=:error, percent_done=100,log=:log,path=:path WHERE ROWID=:rowid");
             
@@ -76,54 +73,48 @@ DatabaseManager.prototype = {
             statement.params.rowid = id;
         
             statement.executeStep();
-            statement.finalize();
+            statement.finalize();            
         }
     },
     
-    deleteJob: function(id) {
-    
+	deleteJob: function(id) {
         if(this._mDBConn != null) {
             var statement = this._mDBConn.createStatement("DELETE FROM jobs WHERE ROWID=:rowid");
             
 		    statement.params.rowid = id;
         
             statement.executeStep();
-            statement.finalize();
+            statement.finalize();            
         }
     },
+	
     getJob: function(id) {
     
-		var params = {
-			title: "",
-			state: "",
-			error: 0,
-			percent_done: 0,
-			path: "",
-			valid: false
-        };
+        var result = null;
         if(this._mDBConn != null) {
+        
             var statement = this._mDBConn.createStatement("SELECT title,state,error,percent_done,path FROM jobs WHERE ROWID=:rowid");
             
 	        statement.params.rowid = id;
         
             if(statement.executeStep()) {
 			
-				params.title = statement.row.title;
-				params.state = statement.row.state;
-				params.error = statement.row.error;
-				params.percent_done = statement.row.percent_done;
-				params.path = statement.row.path;
-				params.valid = true;
+                result = Cc["@heorot.org/bookit-job;1"].createInstance(Ci.nsIDatabaseJob);  
+                
+				result.title = statement.row.title;
+				result.state = statement.row.state;
+				result.error = statement.row.error;
+				result.percent_done = statement.row.percent_done;
+				result.path = statement.row.path;				
 			}
             statement.finalize();
         }
 		
-		return params;
+		return result;
     },
-    
+	
     getLogContents: function(id) {
-    
-		var results = "";
+    		var results = "";
         if(this._mDBConn != null) {
             var statement = this._mDBConn.createStatement("SELECT log FROM jobs WHERE ROWID=:rowid");
             
@@ -138,12 +129,11 @@ DatabaseManager.prototype = {
 		
 		return results;
     },
-    
-    getJobs: function() {
-    
-		var results = [];
-		
-        if(this._mDBConn != null) {
+	
+    getJobs: function(count) {
+        var results = [];
+        
+            if(this._mDBConn != null) {
             var statement = this._mDBConn.createStatement("SELECT ROWID FROM jobs");
         
             while (statement.executeStep()) {  
@@ -154,22 +144,25 @@ DatabaseManager.prototype = {
             
 			statement.finalize();
         }
-		return results;
-    },
     
-   QueryInterface: function(iid) {
-        if (iid.equals(Components.interfaces.nsIRunnable) ||
-            iid.equals(Components.interfaces.nsISupports)) {
-                return this;
-        }
-        throw Components.results.NS_ERROR_NO_INTERFACE;
+        count.value =  results.length;
+        return results;
+    },
+    /* 
+  void exec(in AString aTarget,
+            out unsigned long aCount,
+            [retval, array, size_is(aCount)] out wstring aValues);
+    function exec(aTarget, aCount)
+    {
+      var aValues = this.regexp.exec(aTarget);
+      aCount.value  = aValues.length;
+      return aValues;
     }
+ */
+
 };
-
-
-
-function LOG(msg) {
-  var consoleService = Components.classes["@mozilla.org/consoleservice;1"]
-                                 .getService(Components.interfaces.nsIConsoleService);
-  consoleService.logStringMessage(msg);
+var components = [DatabaseManager];
+function NSGetModule(compMgr, fileSpec) {
+  return XPCOMUtils.generateModule(components);
 }
+
