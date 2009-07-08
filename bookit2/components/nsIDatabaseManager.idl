@@ -1,0 +1,19 @@
+#include "nsISupports.idl"
+#include "nsIDatabaseJob.idl"
+
+[scriptable, uuid(049e9de7-283f-4151-a6c7-73c0125ba8ff)]
+
+
+interface nsIDatabaseManager : nsISupports
+{
+	void open();
+	void close();
+	void newJob(in string title);
+	void updateJob(in string id, in string state, in long error, in long percent_done);
+	void completeJob(in string id, in string state, in long error, in string log, in string path);
+	void deleteJob(in string id);
+	nsIDatabaseJob getJob(in string id);
+	string getLogContents(in string id);
+	void getJobs(out unsigned long count, [array, size_is(count), retval] out string retv);
+	// var arr = myComponent.getArray({}); 
+};

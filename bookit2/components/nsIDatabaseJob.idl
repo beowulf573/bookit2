@@ -1,0 +1,14 @@
+#include "nsISupports.idl"
+
+[scriptable, uuid(319d2538-f506-45b6-be74-304c04c1bb3f)]
+
+
+interface nsIDatabaseJob : nsISupports
+{
+        attribute string logfile;
+		attribute string title;
+		attribute string state;
+		attribute long   error;
+		attribute long   percent_done;
+		attribute string path;
+};
