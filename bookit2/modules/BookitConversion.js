@@ -261,19 +261,19 @@ BookitConversion.prototype = {
     getLogContents: function(file) {
 		var data = '';
 		if(file) {
-			var fstream = Components.classes['@mozilla.org/network/file-input-stream;1']
-				.createInstance(Components.interfaces.nsIFileInputStream);
-			var sstream = Components.classes['@mozilla.org/scriptableinputstream;1']
-				.createInstance(Components.interfaces.nsIScriptableInputStream);
-			fstream.init(file, -1, 0, 0);
-			sstream.init(fstream);
-			var str = sstream.read(4096);
-			while (str.length > 0) {
-					data += str;
-					str = sstream.read(4096);
-			}
-			sstream.close();
-			fstream.close();
+			var charset = 'UTF-8';  
+			var fileStream = Components.classes['@mozilla.org/network/file-input-stream;1']  
+                  .createInstance(Components.interfaces.nsIFileInputStream);  
+			fileStream.init(file, 1, 0, false);  
+			 var converterStream = Components.classes['@mozilla.org/intl/converter-input-stream;1']  
+								   .createInstance(Components.interfaces.nsIConverterInputStream);  
+								   converterStream.init(fileStream, charset, fileStream.available(),  
+								   converterStream.DEFAULT_REPLACEMENT_CHARACTER);  
+			 var out = {};  
+			 converterStream.readString(fileStream.available(), out);  
+			 data = out.value;  
+			 converterStream.close();  
+			 fileStream.close();  
 		}
 		return data;
     },

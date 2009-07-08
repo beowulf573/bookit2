@@ -85,6 +85,29 @@ function RemoveItem(event) {
 
 function ShowLog(event) {
 
+	let index = gJobsView.selectedIndex;
+	if(index >= 0) {
+		var item = gJobsView.selectedItems[0];
+		var id = item.getAttribute("value");
+
+		var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+                   .getService(Components.interfaces.nsIWindowMediator);
+		var mainWindow = wm.getMostRecentWindow("navigator:browser");
+		var tabbrowser = mainWindow.getBrowser();
+	
+		var log = gDB.getLogContents(id);
+		log = "<code>" + log.replace(/[\r\n]/gi, "<br />") + "</code>";
+		var newTab = tabbrowser.addTab("data:text/html;charset=utf-8," + log);
+    
+		tabbrowser.selectedTab = newTab;
+    
+		tabbrowser.focus();
+	}
+//	var newTabBrowser = tabbrowser.getBrowserForTab(newTab);//
+//	newTabBrowser.contentDocument.textContent = "hello world";
+	//
+//	newTab.addEventListener("load", function() { newTabBrowser.contentDocument.textContent = "<div>hello world</div>"; }, true);
+	//newTab.contentDocument.body.innerHTML = "hello world";
 }
 
 function ClearAll() {
