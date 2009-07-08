@@ -100,15 +100,10 @@ function ShowLog(event) {
             var newTab = tabbrowser.addTab("data:text/html;charset=utf-8," + log);
     
             tabbrowser.selectedTab = newTab;
-    
+            // TODO: set title
             tabbrowser.focus();
         }
 	}
-//	var newTabBrowser = tabbrowser.getBrowserForTab(newTab);//
-//	newTabBrowser.contentDocument.textContent = "hello world";
-	//
-//	newTab.addEventListener("load", function() { newTabBrowser.contentDocument.textContent = "<div>hello world</div>"; }, true);
-	//newTab.contentDocument.body.innerHTML = "hello world";
 }
 
 function ClearAll() {

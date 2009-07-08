@@ -143,19 +143,7 @@ BookitConversion.prototype = {
         var id = "";
         try {
                 
-            var dbObj = Cc["@heorot.org/bookit-dbmanager;1"].createInstance(Ci.nsIDatabaseManager);
-
-            // TODO: move to method
-            // create proxy of db object for use when threading
-            var mainThread = Cc["@mozilla.org/thread-manager;1"].getService().mainThread;
-            var proxyMgr = Cc["@mozilla.org/xpcomproxy;1"].getService(Ci.nsIProxyObjectManager);
-
-            dbProxy = proxyMgr.getProxyForObject(mainThread, 
-                                                Ci.nsIDatabaseManager, 
-                                                dbObj, 
-                                                Ci.nsIProxyObjectManager.INVOKE_SYNC
-                                                + Ci.nsIProxyObjectManager.FORCE_PROXY_CREATION);
-                
+            var dbProxy = this.getDatabaseProxy();
                             
             dbProxy.open();
             
@@ -165,7 +153,7 @@ BookitConversion.prototype = {
             var logfile = this.getLogFile();
             
             // TODO: calc percent increments
-            // TODO: check for failure at each step
+            // TODO: check for failure at each step: eg empty output directory, no output file
 			// TODO: temp code until job window is done
 			this.SetBookitPref("last_logfile", logfile.path);
 
@@ -270,6 +258,23 @@ BookitConversion.prototype = {
             }            
         }
                
+    },
+    getDatabaseProxy: function() {
+    
+        var dbObj = Cc["@heorot.org/bookit-dbmanager;1"].createInstance(Ci.nsIDatabaseManager);
+
+        // create proxy of db object for use when threading
+        var mainThread = Cc["@mozilla.org/thread-manager;1"].getService().mainThread;
+        var proxyMgr = Cc["@mozilla.org/xpcomproxy;1"].getService(Ci.nsIProxyObjectManager);
+
+        dbProxy = proxyMgr.getProxyForObject(mainThread, 
+                                            Ci.nsIDatabaseManager, 
+                                            dbObj, 
+                                            Ci.nsIProxyObjectManager.INVOKE_SYNC
+                                            + Ci.nsIProxyObjectManager.FORCE_PROXY_CREATION);
+                                            
+        return dbProxy;
+
     },
     getLogContents: function(file) {
 		var data = '';
