@@ -236,7 +236,7 @@ BookitConversion.prototype = {
             jobComplete = true;
             db.completeJob(id, "Done", 0, this.getLogContents(logfile), outputFile.path);
             this._logger.notifyObservers(this, "BookitJobs", id.toString());
-            
+            logfile.remove(false);
             db.close();
             this._logger.logInfo("delete working directory");
             
@@ -250,7 +250,8 @@ BookitConversion.prototype = {
             if(!jobComplete) {
                 db.completeJob(id, "Error", 1, this.getLogContents(logfile), outputFile.path);
                 this._logger.notifyObservers(this, "BookitJobs", id.toString());
-                
+				logfile.remove(false);
+          
                 db.close();
             }            
         }

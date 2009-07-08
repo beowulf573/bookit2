@@ -80,6 +80,17 @@ DatabaseManager.prototype = {
         }
     },
     
+    deleteJob: function(id) {
+    
+        if(this._mDBConn != null) {
+            var statement = this._mDBConn.createStatement("DELETE FROM jobs WHERE ROWID=:rowid");
+            
+		    statement.params.rowid = id;
+        
+            statement.executeStep();
+            statement.finalize();
+        }
+    },
     getJob: function(id) {
     
 		var params = {

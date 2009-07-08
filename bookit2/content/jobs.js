@@ -69,8 +69,26 @@ function createItem(id, job)
 	labelState.setAttribute("id", "label_job_state");
 	vbox.appendChild(labelState);
 	
-	LOG("item: " + job.title);
 	return dl;
+}
+
+function RemoveItem(event) {
+
+  let index = gJobsView.selectedIndex;
+  if(index >= 0) {
+	var item = gJobsView.selectedItems[0];
+    gJobsView.removeChild(item);
+	gDB.deleteJob(item.getAttribute("value"));
+    gJobsView.selectedIndex = Math.min(index, gJobsView.itemCount - 1);
+  }
+}
+
+function ShowLog(event) {
+
+}
+
+function ClearAll() {
+
 }
 
 function LOG(msg) {

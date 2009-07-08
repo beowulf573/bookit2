@@ -1,3 +1,6 @@
+disable remove, job when not complete
+rework to pass state
+
 
 icon in addons page
 better icons for pref page

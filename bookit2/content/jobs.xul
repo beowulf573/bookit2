@@ -19,14 +19,21 @@
   </stringbundleset>
   
 <!-- menus, context menu, etc -->
+  <menupopup id="jobContextMenu">
+   <menuitem id="menu_jobs_remove" label="&bookit2.jobs.remove;" 
+                oncommand="RemoveItem(event);"/>           
+   <menuitem id="menu_jobs_log" label="&bookit2.jobs.log;" 
+                oncommand="ShowLog(event);"/>
+  </menupopup>
 
-  <richlistbox id="jobView" seltype="multiple" flex="1">
+  <richlistbox id="jobView" seltype="multiple" flex="1" context="jobContextMenu">
   </richlistbox>
 
   <hbox id="search" align="center">
     <button id="clearListButton" command="cmd_clearList"
             label="&bookit2.cmd.clearList.label;"
-            accesskey="&bookit2.cmd.clearList.accesskey;"/>
+            accesskey="&bookit2.cmd.clearList.accesskey;"
+			oncommand="ClearAll();"/>
   </hbox>
 
 </window>
