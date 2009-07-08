@@ -88,7 +88,6 @@ function ShowLog(event) {
 }
 
 function ClearAll() {
-  alert("ClearAll");
   while(gJobsView.hasChildNodes()){
     var item = gJobsView.firstChild;
 	gDB.deleteJob(item.getAttribute("value"));

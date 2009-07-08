@@ -18,7 +18,6 @@
     <stringbundle id="jobStrings" src="chrome://bookit2/locale/jobs.properties"/>
   </stringbundleset>
   
-<!-- menus, context menu, etc -->
   <menupopup id="jobContextMenu">
    <menuitem id="menu_jobs_remove" label="&bookit2.jobs.remove;" 
                 oncommand="RemoveItem(event);"/>           
@@ -30,10 +29,10 @@
   </richlistbox>
 
   <hbox id="search" align="center">
-    <button id="clearListButton" command="cmd_clearList"
-            label="&bookit2.cmd.clearList.label;"
+    <button id="clearListButton" 
+			label="&bookit2.cmd.clearList.label;"
             accesskey="&bookit2.cmd.clearList.accesskey;"
-			oncommand="ClearAll();"/>
+			oncommand="ClearAll();" />
   </hbox>
 
 </window>
