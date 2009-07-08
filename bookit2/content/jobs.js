@@ -76,9 +76,13 @@ function RemoveItem(event) {
   let index = gJobsView.selectedIndex;
   if(index >= 0) {
 	var item = gJobsView.selectedItems[0];
-    gJobsView.removeChild(item);
-	gDB.deleteJob(item.getAttribute("value"));
-    gJobsView.selectedIndex = Math.min(index, gJobsView.itemCount - 1);
+    var id = item.getAttribute("value");
+    var job = gDB.getJob(id);
+    if(job.percent_done == 100) {
+        gJobsView.removeChild(item);
+        gDB.deleteJob(id);
+        gJobsView.selectedIndex = Math.min(index, gJobsView.itemCount - 1);
+    }
   }
 }
 
@@ -107,11 +111,23 @@ function ShowLog(event) {
 }
 
 function ClearAll() {
-  while(gJobsView.hasChildNodes()){
-    var item = gJobsView.firstChild;
-	gDB.deleteJob(item.getAttribute("value"));
-	gJobsView.removeChild(gJobsView.firstChild);
-  }
+  
+    if(gJobsView.hasChildNodes()) {
+        var items = [];
+        var len = gJobsView.childNodes.length;
+        for(var i = 0; i < len; i++) {
+            items.push(gJobsView.childNodes[i]);
+        }
+        for(var i = 0; i < len; i++) {
+            var item = items[i];
+            var id = item.getAttribute("value");    
+            var job = gDB.getJob(id);
+            if(job.percent_done == 100) {
+                gDB.deleteJob(item.getAttribute("value"));
+                gJobsView.removeChild(item);
+            }
+        }   
+    }
 }
 
 function LOG(msg) {
