@@ -13,26 +13,15 @@ JobListener.prototype = {
     var job = gDB.getJob(aData);
 	if(job) {
 	
-		var item = null;
+		var item = gJobsView.getElementById("item_" + aData);
 		
-		// find list item for aData,
-		if (gJobsView.hasChildNodes())
-		{
-			var testID = "item_" + aData;
-			var children = gJobsView.childNodes;
-			for(var i = 0; i < children.length; i++) {
-				if(children[i].id == testID) {
-					item = children[i];
-					break;
-				}				
-			}
-		}
-
-		// TODO: how to find child items and update text
 		if(item) {
-			item.firstChild.children[1].value = job.state;
-            if(job.error) {
-                item.firstChild.children[1].setAttribute("class", "labelError");
+            var label = item.getElementById("label_job_state");
+            if(label) {
+                label.value = job.state;
+                if(job.error) {
+                    label.setAttribute("class", "labelError");
+                }
             }
 		}
 		else {
