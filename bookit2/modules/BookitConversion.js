@@ -147,6 +147,21 @@ BookitConversion.prototype = {
         var id = "";
         try {
                 
+            var doAddCalibre = this.GetBookitPrefBool("add_calibre");
+            var doLaunchCalibre = this.GetBookitPrefBool("launch_calibre");
+            var doDeleteAfterAdd = this.GetBookitPrefBool("delete_after_add");
+
+            var steps = 3;  // save/convert
+            if(doAddCalibre)
+                steps++;
+            if(doLaunchCalibre)
+                steps++;
+            if(doDeleteAfterAdd)
+                steps++;
+            
+            var interval = 100/steps;
+            var progress = 0;
+            
             var dbProxy = this.getDatabaseProxy();
                             
             dbProxy.open();
@@ -164,8 +179,9 @@ BookitConversion.prototype = {
             this._logger.logInfo("working directory: " + workingDir.path);
         
             var workingFile;
+            progress += interval;
             if(this._isURL) {
-                dbProxy.updateJob(id, "Saving web page...", 0, 10);
+                dbProxy.updateJob(id, "Saving web page...", 0, progress);
                 this._logger.notifyObservers(this, "BookitJobs", id.toString());
                 
                 this._logger.logInfo("save url: " + this._data);
@@ -173,7 +189,7 @@ BookitConversion.prototype = {
             }
             else {
                 this._logger.logInfo("save data");
-                dbProxy.updateJob(id, "Saving data...", 0, 10);
+                dbProxy.updateJob(id, "Saving data...", 0, progress);
                 this._logger.notifyObservers(this, "BookitJobs", id.toString());
                 
                 workingFile = this.saveData(workingDir, this._data, logfile);                
@@ -184,7 +200,8 @@ BookitConversion.prototype = {
             }
             var outputFile = this.getOutputFile();
             
-            dbProxy.updateJob(id, "Converting eBook...", 0, 50);
+            progress += interval;
+            dbProxy.updateJob(id, "Converting eBook...", 0, progress);
             this._logger.notifyObservers(this, "BookitJobs", id.toString());
             
             var useEbookConvert = this.GetBookitPrefBool("use_ebook_convert");
@@ -210,20 +227,18 @@ BookitConversion.prototype = {
             if(outputFile == null || !outputFile.exists) {
                 throw new Error ("eBook conversion failed.");
             }
-            
-            var doAddCalibre = this.GetBookitPrefBool("add_calibre");
-            var doLaunchCalibre = this.GetBookitPrefBool("launch_calibre");
-            var doDeleteAfterAdd = this.GetBookitPrefBool("delete_after_add");
-            
+                                    
             if(doAddCalibre) {
-                dbProxy.updateJob(id, "Adding to Calibre...", 0, 70);
+                progress += interval;
+                dbProxy.updateJob(id, "Adding to Calibre...", 0, progress);
                 this._logger.notifyObservers(this, "BookitJobs", id.toString());
                 
                 this._logger.logInfo("add to calibre");
                 this.addToCalibre(outputFile, logfile);
                 
                 if(doDeleteAfterAdd) {
-                    dbProxy.updateJob(id, "Deleting original eBook...", 0, 80);
+                    progress += interval;
+                    dbProxy.updateJob(id, "Deleting original eBook...", 0, progress);
                     this._logger.notifyObservers(this, "BookitJobs", id.toString());
                     
                     this._logger.logInfo("delete ebook");
@@ -232,7 +247,8 @@ BookitConversion.prototype = {
             }
             
             if(doLaunchCalibre) {
-                dbProxy.updateJob(id, "Launching Calibre...", 0, 90);
+                progress += interval;
+                dbProxy.updateJob(id, "Launching Calibre...", 0, progress);
                 this._logger.notifyObservers(this, "BookitJobs", id.toString());
                 
                 this._logger.logInfo("launch calibre");

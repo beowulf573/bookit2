@@ -63,6 +63,19 @@ function createItem(id, job)
 	labelTitle.setAttribute("id", "label_job_title");
 	vbox.appendChild(labelTitle);
 	
+	let progress = document.createElement("progressmeter");
+	progress.setAttribute("mode", "normal");
+    progress.setAttribute("value", job.percent_done);
+    progress.setAttribute("flex", "1");
+	progress.setAttribute("id", "job_progress");
+    if(job.percent_done == 100) {
+        progress.style.display = "none";
+    }
+    else {
+        progress.style.display = "visible";
+    }
+	vbox.appendChild(progress);
+    
 	let labelState = document.createElement("label");
 	labelState.setAttribute("value", job.state);
 	labelState.setAttribute("id", "label_job_state");
