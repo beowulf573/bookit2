@@ -57,6 +57,8 @@
                 oncommand="bookit2.onToolsJobs(event);"/>
             <menuitem id="menu_toolsmenu_bookit_prefs" label="&bookit2.toolsmenu.prefs;" 
                 oncommand="bookit2.onToolsShowPreferences(event);"/>                
+            <menuitem id="menu_toolsmenu_bookit_help" label="&bookit2.toolsmenu.help;" 
+                oncommand="bookit2.onShowHelp();"/>                
         </menupopup>    
     </menu> 
   </menupopup>
@@ -72,7 +74,9 @@
             <menuitem id="menu_contextmenu_bookit_jobs" label="&bookit2.toolsmenu.jobs;" 
                 oncommand="bookit2.onContextJobs(event);"/>                
             <menuitem id="menu_contextmenu_bookit_prefs" label="&bookit2.toolsmenu.prefs;" 
-                oncommand="bookit2.onContextShowPreferences(event);"/>                
+                oncommand="bookit2.onContextShowPreferences(event);"/>         
+            <menuitem id="menu_contextmenu_bookit_help" label="&bookit2.toolsmenu.help;" 
+                oncommand="bookit2.onShowHelp();"/>                                
         </menupopup>    
     </menu> 
   </popup>
@@ -98,6 +102,8 @@
 				oncommand="bookit2.onStatusJobs(event);"/>
 			<menuitem id="menu_statusmenu_bookit_prefs" label="&bookit2.toolsmenu.prefs;" 
 				oncommand="bookit2.onStatusShowPreferences(event);"/>     
+            <menuitem id="menu_statusmenu_bookit_help" label="&bookit2.toolsmenu.help;" 
+                oncommand="bookit2.onShowHelp();"/>                                                
 		</menupopup>				
 	</statusbarpanel>
 </statusbar>

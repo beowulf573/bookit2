@@ -6,7 +6,7 @@ rework to pass state
 
 icon in addons page
 better icons for pref page
-common pref code
+common pref code, move to module
 common string code
 check out why load/unload is invoked at odd times
 

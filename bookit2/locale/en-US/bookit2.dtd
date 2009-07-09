@@ -12,5 +12,6 @@
 <!ENTITY bookit2.toolsmenu.editor "Editor">
 <!ENTITY bookit2.toolsmenu.log "Show Log">
 <!ENTITY bookit2.toolsmenu.prefs "Preferences">
+<!ENTITY bookit2.toolsmenu.help "Help">
 
 <!ENTITY bookit2.toolsmenu.jobs "Jobs">

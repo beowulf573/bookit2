@@ -96,6 +96,12 @@ var bookit2 = {
 		bookit2.updateStatusBar();
 		
 		this.Bookit2IsInitialized = true;
+        
+        if(GetBookitPrefBool("show_help")) {
+        
+            SetBookitPrefBool("show_help", false);
+            this.onShowHelp();
+        }
     }
   },
   
@@ -105,7 +111,18 @@ var bookit2 = {
     	this.oBookit2Pref.removeObserver("", this.Bookit2SettingsObserver);
   
   },
+  onShowHelp: function() {
   
+    var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+               .getService(Components.interfaces.nsIWindowMediator);
+    var mainWindow = wm.getMostRecentWindow("navigator:browser");
+    var tabbrowser = mainWindow.getBrowser();
+
+    var newTab = tabbrowser.addTab("chrome://bookit2/content/help.html");
+
+    tabbrowser.selectedTab = newTab;
+    tabbrowser.focus();      
+  },
   onToolsPopupShowing: function(event) {
     // show or hide the menuitem based on what the context menu is on
     // see http://kb.mozillazine.org/Adding_items_to_menus
