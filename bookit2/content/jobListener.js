@@ -10,8 +10,7 @@ JobListener.prototype = {
   observe: function(aSubject, aTopic, aData) {
 
     // aData - rowID for entry in db
-    //LOG("JobListener: " + aData);
-	var job = gDB.getJob(aData);
+    var job = gDB.getJob(aData);
 	if(job) {
 	
 		var item = null;
@@ -32,6 +31,9 @@ JobListener.prototype = {
 		// TODO: how to find child items and update text
 		if(item) {
 			item.firstChild.children[1].value = job.state;
+            if(job.error) {
+                item.firstChild.children[1].setAttribute("class", "labelError");
+            }
 		}
 		else {
 			item = createItem(aData, job);

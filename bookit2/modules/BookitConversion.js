@@ -178,7 +178,10 @@ BookitConversion.prototype = {
                 
                 workingFile = this.saveData(workingDir, this._data, logfile);                
             }
-            
+
+            if(workingFile == null || !workingFile.exists) {
+                throw new Error ("Web2disk or save failed.");
+            }
             var outputFile = this.getOutputFile();
             
             dbProxy.updateJob(id, "Converting eBook...", 0, 50);
@@ -203,6 +206,9 @@ BookitConversion.prototype = {
             if(outputFile.path.match(/\.mobi$/i)) {
                 this._logger.logInfo("invoke any2mobi");
                 this.convertMobi(workingFile, outputFile, logfile);                
+            }
+            if(outputFile == null || !outputFile.exists) {
+                throw new Error ("eBook conversion failed.");
             }
             
             var doAddCalibre = this.GetBookitPrefBool("add_calibre");
@@ -251,7 +257,7 @@ BookitConversion.prototype = {
             if(!jobComplete) {
                 // TODO: this is ugly, clean it up
 				var path = (outputFile != null ? outputFile.path : "");
-                dbProxy.completeJob(id, "Error", 1, this.getLogContents(logfile), path);
+                dbProxy.completeJob(id, err.message, 1, this.getLogContents(logfile), path);
                 this._logger.notifyObservers(this, "BookitJobs", id.toString());
 				logfile.remove(false);
           

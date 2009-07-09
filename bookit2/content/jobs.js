@@ -66,6 +66,10 @@ function createItem(id, job)
 	let labelState = document.createElement("label");
 	labelState.setAttribute("value", job.state);
 	labelState.setAttribute("id", "label_job_state");
+    if(job.error) {
+        labelState.setAttribute("class", "labelError");
+    }
+
 	vbox.appendChild(labelState);
 	
 	return dl;

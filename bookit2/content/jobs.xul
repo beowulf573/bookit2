@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?> 
+<?xml-stylesheet href="chrome://bookit2/content/jobs.css"?>
 <!DOCTYPE window SYSTEM "chrome://bookit2/locale/jobs.dtd">
 
 <window xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"

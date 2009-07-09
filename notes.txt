@@ -1,6 +1,3 @@
-move db to component
-inside db invoke observers
-move job gui to component so as to open anywhere
 
 new tab on load with new features
 disable remove, job when not complete
