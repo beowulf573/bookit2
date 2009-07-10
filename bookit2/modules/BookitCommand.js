@@ -97,7 +97,8 @@ BookitCommand.prototype = {
 
         file.initWithPath("/bin/sh");
 
-        var parameters = [ scriptFile.path , logfile ];
+        // enable verbose for logging
+        var parameters = [ "-v", scriptFile.path , logfile ];
 	    
         // create an nsIProcess
 	    var process = Components.classes["@mozilla.org/process/util;1"]
