@@ -93,15 +93,17 @@ var bookit2 = {
         this.oBookit2Pref.QueryInterface(Components.interfaces.nsIPrefBranch2);
         this.oBookit2Pref.addObserver("", this.Bookit2SettingsObserver, false);
         	
-		bookit2.updateStatusBar();
+	bookit2.updateStatusBar();
 		
-		this.Bookit2IsInitialized = true;
+	this.Bookit2IsInitialized = true;
         
+/*
         if(GetBookitPrefBool("show_help")) {
         
             SetBookitPrefBool("show_help", false);
             this.onShowHelp();
         }
+*/
     }
   },
   
