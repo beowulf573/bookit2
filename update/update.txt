@@ -1,0 +1,12 @@
+  <RDF:Description about="urn:mozilla:extension:{950a782d-e82f-45e2-9da7-44898356813d}:0.2.4">
+	<em:version>0.2.4</em:version>	
+	<em:targetApplication>
+	  <RDF:Description>
+	    <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+	    <em:minVersion>1.5</em:minVersion>
+	    <em:maxVersion>3.0.*</em:maxVersion>
+	    <em:updateLink>http://www.heorot.org/wordpress/wp-content/bookit/bookit0.2.4.xpi</em:updateLink>
+	    <em:updateHash>sha1:651949c04306bf453289355911b9bf5c8c32266e</em:updateHash>
+	  </RDF:Description>
+	</em:targetApplication>
+  </RDF:Description>
