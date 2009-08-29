@@ -204,27 +204,10 @@ BookitConversion.prototype = {
             dbProxy.updateJob(id, "Converting eBook...", 0, progress);
             this._logger.notifyObservers(this, "BookitJobs", id.toString());
             
-            var useEbookConvert = this.GetBookitPrefBool("use_ebook_convert");
-			if(useEbookConvert) {
-                this._logger.logInfo("invoke ebook convert");
-			    this.eBookConvert(workingFile, outputFile, logfile);
-			}
-			else
-            if(outputFile.path.match(/\.lrf$/i)) {
-                this._logger.logInfo("invoke html2lrf");
-                this.convertLRF(workingFile, outputFile, logfile);
-            }
-            else
-            if(outputFile.path.match(/\.epub$/i)) {
-                this._logger.logInfo("invoke html2epub");
-                this.convertEPub(workingFile, outputFile, logfile);                
-            }
-            else
-            if(outputFile.path.match(/\.mobi$/i)) {
-                this._logger.logInfo("invoke any2mobi");
-                this.convertMobi(workingFile, outputFile, logfile);                
-            }
-            if(outputFile == null || !outputFile.exists) {
+            this._logger.logInfo("invoke ebook convert");
+		      this.eBookConvert(workingFile, outputFile, logfile);
+		
+		      if(outputFile == null || !outputFile.exists) {
                 throw new Error ("eBook conversion failed.");
             }
                                     
@@ -389,94 +372,9 @@ BookitConversion.prototype = {
         }         
         return null;
     },
-    convertLRF: function(source, outputFile, logfile) {
-        
-        var left_margin = this.GetBookitPrefInt("layout.left_margin");
-        var right_margin = this.GetBookitPrefInt("layout.right_margin");
-        var top_margin = this.GetBookitPrefInt("layout.top_margin");
-        var bottom_margin = this.GetBookitPrefInt("layout.bottom_margin");
-        var base_font_size = this.GetBookitPrefInt("layout.base_font_size");
-        var ignore_tables = this.GetBookitPrefBool("lrf.ignore_tables");
-        var useHeader = this.GetBookitPrefBool("lrf.header");
-        var headerFormat = this.GetBookitPref("lrf.header_format");
-        var html2lrf = this.GetBookitPref("paths.html2lrf");
-        
-        // both are nsIFile
-        var command = "\"{0}\" -o \"{1}\" {2} -t \"{3}\" -a \"{4}\" --base-font-size={5} {6} {7} --left-margin {8} --right-margin {9} --top-margin {10} --bottom-margin {11} \"{12}\"".format(html2lrf,
-                                        outputFile.path,
-                                        ignore_tables ? "--ignore-tables" : "",
-                                        this._title,
-                                        this._author,
-                                        base_font_size,
-                                        useHeader ? "--header" : "",
-                                        useHeader && headerFormat && headerFormat.length != 0 ? "--headerformat " + headerFormat : "",
-                                        left_margin, right_margin, top_margin, bottom_margin,                                        
-                                        source.path);
-                                        
-        //LOG("cmd: " + command);
-        
-        var lines = [ command ];            
-    
-        var cmd = new BookitCommand();
-    
-        cmd.executeCommand(logfile.path, lines);        
-    },
-    convertEPub: function(source, outputFile, logfile) {
-        var left_margin = this.GetBookitPrefInt("layout.left_margin");
-        var right_margin = this.GetBookitPrefInt("layout.right_margin");
-        var top_margin = this.GetBookitPrefInt("layout.top_margin");
-        var bottom_margin = this.GetBookitPrefInt("layout.bottom_margin");
-        var base_font_size = this.GetBookitPrefInt("layout.base_font_size");
-        var html2epub = this.GetBookitPref("paths.html2epub");
-        
-        // both are nsIFile
-        var command = "\"{0}\" -o \"{1}\" -t \"{2}\" -a \"{3}\" --base-font-size={4} --margin-left {5} --margin-right {6} --margin-top {7} --margin-bottom {8} \"{9}\"".format(html2epub,
-                                        outputFile.path,
-                                        this._title,
-                                        this._author,
-                                        base_font_size,
-                                        left_margin, right_margin, top_margin, bottom_margin,
-                                        source.path);
-                                        
-        //LOG("cmd: " + command);
-        
-        var lines = [ command ];            
-    
-        var cmd = new BookitCommand();
-    
-        cmd.executeCommand(logfile.path, lines);        
-    },
-    convertMobi: function(source, outputFile, logfile) {
-        var left_margin = this.GetBookitPrefInt("layout.left_margin");
-        var right_margin = this.GetBookitPrefInt("layout.right_margin");
-        var top_margin = this.GetBookitPrefInt("layout.top_margin");
-        var bottom_margin = this.GetBookitPrefInt("layout.bottom_margin");
-        var base_font_size = this.GetBookitPrefInt("layout.base_font_size");
-        var ignore_tables = this.GetBookitPrefBool("mobi.ignore_tables");
-
-        var any2mobi = this.GetBookitPref("paths.any2mobi");
-        
-        // both are nsIFile
-        var command = "\"{0}\" -o \"{1}\" -t \"{2}\" -a \"{3}\" --base-font-size={4} --margin-left {5} --margin-right {6} --margin-top {7} --margin-bottom {8} {9} \"{10}\"".format(any2mobi,
-                                        outputFile.path,
-                                        this._title,
-                                        this._author,
-                                        base_font_size,
-                                        left_margin, right_margin, top_margin, bottom_margin,
-                                        ignore_tables ? "--ignore-tables" : "",
-                                        source.path);
-                                        
-        //LOG("cmd: " + command);
-        
-        var lines = [ command ];            
-    
-        var cmd = new BookitCommand();
-    
-        cmd.executeCommand(logfile.path, lines);        
-    },
     eBookConvert: function(source, outputFile, logfile) {
 	
-	    var left_margin = this.GetBookitPrefInt("layout.left_margin");
+   	  var left_margin = this.GetBookitPrefInt("layout.left_margin");
         var right_margin = this.GetBookitPrefInt("layout.right_margin");
         var top_margin = this.GetBookitPrefInt("layout.top_margin");
         var bottom_margin = this.GetBookitPrefInt("layout.bottom_margin");
@@ -602,7 +500,7 @@ BookitConversion.prototype = {
                         .getService(Components.interfaces.nsIProperties)
                         .get("TmpD", Components.interfaces.nsIFile);
         workingDir.append("bookit-work");
-        workingDir.createUnique(Components.interfaces.nsIFile.DIRECTORY_TYPE, 0666);
+        workingDir.createUnique(Components.interfaces.nsIFile.DIRECTORY_TYPE, 0776);
         return workingDir;
     },
 	SetBookitPref: function(sName, sData)

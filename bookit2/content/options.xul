@@ -53,7 +53,6 @@
         <preference id="pref_launch_calibre" name="extensions.bookit2.launch_calibre" type="bool" />
         <preference id="pref_show_options_dlg" name="extensions.bookit2.show_options_dlg" type="bool" />
         <preference id="pref_output_format" name="extensions.bookit2.output_format" type="string" />
-        <preference id="pref_use_ebook_convert" name="extensions.bookit2.use_ebook_convert" type="bool" />
     </preferences>
     
     <label control="author" value="&bookit.settings.author;"/>
@@ -72,7 +71,6 @@
     </menulist>
         
 	<checkbox id="show_options_dlg" preference="pref_show_options_dlg" label="&bookit.settings.show_options_dlg;" />
-	<checkbox id="use_ebook_convert" preference="pref_use_ebook_convert" label="&bookit.settings.use_ebook_convert;" />
 		
    	<groupbox>
 		<caption label="&bookit.settings.calibre;"/>
@@ -95,9 +93,6 @@
         <preference id="pref_paths_calibre" name="extensions.bookit2.paths.calibre" type="string" />
         <preference id="pref_paths_calibredb" name="extensions.bookit2.paths.calibredb" type="string" />
         <preference id="pref_paths_web2disk" name="extensions.bookit2.paths.web2disk" type="string" />
-        <preference id="pref_paths_html2epub" name="extensions.bookit2.paths.html2epub" type="string" />
-        <preference id="pref_paths_html2lrf" name="extensions.bookit2.paths.html2lrf" type="string" />
-        <preference id="pref_paths_any2mobi" name="extensions.bookit2.paths.any2mobi" type="string" />
         <preference id="pref_paths_ebook_convert" name="extensions.bookit2.paths.ebook_convert" type="string" />
     </preferences>
     
@@ -109,15 +104,6 @@
 
     <label control="paths_web2disk" value="&bookit.settings.paths.web2disk;"/>
     <textbox preference="pref_paths_web2disk" id="paths_web2disk" />
-
-    <label control="paths_html2epub" value="&bookit.settings.paths.html2epub;"/>
-    <textbox preference="pref_paths_html2epub" id="paths_html2epub" />
-
-    <label control="paths_html2lrf" value="&bookit.settings.paths.html2lrf;"/>
-    <textbox preference="pref_paths_html2lrf" id="paths_html2lrf" />
-
-    <label control="paths_any2mobi" value="&bookit.settings.paths.any2mobi;"/>
-    <textbox preference="pref_paths_any2mobi" id="paths_any2mobi" />
     
     <label control="paths_ebook_convert" value="&bookit.settings.paths.ebook_convert;"/>
     <textbox preference="pref_paths_ebook_convert" id="paths_ebook_convert" />

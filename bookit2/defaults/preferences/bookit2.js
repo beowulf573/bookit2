@@ -29,7 +29,6 @@ pref("extensions.bookit2.lrf.header", false);
 pref("extensions.bookit2.lrf.header_format", "");
 pref("extensions.bookit2.mobi.ignore_tables", false);
 
-pref("extensions.bookit2.use_ebook_convert", false);
 
 pref("extensions.bookit2.ebook_convert.output_profile", "default");
 
