@@ -154,13 +154,11 @@
     </prefpane>  
 
   <prefpane id="pane_lrf" label="&bookit.settings.lrf.title;">
-    <preferences>
-        <preference id="pref_lrf_ignore_tables" name="extensions.bookit2.lrf.ignore_tables" type="bool" />
+    <preferences>        
         <preference id="pref_lrf_header" name="extensions.bookit2.lrf.header" type="bool" />
         <preference id="pref_lrf_header_format" name="extensions.bookit2.lrf.header_format" type="string" />
     </preferences>
-    
-		<checkbox id="lrf_ignore_tables" preference="pref_lrf_ignore_tables" label="&bookit.settings.lrf.ignore_tables;" />
+    		
 		<checkbox id="lrf_header" preference="pref_lrf_header" label="&bookit.settings.lrf.header;" />
         
     <label control="lrf_header_format" value="&bookit.settings.lrf.header_format;"/>
@@ -174,9 +172,9 @@
   -->
   <prefpane id="pane_mobi" label="&bookit.settings.mobi.title;">
     <preferences>
-        <preference id="pref_mobi_ignore_tables" name="extensions.bookit2.mobi.ignore_tables" type="bool" />
+        
     </preferences>
-		<checkbox id="mobi_ignore_tables" preference="pref_mobi_ignore_tables" label="&bookit.settings.mobi.ignore_tables;" />
+		
   </prefpane>  
   
   <prefpane id="pane_ebook_convert" label="&bookit.settings.ebook_convert.title;">
@@ -194,7 +192,11 @@
 			<menuitem label="Cybook g3" value="cybookg3"/>
 			<menuitem label="Kindle" value="kindle"/>
 			<menuitem label="Sony Landscape" value="sony-landscape"/>
-			<menuitem label="Kindle DX" value="kindle_dx"/>
+			<menuitem label="Kindle DX" value="kindle_dx"/>            
+            <menuitem label="Cybook Opus" value="cybook_opus"/>
+            <menuitem label="Illiad" value="illiad"/>
+            <menuitem label="iRex DR1000" value="irexdr1000"/>
+            <menuitem label="Jetbook 5" value="jetbook5"/>
         </menupopup>
     </menulist>
   </prefpane>  
