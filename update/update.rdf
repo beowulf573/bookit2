@@ -4,17 +4,21 @@
          xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <RDF:Description RDF:about="urn:mozilla:extension:{950a782d-e82f-45e2-9da7-44898356813d}:0.6.0"
                    em:version="0.6.0"
-                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBAJ2luZHFCLOTuXNYNNCyfZfp9bB808yHqSHiB+8jO4MUJsn6y5qaM3E6tw4T+Aa2ghHL70dCF+LgVds6qLAdaMLiy0wCIokoPjcSIR2U+us7jx+J7AIcb21UtGN0NyDzikZbak8DyqbDi7qbYlZAlnWL9ZBBhP76XTVZW5/VduRM">
-    <em:targetApplication RDF:resource="rdf:#$th8UE"/>
+                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBAGczlpIT5gEnsYwxbnyp9VVaiUAVSQ173vgjx9RRfuQFPtIhsmOyd2tU+g7i3eJCy1bYkPWiW323/E5ZOfdKg4F9Ws6dHwHCZZTiPrdRORTAn9u3L/Ez05X3bRja6GoAQO9+YfjTeAF2DbhGyh75EFPMhRiNDD5cDMomMqCeUh98">
+    <em:targetApplication RDF:resource="rdf:#$BxbNf2"/>
   </RDF:Description>
-  <RDF:Description RDF:about="rdf:#$th8UE"
-                   em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
-                   em:minVersion="1.5"
-                   em:maxVersion="3.0.*"
-                   em:updateLink="http://www.heorot.org/wordpress/wp-content/bookit/bookit0.6.0.xpi"
-                   em:updateHash="sha1:403ddc610981febe6e39dc15a3f468c50ecf7c2b"
-                   em:updateInfoURL="http://www.heorot.org/wordpress/wp-content/bookit/updateInfo0.6.0.xhtml" />
-  <RDF:Seq RDF:about="rdf:#$clwXR3">
+  <RDF:Description RDF:about="urn:mozilla:extension:{950a782d-e82f-45e2-9da7-44898356813d}"
+                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBAFeTVGPKMEHEem7G0XcXBAqoesh7NlwJEyGFF29xPypRY+uKOY4oCsqeozBCPKGku2AhUAOG31YlmzSsnlHEuBH/APNX6cC3CdFgjebUzawQiLlE0/+NKo1sXOsMkltbGG5w/59O0j7wz3pMM2etSw4KLbqDvC2ah1EXZR8TTnym">
+    <em:updates RDF:resource="rdf:#$xxbNf2"/>
+  </RDF:Description>
+  <RDF:Seq RDF:about="rdf:#$xxbNf2">
     <RDF:li RDF:resource="urn:mozilla:extension:{950a782d-e82f-45e2-9da7-44898356813d}:0.6.0"/>
   </RDF:Seq>
+  <RDF:Description RDF:about="rdf:#$BxbNf2"
+                   em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+                   em:minVersion="3.0.0"
+                   em:maxVersion="3.*"
+                   em:updateLink="http://www.heorot.org/wordpress/wp-content/bookit/bookit0.6.0.xpi"
+                   em:updateHash="sha1:403ddc610981febe6e39dc15a3f468c50ecf7c2b"
+                   em:updateInfoURL="http://www.heorot.org/wordpress/wp-content/bookit/updateInfo0.6.0.xhtml&quot;" />
 </RDF:RDF>
