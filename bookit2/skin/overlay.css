@@ -21,6 +21,10 @@
   -moz-image-region: rect(24px 40px 40px 24px);
 }
 
+#tools-bookit2 {
+    list-style-image: url('reader16.png');
+}
+
 #statusbar-bookit[mode="text"] .statusbarpanel-icon {display: none;}
 #statusbar-bookit[mode="icon"] .statusbarpanel-text {display: none;}
 
