@@ -16,6 +16,7 @@
                    em:updateURL="http://www.heorot.org/wordpress/wp-content/bookit/update.rdf"
                    em:aboutURL="chrome://bookit2/content/about.xul"
                    em:optionsURL="chrome://bookit2/content/options.xul"
+                   em:iconURL="chrome://bookit2/skin/reader32.png"
                    em:updateKey="MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDQHKJbqdqbkvsbOS25/1vPi0dRhTiJRjSMcRhHa6g7csSVfaFi795pewmmOCgKr4g9qqEmW2HffeJEGI3IleipE6kikXTEgYv5ocYGhTULIsJZAYSSlI9107wLXzFVeOTFFEu69s+OjTbo8meKdmtZAKyj+zOnCYjdV3KyxuhWcwIDAQAB">
     <em:targetApplication RDF:resource="rdf:#$0FZmp"/>
   </RDF:Description>
