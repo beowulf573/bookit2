@@ -218,7 +218,7 @@ BookitConversion.prototype = {
                 this._logger.logInfo("convert to mobi");
                 this.convertMobi(workingFile, outputFile, logfile);                
             }
-            if(outputFile == null || !outputFile.exists) {
+            if(outputFile == null || !outputFile.exists || outputFile.fileSize == 0) {
                 throw new Error ("eBook conversion failed.");
             }
                                     
