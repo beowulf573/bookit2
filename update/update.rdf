@@ -4,59 +4,25 @@
          xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <RDF:Description RDF:about="urn:mozilla:extension:{950a782d-e82f-45e2-9da7-44898356813d}:0.5.6"
                    em:version="0.5.6"
-                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBAF1I0IVPhLAMbxi0HofYzafMj/czHF1sLaIveE9wzQ1HZZ+xS8aG1x28dEPY+wgZPUfzUKscaQB2TqZndg3/MZq+b+kdABcWNrl2D+J2IW7Zi/wgV8RC68hmLvPEgF+0DmbjKpsImD5pbnGEGJtOodwJFqt78OLHsID75LWqRF4L">
+                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBAEIRkfdowbMZcu+SekkoTOZ9Llzsz94bHSUVsI3epqNex3hEi4AMs5EMbwj6EiL0oRGOvzty0ZXBc/PU0zPp5LE46EeTaus/8526M9veE8PFNc4W1Cdpa0b9lfhe5cq9TuQuGFwyRG2VipjOvSYWSdiGB+K5OAqgz+LpjYpuqpmh">
     <em:targetApplication RDF:resource="rdf:#$.VJpE3"/>
   </RDF:Description>
-  <RDF:Description RDF:about="rdf:#$kh8UE"
+  <RDF:Description RDF:about="urn:mozilla:extension:{950a782d-e82f-45e2-9da7-44898356813d}:0.6.0"
+                   em:version="0.6.0"
+                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBAJ2luZHFCLOTuXNYNNCyfZfp9bB808yHqSHiB+8jO4MUJsn6y5qaM3E6tw4T+Aa2ghHL70dCF+LgVds6qLAdaMLiy0wCIokoPjcSIR2U+us7jx+J7AIcb21UtGN0NyDzikZbak8DyqbDi7qbYlZAlnWL9ZBBhP76XTVZW5/VduRM">
+    <em:targetApplication RDF:resource="rdf:#$th8UE"/>
+  </RDF:Description>
+  <RDF:Description RDF:about="rdf:#$th8UE"
                    em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
                    em:minVersion="1.5"
                    em:maxVersion="3.0.*"
                    em:updateLink="http://www.heorot.org/wordpress/wp-content/bookit/bookit0.6.0.xpi"
                    em:updateHash="sha1:403ddc610981febe6e39dc15a3f468c50ecf7c2b"
                    em:updateInfoURL="http://www.heorot.org/wordpress/wp-content/bookit/updateInfo0.6.0.xhtml" />
-  <RDF:Description RDF:about="urn:mozilla:extension:{950a782d-e82f-45e2-9da7-44898356813d}:0.4.4"
-                   em:version="0.4.4"
-                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBALrJyt5dCRhK5xoaP/XfCSX94bwRCyEqPgBmpWEMjoIbUTg5Mn9d5CpewrT8Xrt/0iFMeykcfG5sMax12AfAsmKqvvOB1H/B7Ydas6mwB/4GLmz+d5qcb5RteyFdTtmqLtrC6bHuGtwisjOU8PpYvk31rXV1wJGIUPZKKOsH+lXu">
-    <em:targetApplication RDF:resource="rdf:#$shNk03"/>
-  </RDF:Description>
-  <RDF:Description RDF:about="rdf:#$7Kb1l2"
-                   em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
-                   em:minVersion="1.5"
-                   em:maxVersion="3.0.*"
-                   em:updateLink="http://www.heorot.org/wordpress/wp-content/bookit/bookit0.4.2.xpi"
-                   em:updateHash="sha1:f517be4d9e1041e6213fe604632517e6bc02bb73" />
-  <RDF:Description RDF:about="rdf:#$+hnTQ3"
-                   em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
-                   em:minVersion="1.5"
-                   em:maxVersion="3.0.*"
-                   em:updateLink="http://www.heorot.org/wordpress/wp-content/bookit/bookit0.3.7.xpi"
-                   em:updateHash="sha1:0ecbe50b3d07e43c4ddd12b5f37e7371a62ea6c1" />
-  <RDF:Description RDF:about="rdf:#$.VJpE3"
-                   em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
-                   em:minVersion="3.0.0"
-                   em:maxVersion="3.*"
-                   em:updateLink="http://www.heorot.org/wordpress/wp-content/bookit/bookit0.5.6.xpi"
-                   em:updateHash="sha1:ca8b98f4f09b9c88760f7dd4816eb00dc0832499" />
-  <RDF:Description RDF:about="urn:mozilla:extension:{950a782d-e82f-45e2-9da7-44898356813d}:0.3.9"
-                   em:version="0.3.9"
-                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBAFHi6MTWBFYCHIv3zp5yK+F8MxuzG+9+xS2eshWzqomREeHy+nU7nJSeZq6Hnq0NY91apSEoPutL1Q2RHrcCRXkS4O5uNVx0SyW0VMUfgN3J5VKneTtMn54kida6VyxMLWTI5m2H0qUThc6XLFB6vvWz+uLLpblzje9T9AoH0W+S">
-    <em:targetApplication RDF:resource="rdf:#$X0Epa1"/>
-  </RDF:Description>
-  <RDF:Description RDF:about="rdf:#$X0Epa1"
-                   em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
-                   em:minVersion="1.5"
-                   em:maxVersion="3.0.*"
-                   em:updateLink="http://www.heorot.org/wordpress/wp-content/bookit/bookit0.3.9.xpi"
-                   em:updateHash="sha1:8fe072aa2244d632f880c1460f7487a7ce97872b" />
-  <RDF:Description RDF:about="urn:mozilla:extension:{950a782d-e82f-45e2-9da7-44898356813d}:0.4.3"
-                   em:version="0.4.3"
-                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBAG7M0r/LMIThGvz2d2lKpdex9fOmPJ8IIjhU+zpD2scT25/jjB7eBXdW9n8yc7crrhRtYdTfJfNlcgPJIX88w/dFZJJ9OpEt+akUeiBlVpZO5F8JAHFIX2y3YwGbEEuiJJXTMBHxqXoF1j3a5YMXHIoH6uHBdZEzo/YdcDEZooHs">
-    <em:targetApplication RDF:resource="rdf:#$y8Jm73"/>
-  </RDF:Description>
-  <RDF:Description RDF:about="urn:mozilla:extension:{950a782d-e82f-45e2-9da7-44898356813d}:0.3.8"
-                   em:version="0.3.8"
-                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBADb6ftbAQjeSyj7jdD6Ef/2cl9LLUrHtzxtpKGDqOwKb6nGiiSgu7/TwM+Ta3/4Ie1uHZ9eRrNIne+OaiZwsFGlMkgILboE1iiQXjv8oRypTOD9oPVYfToVLrXeecLHcH9JglEVM3EfjtuccgvyZTu2f2KuNReBd0nJ++IGbYlJa">
-    <em:targetApplication RDF:resource="rdf:#$uL+KS3"/>
+  <RDF:Description RDF:about="urn:mozilla:extension:{950a782d-e82f-45e2-9da7-44898356813d}:0.4.0"
+                   em:version="0.4.0"
+                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBAJapG22EBzd9OdrULCy0EyPoOcPSiKhgeq/dBlfhWrIJ9Li/mo2FCI0dVFIaJBluKCSJEkSC4Eyrx6HoqPrMhz8J9ai/39wiNtQ6vMowovuIXozRETgOYw4d0jKjtGOtWEf3ToaTQcDSm1x1jQ8Bo8CvSWxco+wBLl1h6FimNz+A">
+    <em:targetApplication RDF:resource="rdf:#$PXbkI2"/>
   </RDF:Description>
   <RDF:Description RDF:about="rdf:#$shNk03"
                    em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
@@ -64,26 +30,9 @@
                    em:maxVersion="3.0.*"
                    em:updateLink="http://www.heorot.org/wordpress/wp-content/bookit/bookit0.4.4.xpi"
                    em:updateHash="sha1:b899c775d047d3ee8031871e67124de8af258d11" />
-  <RDF:Description RDF:about="rdf:#$uL+KS3"
-                   em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
-                   em:minVersion="1.5"
-                   em:maxVersion="3.0.*"
-                   em:updateLink="http://www.heorot.org/wordpress/wp-content/bookit/bookit0.3.8.xpi"
-                   em:updateHash="sha1:c9930f52eeb42d6cc87d25e152faa148e72ec0df" />
-  <RDF:Description RDF:about="urn:mozilla:extension:{950a782d-e82f-45e2-9da7-44898356813d}:0.4.0"
-                   em:version="0.4.0"
-                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBAI2w5cm7K+eAbl3K21SHz6QFMWY/RLAi6QtBuAvtgbRzeknxSyJVhfRiBkW22aMYyYag1yBLSBVMLDjDCWVjkI0ROLvkNfj+GbnKr0v12K9MmHEUzhDNSHdX6U4sG18BampC0jt6EpWsQzzpJocQNEL3F5j73dxrUCCOhg0mStf3">
-    <em:targetApplication RDF:resource="rdf:#$PXbkI2"/>
-  </RDF:Description>
-  <RDF:Description RDF:about="urn:mozilla:extension:{950a782d-e82f-45e2-9da7-44898356813d}:0.3.7"
-                   em:version="0.3.7"
-                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBAHUtpnctH1L40Six6gIZLw+LQB+UixnJbY5Gxm3SwHpXomHfpxSQXui4DVq8QRDCsBvOG8ElQcmWrtSN9ifgXy+vgYaI/k9OlWgLdkHlyJSEQndC04gvEHlVRmz6DeeuQ6uUgbK9Srgsa2JTsSkNac9SLCSukrGhaIWIeXKucG48">
-    <em:targetApplication RDF:resource="rdf:#$+hnTQ3"/>
-  </RDF:Description>
-  <RDF:Description RDF:about="urn:mozilla:extension:{950a782d-e82f-45e2-9da7-44898356813d}:0.4.2"
-                   em:version="0.4.2"
-                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBAJkNI2Z+znP0mX89bLpKi4kfsPHqddgvCraLaHN1wvJVul+y4frtuIXSM4mmLf2cjbwUUSxMgbiZeV6S9+cu9nZOIg/Vjv8OQa3CEKg8w5Bw1qnckiXIuYi2DaATdZzGJcBY0uR4Fj0KWqf/gP9wJkQGm1wGh52QKfOaAS0KrlUz">
-    <em:targetApplication RDF:resource="rdf:#$7Kb1l2"/>
+  <RDF:Description RDF:about="urn:mozilla:extension:{950a782d-e82f-45e2-9da7-44898356813d}"
+                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBABvXJrzbMC2TTeWKl2lkitgZeqXTQ4sfIaaJjUVyePQX6GuacZ9f2CR/jfyXhinh/zquzxIgfxQBmRjHZ8s3/trmdkyyUBvOapRmxZUEZxScGVP4nvuUiFedAJ7uBa4ptZy9TBSbHn3DKFG/9Y1Wr36FZyoQNWylee50kFvgsfOd">
+    <em:updates RDF:resource="rdf:#$clwXR3"/>
   </RDF:Description>
   <RDF:Seq RDF:about="rdf:#$clwXR3">
     <RDF:li RDF:resource="urn:mozilla:extension:{950a782d-e82f-45e2-9da7-44898356813d}:0.4.0"/>
@@ -91,26 +40,17 @@
     <RDF:li RDF:resource="urn:mozilla:extension:{950a782d-e82f-45e2-9da7-44898356813d}:0.4.3"/>
     <RDF:li RDF:resource="urn:mozilla:extension:{950a782d-e82f-45e2-9da7-44898356813d}:0.4.4"/>
     <RDF:li RDF:resource="urn:mozilla:extension:{950a782d-e82f-45e2-9da7-44898356813d}:0.5.6"/>
+    <RDF:li RDF:resource="urn:mozilla:extension:{950a782d-e82f-45e2-9da7-44898356813d}:0.6.0"/>
   </RDF:Seq>
-  <RDF:Description RDF:about="urn:mozilla:extension:{950a782d-e82f-45e2-9da7-44898356813d}:0.6.0"
-                   em:version="0.6.0"
-                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBAJ2luZHFCLOTuXNYNNCyfZfp9bB808yHqSHiB+8jO4MUJsn6y5qaM3E6tw4T+Aa2ghHL70dCF+LgVds6qLAdaMLiy0wCIokoPjcSIR2U+us7jx+J7AIcb21UtGN0NyDzikZbak8DyqbDi7qbYlZAlnWL9ZBBhP76XTVZW5/VduRM">
-    <em:targetApplication RDF:resource="rdf:#$kh8UE"/>
-  </RDF:Description>
-  <RDF:Description RDF:about="urn:mozilla:extension:{950a782d-e82f-45e2-9da7-44898356813d}"
-                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBAGN+eNIwakG4m8Q/jAxdw45SrpkyuWK93tqmWd8a/biUYiCeLaQuT2u5kiD4+u82lrqG1kZC8bxMIVTbhI7WLd86yUPkmmAiznGw/lPgI/8Ems/0l7Csykz40PwS8dbj7YhhHB8VXsDRjnL27ngY7MsVyZGUabZ1PG20wols5O3K">
-    <em:updates RDF:resource="rdf:#$clwXR3"/>
-  </RDF:Description>
-  <RDF:Description RDF:about="rdf:#$PXbkI2"
-                   em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
-                   em:minVersion="1.5"
-                   em:maxVersion="3.0.*"
-                   em:updateLink="http://www.heorot.org/wordpress/wp-content/bookit/bookit0.4.0.xpi"
-                   em:updateHash="sha1:b51137768bd014b8dde29629005d67c404d78f6c" />
   <RDF:Description RDF:about="rdf:#$y8Jm73"
                    em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
                    em:minVersion="1.5"
                    em:maxVersion="3.0.*"
                    em:updateLink="http://www.heorot.org/wordpress/wp-content/bookit/bookit0.4.3.xpi"
                    em:updateHash="sha1:e7587be7ee15866adcc6212f9ced10b98b80b0d5" />
+  <RDF:Description RDF:about="urn:mozilla:extension:{950a782d-e82f-45e2-9da7-44898356813d}:0.4.4"
+                   em:version="0.4.4"
+                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBALrJyt5dCRhK5xoaP/XfCSX94bwRCyEqPgBmpWEMjoIbUTg5Mn9d5CpewrT8Xrt/0iFMeykcfG5sMax12AfAsmKqvvOB1H/B7Ydas6mwB/4GLmz+d5qcb5RteyFdTtmqLtrC6bHuGtwisjOU8PpYvk31rXV1wJGIUPZKKOsH+lXu">
+    <em:targetApplication RDF:resource="rdf:#$shNk03"/>
+  </RDF:Description>
 </RDF:RDF>
