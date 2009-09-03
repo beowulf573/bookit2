@@ -2,10 +2,6 @@
 <RDF:RDF xmlns:em="http://www.mozilla.org/2004/em-rdf#"
          xmlns:NC="http://home.netscape.com/NC-rdf#"
          xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-  <RDF:Description RDF:about="urn:mozilla:extension:{950a782d-e82f-45e2-9da7-44898356813d}"
-                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBAIcH6bS1AVA5tbqaI/KipfKwEd2bDIkSjvXPjzmK3ntU9NUAhGEX5AxJzXZ+cXWZOh+MncJehGzXz8VWf6xnDzoDek80296KdjzRg5R0ukYu3SHfxMO31COSTveUmay90J6cDkfbd1Qz8Pakwh2WpXIS4tH3uXz4mIDoCfXnV8r2">
-    <em:updates RDF:resource="rdf:#$xxbNf2"/>
-  </RDF:Description>
   <RDF:Description RDF:about="rdf:#$BxbNf2"
                    em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
                    em:minVersion="3.0.0"
@@ -13,14 +9,31 @@
                    em:updateLink="http://www.heorot.org/wordpress/wp-content/bookit/bookit0.6.0.xpi"
                    em:updateHash="sha1:403ddc610981febe6e39dc15a3f468c50ecf7c2b"
                    em:updateInfoURL="http://www.heorot.org/wordpress/wp-content/bookit/updateInfo0.6.0.xml" />
-  <RDF:Description RDF:about="urn:mozilla:install-manifest"
-                   em:updateKey="MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDQHKJbqdqbkvsbOS25/1vPi0dRhTiJRjSMcRhHa6g7csSVfaFi795pewmmOCgKr4g9qqEmW2HffeJEGI3IleipE6kikXTEgYv5ocYGhTULIsJZAYSSlI9107wLXzFVeOTFFEu69s+OjTbo8meKdmtZAKyj+zOnCYjdV3KyxuhWcwIDAQAB" />
+  <RDF:Description RDF:about="rdf:#$oo6lQ3"
+                   em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+                   em:minVersion="3.0.0"
+                   em:maxVersion="3.*"
+                   em:updateLink="http://www.heorot.org/wordpress/wp-content/bookit/bookit0.6.1.xpi"
+                   em:updateHash="sha1:66e08e94bd266943c667542aec24d460c6d1e911"
+                   em:updateInfoURL="http://www.heorot.org/wordpress/wp-content/bookit/updateInfo0.6.1.xml" />
   <RDF:Description RDF:about="urn:mozilla:extension:{950a782d-e82f-45e2-9da7-44898356813d}:0.6.0"
                    em:version="0.6.0"
                    em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBAE6RrivCT8xU1NySc3zTE5NLC5FgzL+SwzDcUZKiCUcUmKkwh7723vcNSnxYPI28g1zFzEGIrAKkds9WsNOLv2jok2bvIDMa7nMzUcPdsDe9n2CegK80lkZCi+e7RDDL4UdCzda7CeFCr6pufBGxUTPMNmgUUqeoFUULP549e6mT">
     <em:targetApplication RDF:resource="rdf:#$BxbNf2"/>
   </RDF:Description>
+  <RDF:Description RDF:about="urn:mozilla:extension:{950a782d-e82f-45e2-9da7-44898356813d}:0.6.1"
+                   em:version="0.6.1"
+                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBADJTIcZB8LAq2J5ves9tkUzvhcOPMODI0azdEq/35NOZJXf9oItjJwT6pwhWfd6qgsv2Fy2FhoDOPR6H9FqJY2SPwBHzl2YArI2GEo968L2gtTK+jXleJ22F/Wtse/x08pmcPw6Klx00zs58dj4DWrK4xQq5D0BzfB0/VCCP5wGj">
+    <em:targetApplication RDF:resource="rdf:#$oo6lQ3"/>
+  </RDF:Description>
+  <RDF:Description RDF:about="urn:mozilla:extension:{950a782d-e82f-45e2-9da7-44898356813d}"
+                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBAB9xozmzAM5DTvH2Gf9j4PQ7WcC9VruzfhRi60o2PpV+3XRWHVap0FgevSrYyjHJ7AYa45nSI2uIje0OD3N4iXh/Wpg3jObaMVvvyNSo/JtK5sL826x8Oo5N23F1szN9fgloa+FeAx8BMtun/qqP8tK5jF8bnol8lQFBqrQaE+Fw">
+    <em:updates RDF:resource="rdf:#$xxbNf2"/>
+  </RDF:Description>
   <RDF:Seq RDF:about="rdf:#$xxbNf2">
     <RDF:li RDF:resource="urn:mozilla:extension:{950a782d-e82f-45e2-9da7-44898356813d}:0.6.0"/>
+    <RDF:li RDF:resource="urn:mozilla:extension:{950a782d-e82f-45e2-9da7-44898356813d}:0.6.1"/>
   </RDF:Seq>
+  <RDF:Description RDF:about="urn:mozilla:install-manifest"
+                   em:updateKey="MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDQHKJbqdqbkvsbOS25/1vPi0dRhTiJRjSMcRhHa6g7csSVfaFi795pewmmOCgKr4g9qqEmW2HffeJEGI3IleipE6kikXTEgYv5ocYGhTULIsJZAYSSlI9107wLXzFVeOTFFEu69s+OjTbo8meKdmtZAKyj+zOnCYjdV3KyxuhWcwIDAQAB" />
 </RDF:RDF>
