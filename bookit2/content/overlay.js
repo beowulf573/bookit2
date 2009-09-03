@@ -265,7 +265,7 @@ var bookit2 = {
 	    var xmlSerializer = new XMLSerializer();
 	    // serialize
 	    var content = xmlSerializer.serializeToString(xmlDocument);
-		
+		 content = "<html><body>" + content + "</body></html>";
 		return content;
 	}
 	return "";

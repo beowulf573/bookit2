@@ -195,7 +195,7 @@ BookitConversion.prototype = {
                 workingFile = this.saveData(workingDir, this._data, logfile);                
             }
 
-            if(workingFile == null || !workingFile.exists) {
+            if(workingFile == null || !workingFile.exists || workingFile.fileSize == 0) {
                 throw new Error ("Web2disk or save failed.");
             }
             var outputFile = this.getOutputFile();
@@ -422,11 +422,11 @@ BookitConversion.prototype = {
 
 		// This assumes that fos is the nsIOutputStream you want to write to
 		os.init(fos, charset, 0, 0x0000);
-
-		os.writeString("<html><body>\n");
+	   // TODO: may be necessary, maybe not
+		//os.writeString("<html><body>\n");
         os.writeString(data);
         os.writeString("\n");
-		os.writeString("</body></html>\n");
+		//os.writeString("</body></html>\n");
         
 	    os.close();
 	    fos.close();
