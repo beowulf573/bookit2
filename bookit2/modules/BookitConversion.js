@@ -150,6 +150,7 @@ BookitConversion.prototype = {
             var doAddCalibre = this.GetBookitPrefBool("add_calibre");
             var doLaunchCalibre = this.GetBookitPrefBool("launch_calibre");
             var doDeleteAfterAdd = this.GetBookitPrefBool("delete_after_add");
+            var doDeleteWorkingDir = this.GetBookitPrefBool("delete_working_dir");
 
             var steps = 3;  // save/convert
             if(doAddCalibre)
@@ -258,9 +259,9 @@ BookitConversion.prototype = {
             this._logger.logInfo("delete working directory");
             
             // TODO: wrap in own handler
-
-            workingDir.remove(true);			
-            
+			if(doDeleteWorkingDir) {
+				workingDir.remove(true);			
+            }
      
         } catch(err) {
             this._logger.logError(err);			

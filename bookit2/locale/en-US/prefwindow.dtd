@@ -56,3 +56,4 @@
 <!ENTITY bookit.settings.advanced.log_level.info "Infomation">
 <!ENTITY bookit.settings.advanced.log_level.warn "Warning">
 <!ENTITY bookit.settings.advanced.log_level.err "Error">
+<!ENTITY bookit.settings.advanced.delete_working_dir "Delete working directory">

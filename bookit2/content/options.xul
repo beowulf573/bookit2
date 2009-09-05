@@ -205,6 +205,8 @@
     <preferences>
         <preference id="pref_pane_advanced_log_level" name="extensions.bookit2.logging.level" type="int" />
         <preference id="pref_pane_advanced_enable_threading" name="extensions.bookit2.enable_threading" type="bool" />
+		<preference id="pref_pane_advanced_delete_working_dir" name="extensions.bookit2.delete_working_dir" type="bool" />
+		
   </preferences>
     <label control="pane_advanced_log_level" value="&bookit.settings.advanced.log_level;"/>
     <menulist id="pane_advanced_log_level" preference="pref_pane_advanced_log_level">
@@ -216,6 +218,7 @@
         </menupopup>
     </menulist>
     <checkbox id="pane_advanced_enable_threading" preference="pref_pane_advanced_enable_threading" label="&bookit.settings.advanced.enable_threading;" />
+    <checkbox id="pane_advanced_delete_working_dir" preference="pref_pane_advanced_delete_working_dir" label="&bookit.settings.advanced.delete_working_dir;" />
   </prefpane>  
 
   <script type="application/x-javascript" src="chrome://bookit2/content/bookit-settings.js"/>
