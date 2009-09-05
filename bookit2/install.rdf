@@ -11,7 +11,7 @@
                    em:name="Bookit"
                    em:version="0.6.1"
                    em:creator="Eddie McCreary"
-                   em:description="A Firefox extension to create eBooks from webpages."
+                   em:description="Facilitates creating eBooks from websites."
                    em:homepageURL="http://www.heorot.org/wordpress/index.php/software/bookit/"
                    em:updateURL="http://www.heorot.org/wordpress/wp-content/bookit/update.rdf"
                    em:aboutURL="chrome://bookit2/content/about.xul"
