@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Bookit - What's New</title>
+</head>
+<body>
+<h1>Bookit - What's New</h1>
+<ul>
+<li>Better 32x32 icon</li>
+<li>Option to keep working directory</li>
+<li>Use 0 as default value for max recursions</li>
+<li>Option to specify cover image</li>
+<li>Option to specify extra css file</li>
+<li>Option to disable default cover in ePub</li>
+</ul>
+</body>
+</html>

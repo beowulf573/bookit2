@@ -9,7 +9,7 @@
   <RDF:Description RDF:about="urn:mozilla:install-manifest"
                    em:id="{950a782d-e82f-45e2-9da7-44898356813d}"
                    em:name="Bookit"
-                   em:version="0.6.1"
+                   em:version="0.6.2"
                    em:creator="Eddie McCreary"
                    em:description="Facilitates creating eBooks from websites."
                    em:homepageURL="http://www.heorot.org/wordpress/index.php/software/bookit/"

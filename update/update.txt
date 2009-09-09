@@ -3,10 +3,11 @@
 	<em:targetApplication>
 	  <RDF:Description>
 	    <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
-	    <em:minVersion>1.5</em:minVersion>
-	    <em:maxVersion>3.0.*</em:maxVersion>
+	    <em:minVersion>3.0.0</em:minVersion>
+	    <em:maxVersion>3.*</em:maxVersion>
 	    <em:updateLink>http://www.heorot.org/wordpress/wp-content/bookit/bookit0.2.4.xpi</em:updateLink>
 	    <em:updateHash>sha1:651949c04306bf453289355911b9bf5c8c32266e</em:updateHash>
+        <em:updateInfoURL>http://www.heorot.org/wordpress/wp-content/bookit/updateInfo0.6.1.xml</em:updateInfoURL>
 	  </RDF:Description>
 	</em:targetApplication>
   </RDF:Description>
