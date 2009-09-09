@@ -17,7 +17,7 @@ pref("extensions.bookit2.delete_working_dir", true);
 	
 pref("extensions.bookit2.show_options_dlg", true);
 
-pref("extensions.bookit2.spidering.max_recursions", 1);
+pref("extensions.bookit2.spidering.max_recursions", 0);
 pref("extensions.bookit2.spidering.max_files", 0);
 pref("extensions.bookit2.spidering.delay", 0);
 pref("extensions.bookit2.layout.left_margin", 20);
