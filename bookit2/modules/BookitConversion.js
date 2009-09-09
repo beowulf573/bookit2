@@ -304,10 +304,12 @@ BookitConversion.prototype = {
         var useHeader = this.GetBookitPrefBool("lrf.header");
         var headerFormat = this.GetBookitPref("lrf.header_format");
         var ebook_convert = this.GetBookitPref("paths.ebook_convert");
-        var output_profile = this.GetBookitPref("ebook_convert.output_profile");        
+        var output_profile = this.GetBookitPref("ebook_convert.output_profile");      
+        var extra_css = this.GetBookitPref("layout.extra_css");
+        var cover = this.GetBookitPref("layout.cover");
         
         // both are nsIFile
-        var command = "\"{0}\" \"{1}\" \"{2}\" --title=\"{3}\" --authors=\"{4}\" --base-font-size={5} {6} {7} --margin-left={8} --margin-right={9} --margin-top={10} --margin-bottom={11} --output-profile={12}".format(
+        var command = "\"{0}\" \"{1}\" \"{2}\" --title=\"{3}\" --authors=\"{4}\" --base-font-size={5} {6} {7} --margin-left={8} --margin-right={9} --margin-top={10} --margin-bottom={11} --output-profile={12} {13} {14}".format(
                                         ebook_convert,
                                         source.path,
                                         outputFile.path,
@@ -317,7 +319,10 @@ BookitConversion.prototype = {
                                         useHeader ? "--header" : "",
                                         useHeader && headerFormat && headerFormat.length != 0 ? "--header-format=\"" + headerFormat +"\"": "",
                                         left_margin, right_margin, top_margin, bottom_margin,
-                                        output_profile);
+                                        output_profile,
+                                        extra_css && extra_css.length != 0 ? "--extra-css=\"" + extra_css + "\"" : "",
+                                        cover && cover.length != 0 ? "--cover=\"" + cover + "\"" : ""
+                                        );
                                         
         //LOG("cmd: " + command);
         
@@ -335,9 +340,12 @@ BookitConversion.prototype = {
         var base_font_size = this.GetBookitPrefInt("layout.base_font_size");
         var ebook_convert = this.GetBookitPref("paths.ebook_convert");
         var output_profile = this.GetBookitPref("ebook_convert.output_profile");        
+        var extra_css = this.GetBookitPref("layout.extra_css");
+        var cover = this.GetBookitPref("layout.cover");
+        var no_default_cover = this.GetBookitPrefBool("epub.no_default_cover");
         
         // both are nsIFile
-        var command = "\"{0}\" \"{1}\" \"{2}\" --title=\"{3}\" --authors=\"{4}\" --base-font-size={5} --margin-left={6} --margin-right={7} --margin-top={8} --margin-bottom={9} --output-profile={10}".format(
+        var command = "\"{0}\" \"{1}\" \"{2}\" --title=\"{3}\" --authors=\"{4}\" --base-font-size={5} --margin-left={6} --margin-right={7} --margin-top={8} --margin-bottom={9} --output-profile={10} {11} {12} {13}".format(
                                         ebook_convert,
                                         source.path,
                                         outputFile.path,
@@ -345,7 +353,11 @@ BookitConversion.prototype = {
                                         this._author,
                                         base_font_size,
                                         left_margin, right_margin, top_margin, bottom_margin,
-                                        output_profile);
+                                        output_profile,
+                                        extra_css && extra_css.length != 0 ? "--extra-css=\"" + extra_css + "\"" : "",
+                                        cover && cover.length != 0 ? "--cover=\"" + cover + "\"" : "",                                        
+                                        no_default_cover ? "--no-default-epub-cover" : ""
+                                        );
                                         
         //LOG("cmd: " + command);
         
@@ -363,9 +375,11 @@ BookitConversion.prototype = {
         var base_font_size = this.GetBookitPrefInt("layout.base_font_size");        
         var ebook_convert = this.GetBookitPref("paths.ebook_convert");
         var output_profile = this.GetBookitPref("ebook_convert.output_profile");        
+        var extra_css = this.GetBookitPref("layout.extra_css");
+        var cover = this.GetBookitPref("layout.cover");
         
         // both are nsIFile
-        var command = "\"{0}\" \"{1}\" \"{2}\" --title=\"{3}\" --authors=\"{4}\" --base-font-size={5} --margin-left={6} --margin-right={7} --margin-top={8} --margin-bottom={9} --output-profile={10}".format(
+        var command = "\"{0}\" \"{1}\" \"{2}\" --title=\"{3}\" --authors=\"{4}\" --base-font-size={5} --margin-left={6} --margin-right={7} --margin-top={8} --margin-bottom={9} --output-profile={10} {11} {12}".format(
                                         ebook_convert,
                                         source.path,
                                         outputFile.path,
@@ -373,7 +387,10 @@ BookitConversion.prototype = {
                                         this._author,
                                         base_font_size,
                                         left_margin, right_margin, top_margin, bottom_margin,
-                                        output_profile);
+                                        output_profile,
+                                        extra_css && extra_css.length != 0 ? "--extra-css=\"" + extra_css + "\"" : "",
+                                        cover && cover.length != 0 ? "--cover=\"" + cover + "\"" : ""                                 
+                                        );
                                         
         //LOG("cmd: " + command);
         

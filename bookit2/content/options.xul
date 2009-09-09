@@ -134,7 +134,9 @@
         <preference id="pref_layout_right_margin" name="extensions.bookit2.layout.right_margin" type="int" />
         <preference id="pref_layout_top_margin" name="extensions.bookit2.layout.top_margin" type="int" />
         <preference id="pref_layout_bottom_margin" name="extensions.bookit2.layout.bottom_margin" type="int" />
-        <preference id="pref_layout_base_font_size" name="extensions.bookit2.layout.base_font_size" type="int" />
+        <preference id="pref_layout_base_font_size" name="extensions.bookit2.layout.base_font_size" type="int" />        
+        <preference id="pref_layout_extra_css" name="extensions.bookit2.layout.extra_css" type="string" />
+        <preference id="pref_layout_cover" name="extensions.bookit2.layout.cover" type="string" />                
     </preferences>
     
     <label control="layout_left_margin" value="&bookit.settings.layout.left_margin;"/>
@@ -151,6 +153,12 @@
 
     <label control="layout_base_font_size" value="&bookit.settings.layout.base_font_size;"/>
     <textbox preference="pref_layout_base_font_size" id="layout_base_font_size" />
+
+    <label control="layout_extra_css" value="&bookit.settings.layout.extra_css;"/>
+    <textbox preference="pref_layout_extra_css" id="layout_extra_css" />
+
+    <label control="layout_cover" value="&bookit.settings.layout.cover;"/>
+    <textbox preference="pref_layout_cover" id="layout_cover" />
     </prefpane>  
 
   <prefpane id="pane_lrf" label="&bookit.settings.lrf.title;">
@@ -164,12 +172,14 @@
     <label control="lrf_header_format" value="&bookit.settings.lrf.header_format;"/>
     <textbox preference="pref_lrf_header_format" id="lrf_header_format" />
   </prefpane>  
-<!--
+
   <prefpane id="pane_epub" label="&bookit.settings.epub.title;">
     <preferences>
+        <preference id="pref_epub_no_default_cover" name="extensions.bookit2.epub.no_default_cover" type="bool" />
     </preferences>
+    <checkbox id="epub_no_default_cover" preference="pref_epub_no_default_cover" label="&bookit.settings.epub.no_default_cover;" />
   </prefpane>  
-  -->
+  
   <prefpane id="pane_mobi" label="&bookit.settings.mobi.title;">
     <preferences>
         

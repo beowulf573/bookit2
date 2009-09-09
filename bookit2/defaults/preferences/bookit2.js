@@ -25,9 +25,12 @@ pref("extensions.bookit2.layout.right_margin", 20);
 pref("extensions.bookit2.layout.top_margin", 10);
 pref("extensions.bookit2.layout.bottom_margin", 0);
 pref("extensions.bookit2.layout.base_font_size", 10);
+pref("extensions.bookit2.layout.extra_css", "");
+pref("extensions.bookit2.layout.cover", "");
 pref("extensions.bookit2.lrf.ignore_tables", false);
 pref("extensions.bookit2.lrf.header", false);
 pref("extensions.bookit2.lrf.header_format", "");
+pref("extensions.bookit2.epub.no_default_cover", false);
 pref("extensions.bookit2.mobi.ignore_tables", false);
 
 

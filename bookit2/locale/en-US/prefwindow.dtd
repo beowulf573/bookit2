@@ -33,6 +33,9 @@
 <!ENTITY bookit.settings.layout.top_margin "Top Margin:">
 <!ENTITY bookit.settings.layout.bottom_margin "Bottom Margin:">
 <!ENTITY bookit.settings.layout.base_font_size "Base Font Size:">
+<!ENTITY bookit.settings.layout.extra_css "Extra CSS:">
+<!ENTITY bookit.settings.layout.cover "Cover Image:">
+
 
 <!ENTITY bookit.settings.lrf.title "LRF">
 <!ENTITY bookit.settings.lrf.ignore_tables "Ignore Tables">
@@ -40,6 +43,8 @@
 <!ENTITY bookit.settings.lrf.header_format "Header Format:">
 
 <!ENTITY bookit.settings.epub.title "ePub">
+
+<!ENTITY bookit.settings.epub.no_default_cover "Disable Default Cover">
 
 
 <!ENTITY bookit.settings.mobi.title "Mobi">
