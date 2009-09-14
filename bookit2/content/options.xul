@@ -36,10 +36,13 @@
   - ***** END LICENSE BLOCK ***** -->
 
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://bookit2/skin/options.css"?>
 <!DOCTYPE prefwindow SYSTEM "chrome://bookit2/locale/prefwindow.dtd">
 <prefwindow id="bookit2Preferences" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" 
-
-		persist="width height screenX screenY"
+        
+        onload="sizeToContent();"
+		persist="screenX screenY"
+        style="width: &window.width; !important;"
 		title="&prefwindow.title;">
   <prefpane id="preferences_global" label="&preferences_global.title;">
     <preferences>
